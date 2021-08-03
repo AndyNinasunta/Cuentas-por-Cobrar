@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../Plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <div style="font-weight: bold; background-color: #036fab; 
+                     color: white; text-align: center; height: 25px;">
+                    <h2>MANTENIMIENTO A CLIENTES</h2>
+                </div>
+                <h:form>
+                    <p:panel>
+                        <!-- Botones de comando Nuevo,Editar,Deshabilitar,Buscar  !-->
+                        <div style="float: right; margin-top: 15px; margin-right: 300px;">
+                            <p:toolbarGroup>
+                                <p:commandButton value="Añadir" icon="pi pi-plus"   
+                                                 onclick="PF('ClienteAdd').show()"    
+                                                 styleClass="ui-button-success"
+                                                 style="margin-right: 15px;">                               
+                                </p:commandButton>
+
+                                <p:commandButton value="Editar" icon="pi pi-pencil" 
+                                                 onclick="PF('ClienteAdd').show()"  
+                                                 styleClass="ui-button-info" 
+                                                 style="margin-right: 15px;">                                
+                                </p:commandButton>
+
+                                <p:commandButton id="delete-products-button"
+                                                 value="Anular" 
+                                                 icon="pi pi-times"                                            
+                                                 styleClass="ui-button-danger">
+                                    <p:confirm  header="Advertencia"
+                                                message="¿Esta Seguro que Desea anular este cliente?"
+                                                icon="pi pi-exclamation-triangle" />
+
+                                </p:commandButton>
+                            </p:toolbarGroup>
+                        </div>
+                        <br/>
+                        <div class="buscar">
+                            <p:outputLabel value="Buscar Cliente: " for="txtBuscar" 
+                                           style="font-weight: bold"/>
+                            <p:inputText id="txtBuscar" type="text" 
+                                         style="width: 350px;"/> 
+                            &nbsp;&nbsp;
+                            <p:commandButton id="btnBuscar" 
+                                             value="Buscar" icon="pi pi-search"/>
+                        </div>
+                        <br/>
+
+                        <!--Tabla que muestra el listado de clientes-->
+
+                        <p:dataTable id="tblClientes" var="varClientes"
+                                     emptyMessage="No existen Clientes" style="font-size: 12px;">
+
+                            <p:column headerText="Identificación">
+                                <h:outputText value=""/>
+                            </p:column>
+
+                            <p:column class="center"
+                                      headerText="Nombres y Apellidos/Razón Social">
+                                <h:outputText value=""/>
+                            </p:column>
+
+                            <p:column class="center" headerText="Dirección">
+                                <h:outputText value=""/>
+                            </p:column>
+
+                            <p:column class="center" headerText="Ciudad">
+                                <h:outputText value=""/>
+                            </p:column>
+
+                            <p:column class="center" headerText="Teléfono">
+                                <h:outputText value=""/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

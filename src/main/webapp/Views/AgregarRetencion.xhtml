@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../Plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <div style="font-weight: bold; background-color: #036fab; 
+                     color: white; text-align: center; height: 25px;">
+                    <h2>Nueva Retención</h2>
+                </div>
+                <p:panel>
+                    <div class="ui-datatable ui-widget">
+                        <h:form>
+                            <div class="ui-grid-row" style="height: 140px;">
+                                <div>
+                                    <div style="float: left;">
+                                        <p:outputLabel value="Cliente: " for="txtBuscar" 
+                                                       style="font-weight:bold;"/>
+                                        <br/> <br/> 
+                                        <p:inputText id="txtBuscar" style="width: 280px; height: 40px;"/> 
+                                        &nbsp;
+                                        <p:commandButton id="btnBuscar" value="Buscar" icon="pi pi-search"/>
+                                    </div>
+                                    <div style="float: left; padding-left: 15px;">
+                                        <p:outputLabel value="N° Factura: " style="font-weight:bold;" />
+                                        <br/> <br/>
+                                        <p:selectOneMenu id="option" style="width: 200px; height: 40px;">                            
+                                            <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                            <f:selectItem itemLabel="0010000100001" itemValue="ejemplo1"/>
+                                            <f:selectItem itemLabel="0010000100002" itemValue="ejemplo2"/>
+                                            <f:selectItem itemLabel="0010000100003" itemValue="ejemplo3"/>
+                                            <f:facet name="footer">
+                                                <p:divider styleClass="p-mt-0" />
+                                                <h:outputText value="3 Resultados" style="font-weight:bold;"/>
+                                            </f:facet>
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div >
+                                    <div style="height: 133px; width: 180px; 
+                                         float: left; padding-left: 15px;">
+                                        <p:outputLabel value="N° Retención: " for="txtIdRetencion" style="font-weight:bold;"/>
+                                        <br/> <br/> 
+                                        <p:inputText id="txtIdRetencion" 
+                                                     style="width: 150px; height: 40px;"/> 
+                                    </div>
+
+                                    <div style="height: 133px; width: 30px;
+                                         float: left; padding-left: 15px;">
+                                        <p:outputLabel value="Fecha: " for="fecha" 
+                                                       style="font-weight:bold;"/>
+                                        <br/> <br/> 
+                                        <p:datePicker id="fecha" readonly="true" 
+                                                      placeholder="dd/mm/aaaa"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                        <div class="card">
+                            <h:form id="form">
+                                <p:dataTable style="font-size: 12px;" >
+                                    <p:column headerText="Ejercicio Fiscal">
+                                        <h:outputText value="" />
+
+                                    </p:column>
+                                    <p:column headerText="Base Imponible">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column headerText="Descripción Impuesto">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column headerText="% Retención">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column headerText="Valor Retención">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+
+                        <div style="margin-top:15px;text-align: center;" class="father">                
+                            <p:button icon="pi pi-save " value="GUARDAR" 
+                                      styleClass=" ui-button-success " style="margin:.3rem"/>
+                        </div>
+                    </div> 
+                </p:panel>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
