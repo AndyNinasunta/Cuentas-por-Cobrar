@@ -26,7 +26,10 @@
                                         <br/> <br/> 
                                         <p:inputText id="txtBuscar" style="width: 280px; height: 40px;"/> 
                                         &nbsp;
-                                        <p:commandButton id="btnBuscar" value="Buscar" icon="pi pi-search"/>
+                                        <p:commandButton id="btnBuscar" 
+                                                         value="Buscar" 
+                                                         icon="pi pi-search"
+                                                         styleClass="ui-button-warning"/>
                                     </div>
                                     <div style="float: left; padding-left: 15px;">
                                         <p:outputLabel value="N° Factura: " style="font-weight:bold;" />
@@ -46,7 +49,9 @@
                                 <div >
                                     <div style="height: 133px; width: 180px; 
                                          float: left; padding-left: 15px;">
-                                        <p:outputLabel value="N° Retención: " for="txtIdRetencion" style="font-weight:bold;"/>
+                                        <p:outputLabel value="N° Retención: " 
+                                                       for="txtIdRetencion" 
+                                                       style="font-weight:bold;"/>
                                         <br/> <br/> 
                                         <p:inputText id="txtIdRetencion" 
                                                      style="width: 150px; height: 40px;"/> 
@@ -86,9 +91,9 @@
                             </h:form>
                         </div>
 
-                        <div style="margin-top:15px;text-align: center;" class="father">                
+                        <div style="margin-top:15px; text-align: center;" class="father">                
                             <p:button icon="pi pi-save " value="GUARDAR" 
-                                      styleClass=" ui-button-success " style="margin:.3rem"/>
+                                      styleClass=" ui-button-success" style="margin:.3rem"/>
                         </div>
                     </div> 
                 </p:panel>
