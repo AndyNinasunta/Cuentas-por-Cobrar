@@ -96,7 +96,24 @@ public class Conexion implements Serializable{
         return lector;
     }
     
- 
+    public int ejecutarProcedimiento(String sql){
+        int retorno = -1;
+        try{
+            if (abrirConexion()) {
+                retorno = st.executeUpdate(sql);
+                mensaje = "Se insertó correctamente";
+                tipoMensaje = FacesMessage.SEVERITY_INFO;
+            }
+        } catch (SQLException exc){
+             System.out.println(sql);
+            mensaje = exc.getMessage();
+            tipoMensaje = FacesMessage.SEVERITY_FATAL;
+            System.out.println(mensaje);
+        }finally {
+            cerrarConexion();
+        }
+        return retorno;
+    }
 
     public int insertar(String sql) {
         int retorno = -1;
@@ -117,7 +134,25 @@ public class Conexion implements Serializable{
         return retorno;
     }
     
-    public boolean isEstado() {
+   
+     public int modificar(String sql) {
+        int retorno = -1;
+        try {
+            if (abrirConexion()) {
+                retorno = st.executeUpdate(sql);
+                cerrarConexion();
+                mensaje = "Se modificó correctamente : ";
+                tipoMensaje = FacesMessage.SEVERITY_INFO;
+            }
+        } catch (SQLException exc) {
+            System.out.println(sql);
+            mensaje = exc.getMessage();
+            tipoMensaje = FacesMessage.SEVERITY_FATAL;
+            System.out.println(mensaje);
+        }
+        return retorno;
+    }
+     public boolean isEstado() {
         return estado;
     }
 }
