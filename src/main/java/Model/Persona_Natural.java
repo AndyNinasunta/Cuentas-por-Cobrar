@@ -12,7 +12,6 @@ package Model;
 public class Persona_Natural extends Persona{
     
     //Declaración de las Variables
-    private int id_Cliente;
     private String sexo;
     private String genero;
     private String nombre1;
@@ -20,15 +19,13 @@ public class Persona_Natural extends Persona{
     private String apellido1;
     private String apellidos2;
     private String fecha_nacimiento;
-    private int id_Tipo_Cliente;
 
     
     public Persona_Natural() {
     }
 
-    public Persona_Natural(int id_Cliente, String sexo, String genero, String nombre1, String nombre2, String apellido1, String apellidos2, String fecha_nacimiento, int id_Tipo_Cliente, int id_Tipo_Idenficacion, String direccion, String identificacion, boolean estado, String tlf1, String tlf2, String correo) {
-        super(id_Tipo_Idenficacion, direccion, identificacion, estado, tlf1, tlf2, correo);
-        this.id_Cliente = id_Cliente;
+    public Persona_Natural(String sexo, String genero, String nombre1, String nombre2, String apellido1, String apellidos2, String fecha_nacimiento, int id_Tipo_Idenficacion, String direccion, String identificacion, boolean estado, String tlf1, String tlf2, String correo, int id_tipoCliente) {
+        super(id_Tipo_Idenficacion, direccion, identificacion, estado, tlf1, tlf2, correo, id_tipoCliente);
         this.sexo = sexo;
         this.genero = genero;
         this.nombre1 = nombre1;
@@ -36,18 +33,24 @@ public class Persona_Natural extends Persona{
         this.apellido1 = apellido1;
         this.apellidos2 = apellidos2;
         this.fecha_nacimiento = fecha_nacimiento;
-        this.id_Tipo_Cliente = id_Tipo_Cliente;
     }
 
     
+    
+    //Para mostrar Clientes
 
-    public int getId_Cliente() {
-        return id_Cliente;
+    public Persona_Natural(String sexo, String genero, String nombre1, String nombre2, String apellido1, String apellidos2, String fecha_nacimiento, int id_Cliente, String identificacion, String descr_identificacion, String razon_nombre, String direccion, String tlf1, String tlf2, String correo, String descr_tipo_Cliente, String descr_Estado) {
+        super(id_Cliente, identificacion, descr_identificacion, razon_nombre, direccion, tlf1, tlf2, correo, descr_tipo_Cliente, descr_Estado);
+        this.sexo = sexo;
+        this.genero = genero;
+        this.nombre1 = nombre1;
+        this.nombre2 = nombre2;
+        this.apellido1 = apellido1;
+        this.apellidos2 = apellidos2;
+        this.fecha_nacimiento = fecha_nacimiento;
     }
+    
 
-    public void setId_Cliente(int id_Cliente) {
-        this.id_Cliente = id_Cliente;
-    }
 
     public String getSexo() {
         return sexo;
@@ -104,14 +107,5 @@ public class Persona_Natural extends Persona{
     public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
-
-    public int getId_Tipo_Cliente() {
-        return id_Tipo_Cliente;
-    }
-
-    public void setId_Tipo_Cliente(int id_Tipo_Cliente) {
-        this.id_Tipo_Cliente = id_Tipo_Cliente;
-    }
-
     
 }

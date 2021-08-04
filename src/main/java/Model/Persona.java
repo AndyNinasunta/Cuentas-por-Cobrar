@@ -19,11 +19,19 @@ public class Persona {
     private String tlf1;
     private String tlf2;
     private String correo;
-
+    //Declaracion de las variables para mostrar clientes
+    private int id_Cliente;
+    private String descr_identificacion;
+    private String razon_nombre;
+    private int id_tipoCliente;
+    private String descr_tipo_Cliente;
+    private String descr_Estado;
+    
     public Persona() {
     }
-
-    public Persona(int id_Tipo_Idenficacion, String direccion, String identificacion, boolean estado, String tlf1, String tlf2, String correo) {
+    
+    //Constructor con los datos importantes
+    public Persona(int id_Tipo_Idenficacion, String direccion, String identificacion, boolean estado, String tlf1, String tlf2, String correo,int id_tipoCliente) {
         this.id_Tipo_Idenficacion = id_Tipo_Idenficacion;
         this.direccion = direccion;
         this.identificacion = identificacion;
@@ -31,7 +39,27 @@ public class Persona {
         this.tlf1 = tlf1;
         this.tlf2 = tlf2;
         this.correo = correo;
+        this.id_tipoCliente=id_Tipo_Idenficacion;
     }
+    
+    
+    
+    
+    //Constructor con los datos que se mostraran en la tabla
+
+    public Persona(int id_Cliente, String identificacion, String descr_identificacion,String razon_nombre,String direccion, String tlf1, String tlf2, String correo,  String descr_tipo_Cliente,String descr_Estado) {
+        this.direccion = direccion;
+        this.identificacion = identificacion;
+        this.tlf1 = tlf1;
+        this.tlf2 = tlf2;
+        this.correo = correo;
+        this.id_Cliente = id_Cliente;
+        this.descr_identificacion = descr_identificacion;
+        this.razon_nombre = razon_nombre;
+        this.descr_tipo_Cliente = descr_tipo_Cliente;
+        this.descr_Estado=descr_Estado;
+    }
+    
     
     public int getId_Tipo_Idenficacion() {
         return id_Tipo_Idenficacion;
@@ -88,5 +116,59 @@ public class Persona {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+
+    public int getId_Cliente() {
+        return id_Cliente;
+    }
+
+    public void setId_Cliente(int id_Cliente) {
+        this.id_Cliente = id_Cliente;
+    }
+
+    public int getId_tipoCliente() {
+        return id_tipoCliente;
+    }
+
+    public void setId_tipoCliente(int id_tipoCliente) {
+        this.id_tipoCliente = id_tipoCliente;
+    }
+    
+    
+
+    public String getDescr_identificacion() {
+        return descr_identificacion;
+    }
+
+    public void setDescr_identificacion(String descr_identificacion) {
+        this.descr_identificacion = descr_identificacion;
+    }
+
+    public String getRazon_nombre() {
+        return razon_nombre;
+    }
+
+    public void setRazon_nombre(String razon_nombre) {
+        this.razon_nombre = razon_nombre;
+    }
+
+    public String getDescr_tipo_Cliente() {
+        return descr_tipo_Cliente;
+    }
+
+    public void setDescr_tipo_Cliente(String descr_tipo_Cliente) {
+        this.descr_tipo_Cliente = descr_tipo_Cliente;
+    }
+
+    public String getDescr_Estado() {
+        return descr_Estado;
+    }
+
+    public void setDescr_Estado(String descr_Estado) {
+        this.descr_Estado = descr_Estado;
+    }
+
+   
+    
+    
     
 }
