@@ -31,6 +31,15 @@ public class PersonaController implements Serializable {
         personaDAO = new PersonaDAO();
         listaCliente = new ArrayList<>();
         listaCliente = personaDAO.obtener_Todos_Los_Clientes();
+        
+        for(Persona lst:listaCliente)
+        {
+            System.out.print(lst.getIdentificacion()+","+lst.getDescr_identificacion()+","+lst.getRazon_nombre()
+            +","+lst.getDireccion()+","+lst.getTlf1()+","+lst.getTlf2()+","+lst.getCorreo()+","+lst.getDescr_tipo_Cliente()
+            +","+lst.getDescr_Estado());
+            
+            
+        }
     }
     
     public void mostrar() {
