@@ -13,9 +13,7 @@ import Model.Persona_Juridica;
 import Model.Persona_Natural;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.primefaces.event.RowEditEvent;
@@ -87,6 +85,22 @@ public class PersonaController implements Serializable {
 
     public void setListaCliente(List<Persona> listaCliente) {
         this.listaCliente = listaCliente;
+    }
+
+    public Persona_Natural getPersona_Natural() {
+        return persona_Natural;
+    }
+
+    public void setPersona_Natural(Persona_Natural persona_Natural) {
+        this.persona_Natural = persona_Natural;
+    }
+
+    public Persona_Juridica getPersona_Juridica() {
+        return persona_Juridica;
+    }
+
+    public void setPersona_Juridica(Persona_Juridica persona_Juridica) {
+        this.persona_Juridica = persona_Juridica;
     }
     
     public void anularCliente(){
