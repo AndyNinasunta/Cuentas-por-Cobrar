@@ -57,9 +57,9 @@
                                                      style="width: 150px; height: 40px;"/> 
                                     </div>
 
-                                    <div style="height: 133px; width: 30px;
+                                    <div style="height: 133px; width: 130px;
                                          float: left; padding-left: 15px;">
-                                        <p:outputLabel value="Fecha: " for="fecha" 
+                                        <p:outputLabel value="Fecha Emisión: " for="fecha" 
                                                        style="font-weight:bold;"/>
                                         <br/> <br/> 
                                         <p:datePicker id="fecha" readonly="true" 
@@ -70,22 +70,28 @@
                         </h:form>
                         <div class="card">
                             <h:form id="form">
-                                <p:dataTable style="font-size: 12px;" >
-                                    <p:column headerText="Ejercicio Fiscal">
-                                        <h:outputText value="" />
-
+                                <p:dataTable id="tblRetenciones" var="varRetenciones" 
+                                             value="#{retencionController.listaRetenciones}" 
+                                             style="font-size: 12px;" >
+                                    <p:column headerText="Ejercicio Fiscal" 
+                                              style="text-align: center;">
+                                        <h:outputText value="#{varRetenciones.ejerFiscal}" />
                                     </p:column>
-                                    <p:column headerText="Base Imponible">
-                                        <h:outputText value="" />
+                                    <p:column headerText="Base Imponible" 
+                                              style="text-align: center;">
+                                        <h:outputText value="#{varRetenciones.baseImponible}" />
                                     </p:column>
-                                    <p:column headerText="Descripción Impuesto">
-                                        <h:outputText value="" />
+                                    <p:column headerText="Descripción Impuesto" 
+                                              style="text-align: center;">
+                                        <h:outputText value="#{varRetenciones.descImpuesto}" />
                                     </p:column>
-                                    <p:column headerText="% Retención">
-                                        <h:outputText value="" />
+                                    <p:column headerText="% Retención" 
+                                              style="text-align: center;">
+                                        <h:outputText value="#{varRetenciones.porcenRetencion}" />
                                     </p:column>
-                                    <p:column headerText="Valor Retención">
-                                        <h:outputText value="" />
+                                    <p:column headerText="Valor Retenido" 
+                                              style="text-align: center;">
+                                        <h:outputText value="#{varRetenciones.valorRetenido}" />
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
