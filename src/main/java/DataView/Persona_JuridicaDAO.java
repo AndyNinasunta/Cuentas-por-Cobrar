@@ -81,8 +81,6 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
         return -1;
     }
     
-    
-    //Hay que modificar
     public Persona_Juridica obtener_Cliente_Juridico() {
         Persona_Juridica p_juridica=new Persona_Juridica();
         if (conex.isEstado()) {

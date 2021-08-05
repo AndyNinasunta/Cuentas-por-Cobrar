@@ -73,6 +73,25 @@ public class PersonaDAO implements Serializable {
         return -1;
     }
 
+    public String identificar_cliente(int idCliente) {
+        String tipo="0";
+        if (conex.isEstado()) {
+            try {
+                String sentencia = "Select Case when id_persona_juridica>0 then  CAST('J' AS varchar)\n"
+                        + "ELSE  CAST('N' AS varchar) END as tipo \n"
+                        + "from clientes where idcliente=" + idCliente;
+                result = conex.ejecutarConsulta(sentencia);
+                result.next();
+                tipo=result.getString("tipo");
+            } catch (SQLException ex) {
+                return tipo;
+            } finally {
+                conex.cerrarConexion();
+            }
+        }
+        return tipo;
+    }
+
     public Persona getPersona() {
         return persona;
     }

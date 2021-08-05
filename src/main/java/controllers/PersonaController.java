@@ -65,7 +65,8 @@ public class PersonaController implements Serializable {
 //        
 //        registrar_Cliente_Juridico();
           //actualizar_Cliente_Juridico();
- 
+          //obtener_Un_Cliente_Natural();
+          editar_cliente();
     }
     
     public void mostrar() {
@@ -111,12 +112,27 @@ public class PersonaController implements Serializable {
             }
      }
  
+     
+     public void editar_cliente(){
+         
+         if(personaDAO.identificar_cliente(2).equals("J")){
+              //obtener_Un_Cliente_Juridico();
+              System.out.println("Es Juridico");
+         }else if (personaDAO.identificar_cliente(2).equals("N")){
+             //obtener_Un_Cliente_Natural();
+             System.out.println("Es Natural");
+         }else{
+             System.out.println("Falló inesperadamente...");
+         }
+         
+     }
+     
+     
      //Al momento de darle click al icono de editar, se ejecuta este procedi.
      public void obtener_Un_Cliente_Juridico(RowEditEvent<Persona_Juridica> event){
          persona_Juridica=event.getObject();
          System.out.println(persona_Juridica.getId_Cliente());
          //Se almacena el id cliente en una variable auxiliar
-         persona_Juridica.setId_Cliente(3);
          int aux=persona_Juridica.getId_Cliente();
          persona_JuridicaDAO=new Persona_JuridicaDAO(persona_Juridica);
          //Se obtiene ese cliente por el id
@@ -129,11 +145,9 @@ public class PersonaController implements Serializable {
          //Se instancia nuevamente la personaJuridicaDAO pero con todos los 
          //datos recopilados
          persona_JuridicaDAO=new Persona_JuridicaDAO(persona_Juridica);
-         //actualizar_Cliente_Juridico();
      }
+     
       public void actualizar_Cliente_Juridico(){
-          //Cargar los clientes en el objeto existente
-      
         if (persona_JuridicaDAO.actualizar_Cliente_Juridico()> 0) {
             System.out.println("Se Editó Correctamente");
             listaCliente = personaDAO.obtener_Todos_Los_Clientes();
@@ -142,13 +156,37 @@ public class PersonaController implements Serializable {
         }
       }
 
-//            mostrarMensajeInformacion("Se Editó Correctamente");
-//            listaCliente = clienteDAO.obtenerClientes();
-//        } else {
-//            mostrarMensajeError("No se Editó");
-//        }
-     //Orden Razon Social, id tipo ident, direccion, 
-                                        //identificacion,estado,tlf1,tlf2,correo,idTipoCliente
+     public void obtener_Un_Cliente_Natural(){
+         persona_Natural.setId_Cliente(2);
+         System.out.println(persona_Natural.getId_Cliente());
+         
+         //Se almacena el id cliente en una variable auxiliar
+         int aux=persona_Natural.getId_Cliente();
+         persona_NaturalDAO=new Persona_NaturalDAO(persona_Natural);
+         
+         //Se obtiene ese cliente por el id
+         Persona_Natural per_Natural= persona_NaturalDAO.obtener_Cliente_Natural();
+         
+         //Se remplazan los objetos
+         persona_Natural=per_Natural;
+         
+         //Ubicamos nuevamente el id de la variable auxiliar
+         persona_Natural.setId_Cliente(aux);
+         
+         //Se instancia nuevamente la personaJuridicaDAO pero con todos los 
+         //datos recopilados
+         persona_NaturalDAO=new Persona_NaturalDAO(persona_Natural);
+         
+     }
      
+     public void actualizar_Cliente_Natural(){
+         if (persona_NaturalDAO.actualizar_Cliente_Natural() > 0) {
+            System.out.println("Se Editó Correctamente");
+            listaCliente = personaDAO.obtener_Todos_Los_Clientes();
+        } else {
+            System.out.println("No se Editó");
+        }
+         
+     }
      
 }

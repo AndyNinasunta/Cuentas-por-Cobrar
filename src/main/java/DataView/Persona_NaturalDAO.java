@@ -9,6 +9,7 @@ import Model.Persona;
 import Model.Persona_Natural;
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -67,9 +68,9 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
         
     }
     
-    public int actualizar_Cliente_Juridico() {
+    public int actualizar_Cliente_Natural() {
         
-        String sentenciaSQL = "Select actualizar_persona_juridica(" + person_Natural.getId_Cliente() + ","
+        String sentenciaSQL = "Select actualizar_persona_natural(" + person_Natural.getId_Cliente() + ","
                 + person_Natural.getId_Tipo_Idenficacion() + ",'"
                 + person_Natural.getIdentificacion() + "','"
                 + person_Natural.getDireccion() + "','"
@@ -93,7 +94,7 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
         if (conex.isEstado()) {
             //Una vez se asegura que la conexion este correcta.
             //Se ejecuta la sentencia ingresada.
-            return conex.modificar(sentenciaSQL);
+            return conex.ejecutarProcedimiento(sentenciaSQL);
         }
         //Caso contrario: Se retorna -1 indicando que la conexión está
         //en estado Falso
@@ -101,5 +102,45 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
         
     }
     
+    public Persona_Natural obtener_Cliente_Natural() {
+        Persona_Natural p_natural=new Persona_Natural();
+        if (conex.isEstado()) {
+            try {
+                String sentencia = "Select idcliente,Per.idtipoidentificacion,identificacion,nombre1,nombre2,apellido1\n" +
+                        ",apellido2,fecha_nacimiento,sexo,genero, direccion, estado,telefono1,telefono2,correo1\n" +
+                        ", Cl.idtipocliente \n" +
+                        "from Persona Per\n" +
+                        "inner join persona_natural PerN on Per.id_persona=PerN.id_persona\n" +
+                        "inner join clientes Cl on PerN.idpersonanatural=Cl.idpersonanatural\n" +
+                        "where idcliente="+person_Natural.getId_Cliente();
+                result = conex.ejecutarConsulta(sentencia);
+                while (result.next()) {//Orden: sexo,genero, nombre1, nombre2,apellido1,apellido2,
+                    //fecha_nacimiento, idTipo Identifica, direccion, identificacion, estado, tlf1, tlf2, correo , 
+                    //IdTipoCliente
+                     p_natural= new Persona_Natural(
+                                                result.getString("sexo"),
+                                                result.getString("genero"),
+                                                result.getString("nombre1"),
+                                                result.getString("nombre2"),
+                                                result.getString("apellido1"),
+                                                result.getString("apellido2"),
+                                                result.getString("fecha_nacimiento"),
+                                                result.getInt("idtipoidentificacion"),
+                                                result.getString("direccion"),
+                                                result.getString("identificacion"),
+                                                result.getBoolean("estado"),
+                                                result.getString("telefono1"),
+                                                result.getString("telefono2"),
+                                                result.getString("correo1"),
+                                                result.getInt("idtipocliente"));
+                }
+            } catch (SQLException ex) {
+                p_natural=new Persona_Natural("","","","","","","",-1,"","",false,"","","",-1);
+            } finally {
+                conex.cerrarConexion();
+            }
+        }
+        return p_natural;
+    }
     
 }
