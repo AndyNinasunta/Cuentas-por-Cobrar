@@ -39,8 +39,6 @@ public class PersonaDAO implements Serializable {
 
     public List<Persona> obtener_Todos_Los_Clientes() {
         lista_Personas = new ArrayList<>();
-//        lista_Personas.add(new Persona(1,"123434535","Cedula","Alexander Vega","Valencia","0989098998","0988080908","Alexander@hotmail.com","Persona Natural","true"));
-//        lista_Personas.add(new Persona(2,"123434535","Cedula","Alexander Vega","Valencia","0989098998","0988080908","Alexander@hotmail.com","Persona Natural","true"));
         if (conex.isEstado()) {
             try {
                 String sentencia = "Select * from Mostrar_Todos_los_Clientes()";

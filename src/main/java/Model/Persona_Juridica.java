@@ -23,7 +23,9 @@ public class Persona_Juridica extends Persona{
                             String direccion, String identificacion,
                             boolean estado, String tlf1, String tlf2, 
                             String correo, int id_tipoCliente) {
-        super(id_Tipo_Idenficacion, direccion, identificacion, estado, tlf1, tlf2, correo, id_tipoCliente);
+        super(id_Tipo_Idenficacion, direccion, identificacion, estado, tlf1, tlf2, 
+                correo, id_tipoCliente);
+        
         this.razon_Social = razon_Social;
     }
 

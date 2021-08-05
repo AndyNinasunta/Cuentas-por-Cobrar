@@ -43,6 +43,8 @@ public class Persona implements Serializable{
         this.correo = correo;
         this.id_tipoCliente=id_tipoCliente;
     }
+
+   
     
     //Constructor con los datos que se mostraran en la tabla
     public Persona(int id_Cliente, String identificacion, String descr_identificacion,String razon_nombre,String direccion, String tlf1, String tlf2, String correo,  String descr_tipo_Cliente,String descr_Estado) {
@@ -83,7 +85,7 @@ public class Persona implements Serializable{
         this.identificacion = identificacion;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -164,6 +166,8 @@ public class Persona implements Serializable{
     public void setDescr_Estado(String descr_Estado) {
         this.descr_Estado = descr_Estado;
     }
+
+
 
    
     

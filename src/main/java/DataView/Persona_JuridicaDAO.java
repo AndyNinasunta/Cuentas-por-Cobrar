@@ -9,6 +9,8 @@ import Model.Persona;
 import Model.Persona_Juridica;
 import java.io.Serializable;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,11 +74,47 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
         if (conex.isEstado()) {
             //Una vez se asegura que la conexion este correcta.
             //Se ejecuta la sentencia ingresada.
-            return conex.modificar(sentenciaSQL);
+            return conex.ejecutarProcedimiento(sentenciaSQL);
         }
         //Caso contrario: Se retorna -1 indicando que la conexión está
         //en estado Falso
         return -1;
+    }
+    
+    
+    //Hay que modificar
+    public Persona_Juridica obtener_Cliente_Juridico() {
+        Persona_Juridica p_juridica=new Persona_Juridica();
+        if (conex.isEstado()) {
+            try {
+                String sentencia = "Select idcliente,Per.idtipoidentificacion, "
+                        + "identificacion, razon_social, direccion, estado, \n" +
+                        "telefono1,telefono2,correo1, Cl.idtipocliente \n" +
+                        "from Persona Per\n" +
+                        "inner join persona_juridica PerJ on Per.id_persona=PerJ.id_persona\n" +
+                        "inner join clientes Cl on PerJ.id_persona_juridica=Cl.id_persona_juridica\n" +
+                        "where idcliente="+person_Juridica.getId_Cliente();
+                result = conex.ejecutarConsulta(sentencia);
+                while (result.next()) {//Orden Razon Social, id tipo ident, direccion, 
+                                        //identificacion,estado,tlf1,tlf2,correo,idTipoCliente
+                     p_juridica= new Persona_Juridica(
+                                                result.getString("razon_social"),
+                                                result.getInt("idtipoidentificacion"),
+                                                result.getString("direccion"),
+                                                result.getString("identificacion"),
+                                                result.getBoolean("estado"),
+                                                result.getString("telefono1"),
+                                                result.getString("telefono2"),
+                                                result.getString("correo1"),
+                                                result.getInt("idtipocliente"));
+                }
+            } catch (SQLException ex) {
+                p_juridica=new Persona_Juridica("",-1,"","",false,"","","",-1);
+            } finally {
+                conex.cerrarConexion();
+            }
+        }
+        return p_juridica;
     }
 
 }
