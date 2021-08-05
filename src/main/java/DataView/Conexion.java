@@ -12,10 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.faces.application.FacesMessage;
 
-/**
- *
- * @author PAOLA
- */
+
 public class Conexion implements Serializable{
     String consulta = "nada";
     private Connection conex;
@@ -27,7 +24,7 @@ public class Conexion implements Serializable{
 
     private String url = "jdbc:postgresql://localhost:5432/erp_global";
     private String usuario = "postgres";
-    private String clave = "12345";
+    private String clave = "123456";
     private String classForName = "org.postgresql.Driver";
     
      public Conexion() {

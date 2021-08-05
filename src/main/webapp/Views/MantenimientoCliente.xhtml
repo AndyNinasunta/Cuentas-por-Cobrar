@@ -42,34 +42,65 @@
 
                         <!--Tabla que muestra el listado de clientes-->
 
-                        <p:dataTable id="tblClientes" var="varClientes"
-                                     emptyMessage="No existen Clientes" style="font-size: 12px;">
+                        <p:dataTable id="tblClientes" var="varClientes" rows="5"
+                                     value="#{personaController.listaCliente}" paginator="true"
+                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="font-size: 12px;">
 
                             <p:column headerText="Identificación" style="text-align: center;">
-                                <h:outputText value=""/>
+                                <f:facet name="output">
+                                    <h:outputText value="#{varClientes.identificacion}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{varClientes.identificacion}" 
+                                                 style="width:100%"/>
+                                </f:facet>
                             </p:column>
 
                             <p:column style="text-align: center;"
-                                      headerText="Nombres y Apellidos/Razón Social">
-                                <h:outputText value=""/>
+                                      headerText="Tipo de Identificación">
+                                <f:facet name="output">
+                                    <h:outputText value="#{varClientes.id_Tipo_Idenficacion}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{varClientes.id_Tipo_Idenficacion}" 
+                                                 style="width:100%"/>
+                                </f:facet>
+                            </p:column>
+
+                            <p:column style="text-align: center;" headerText="Razón/NombresApellidos">
+                                <f:facet name="output">
+                                    <h:outputText value="#{varClientes.razon_nombre}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{varClientes.razon_nombre}" 
+                                                 style="width:100%"/>
+                                </f:facet>
                             </p:column>
 
                             <p:column style="text-align: center;" headerText="Dirección">
-                                <h:outputText value=""/>
-                            </p:column>
-
-                            <p:column style="text-align: center;" headerText="Fecha Nacimiento">
-                                <h:outputText value=""/>
+                                <f:facet name="output">
+                                    <h:outputText value="#{varClientes.direccion}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{varClientes.direccion}" 
+                                                 style="width:100%"/>
+                                </f:facet>
                             </p:column>
 
                             <p:column style="text-align: center;" headerText="Teléfono">
-                                <h:outputText value=""/>
+                                <f:facet name="output">
+                                    <h:outputText value="#{varClientes.tlf1}"/>
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{varClientes.tlf1}" 
+                                                 style="width:100%"/>
+                                </f:facet>
                             </p:column>
 
                             <p:column style="text-align: center;" headerText="Acciones">
                                 <p:commandButton value="" icon="pi pi-pencil"/> 
-                                <p:commandButton value="" icon="pi pi-pencil"/>
-                                <p:commandButton value="" icon="pi pi-pencil"/>
+                                <p:commandButton value="" icon="pi pi-times-circle"/>
+                                <p:commandButton value="" icon="pi pi-check-circle"/>
                             </p:column>
                         </p:dataTable>
                         <!-- Ventana Agregar Cliente  !-->
@@ -219,7 +250,7 @@
                                                               id="fecha" readonly="true" 
                                                               placeholder="dd/mm/aaaa"/>
                                             </div>
-                   
+
                                         </label>
                                     </div>
 

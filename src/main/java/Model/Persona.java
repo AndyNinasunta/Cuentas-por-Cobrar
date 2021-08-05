@@ -5,11 +5,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author andy2
  */
-public class Persona {
+public class Persona implements Serializable{
     
     //Declaración de las Variables
     private int id_Tipo_Idenficacion;
@@ -42,11 +44,7 @@ public class Persona {
         this.id_tipoCliente=id_Tipo_Idenficacion;
     }
     
-    
-    
-    
     //Constructor con los datos que se mostraran en la tabla
-
     public Persona(int id_Cliente, String identificacion, String descr_identificacion,String razon_nombre,String direccion, String tlf1, String tlf2, String correo,  String descr_tipo_Cliente,String descr_Estado) {
         this.direccion = direccion;
         this.identificacion = identificacion;
