@@ -24,7 +24,7 @@ public class Conexion implements Serializable{
 
     private String url = "jdbc:postgresql://localhost:5432/erp_global";
     private String usuario = "postgres";
-    private String clave = "123456";
+    private String clave = "12345";
     private String classForName = "org.postgresql.Driver";
     
      public Conexion() {
@@ -97,8 +97,9 @@ public class Conexion implements Serializable{
         int retorno = -1;
         try{
             if (abrirConexion()) {
-                retorno = st.executeUpdate(sql);
-                mensaje = "Se insertó correctamente";
+                st.executeQuery(sql);
+                mensaje = "El procedimiento se ejecutó correctamente";
+                retorno=1;
                 tipoMensaje = FacesMessage.SEVERITY_INFO;
             }
         } catch (SQLException exc){

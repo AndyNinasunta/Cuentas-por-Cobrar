@@ -41,7 +41,7 @@ public class Persona implements Serializable{
         this.tlf1 = tlf1;
         this.tlf2 = tlf2;
         this.correo = correo;
-        this.id_tipoCliente=id_Tipo_Idenficacion;
+        this.id_tipoCliente=id_tipoCliente;
     }
     
     //Constructor con los datos que se mostraran en la tabla

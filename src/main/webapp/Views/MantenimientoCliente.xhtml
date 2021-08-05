@@ -47,22 +47,16 @@
                                      rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="font-size: 12px;">
 
                             <p:column headerText="Identificación" style="text-align: center;">
-                                <f:facet name="output">
                                     <h:outputText value="#{varClientes.identificacion}"/>
-                                </f:facet>
-                                <f:facet name="input">
-                                    <p:inputText value="#{varClientes.identificacion}" 
-                                                 style="width:100%"/>
-                                </f:facet>
                             </p:column>
 
                             <p:column style="text-align: center;"
                                       headerText="Tipo de Identificación">
                                 <f:facet name="output">
-                                    <h:outputText value="#{varClientes.id_Tipo_Idenficacion}"/>
+                                    <h:outputText value="#{varClientes.descr_identificacion}"/>
                                 </f:facet>
                                 <f:facet name="input">
-                                    <p:inputText value="#{varClientes.id_Tipo_Idenficacion}" 
+                                    <p:inputText value="#{varClientes.descr_identificacion}" 
                                                  style="width:100%"/>
                                 </f:facet>
                             </p:column>
