@@ -10,6 +10,7 @@ import Model.Persona_Natural;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -124,7 +125,7 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
                                                 result.getString("nombre2"),
                                                 result.getString("apellido1"),
                                                 result.getString("apellido2"),
-                                                result.getString("fecha_nacimiento"),
+                                                result.getObject("fecha_nacimiento", LocalDate.class),
                                                 result.getInt("idtipoidentificacion"),
                                                 result.getString("direccion"),
                                                 result.getString("identificacion"),
@@ -135,7 +136,7 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
                                                 result.getInt("idtipocliente"));
                 }
             } catch (SQLException ex) {
-                p_natural=new Persona_Natural("","","","","","","",-1,"","",false,"","","",-1);
+                System.out.println("Error al Obtener Clientes: " + ex.getMessage());
             } finally {
                 conex.cerrarConexion();
             }

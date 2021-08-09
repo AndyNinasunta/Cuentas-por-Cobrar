@@ -65,8 +65,8 @@ public class PersonaDAO implements Serializable {
         return lista_Personas;
     }
 
-    public int deshabilitar_cliente() {
-        String sentencia = "select Anular_Cliente(" + persona.getId_Cliente() + ")";
+    public int deshabilitar_cliente(int id) {
+        String sentencia = "select Anular_Cliente(" + id + ")";
         if (conex.isEstado()) {
             return conex.ejecutarProcedimiento(sentencia);
         }
@@ -77,7 +77,7 @@ public class PersonaDAO implements Serializable {
         String tipo="0";
         if (conex.isEstado()) {
             try {
-                String sentencia = "Select Case when id_persona_juridica>0 then  CAST('J' AS varchar)\n"
+                String sentencia = "Select Case when id_persona_juridica > 0 then  CAST('J' AS varchar)\n"
                         + "ELSE  CAST('N' AS varchar) END as tipo \n"
                         + "from clientes where idcliente=" + idCliente;
                 result = conex.ejecutarConsulta(sentencia);

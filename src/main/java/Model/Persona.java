@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Model;
 
 import java.io.Serializable;
 
-/**
- *
- * @author andy2
- */
+
 public class Persona implements Serializable{
     
     //Declaración de las Variables
@@ -33,7 +26,9 @@ public class Persona implements Serializable{
     }
     
     //Constructor con los datos importantes
-    public Persona(int id_Tipo_Idenficacion, String direccion, String identificacion, boolean estado, String tlf1, String tlf2, String correo,int id_tipoCliente) {
+    public Persona(int id_Tipo_Idenficacion, String direccion, 
+            String identificacion, boolean estado, String tlf1, 
+            String tlf2, String correo,int id_tipoCliente) {
         this.id_Tipo_Idenficacion = id_Tipo_Idenficacion;
         this.direccion = direccion;
         this.identificacion = identificacion;
@@ -47,7 +42,10 @@ public class Persona implements Serializable{
    
     
     //Constructor con los datos que se mostraran en la tabla
-    public Persona(int id_Cliente, String identificacion, String descr_identificacion,String razon_nombre,String direccion, String tlf1, String tlf2, String correo,  String descr_tipo_Cliente,String descr_Estado) {
+    public Persona(int id_Cliente, String identificacion, 
+            String descr_identificacion,String razon_nombre,
+            String direccion, String tlf1, String tlf2, String correo,  
+            String descr_tipo_Cliente,String descr_Estado) {
         this.direccion = direccion;
         this.identificacion = identificacion;
         this.tlf1 = tlf1;
@@ -165,12 +163,5 @@ public class Persona implements Serializable{
 
     public void setDescr_Estado(String descr_Estado) {
         this.descr_Estado = descr_Estado;
-    }
-
-
-
-   
-    
-    
-    
+    } 
 }

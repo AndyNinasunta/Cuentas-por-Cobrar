@@ -90,10 +90,11 @@
                             </p:column>
 
                             <p:column style="text-align: center; width: 150px;" headerText="Acciones">
-                                <p:commandButton value="" onclick="PF('ClienteJuridicoEdit').show()" 
+                                <p:commandButton oncomplete="PF('ClienteNaturalEdit').show()"
+                                                 action="#{personaController.editar_cliente(varClientes.id_Cliente)}" 
                                                  style="width: 35px; height: 30px;" 
-                                                 accesskey="" icon="pi pi-pencil"/> 
-                                <p:commandButton action="#{personaController.anularCliente()}" 
+                                                 icon="pi pi-pencil"/> 
+                                <p:commandButton action="#{personaController.anularCliente(varClientes.id_Cliente)}" 
                                                  style="width: 35px; height: 30px;" 
                                                  styleClass="ui-button-danger" 
                                                  icon="pi pi-times-circle"/>
@@ -103,11 +104,120 @@
                             </p:column>
                         </p:dataTable>
                         <!-- Ventana Agregar Cliente  !-->
-                        <p:dialog header="Nuevo Cliente" minHeight="50"  
+                        <p:dialog header="Nuevo Cliente" minHeight="50" 
                                   height="auto" width="1000px" showEffect="fade"
                                   modal="true" widgetVar="ClienteNew">
                             <p:tabView>
-                                <p:tab title="Persona Natural">
+                                <p:tab title="Persona Jurídica" id="AgregaClienteJuridico">
+                                    <h:form >
+                                        <p:outputPanel  class="ui-fluid">
+                                            <div class="ui-fluid p-formgrid p-grid">
+                                                <label for="ClienteJuridico" style="width:500px;">
+
+                                                    <div class="p-field p-col-12 p-md-3">
+                                                        <label style="font-weight: bold; padding-left: 20px;">
+                                                            Identificación<label style="color: red;">*</label>: 
+                                                        </label>                                            
+                                                        <p:inputText id="identifica" 
+                                                                     type="text" 
+                                                                     style="width: 180px;
+                                                                     margin: 3px"
+                                                                     value="#{personaController.persona_Juridica.identificacion}"/> 
+
+                                                        <label style="font-weight: bold; padding-left: 103px;">
+                                                            Tipo de Identificación<label style="color: red;">*</label>: 
+                                                        </label>
+                                                        <p:selectOneMenu id="option" value="#{personaController.persona_Juridica.id_Tipo_Idenficacion}" style="width: 150px; height: 40px;">                            
+                                                            <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                                            <f:selectItem itemLabel="Ruc" itemValue="1"/>
+                                                            <f:selectItem itemLabel="Cédula" itemValue="2"/>
+                                                            <f:selectItem itemLabel="Pasaporte" itemValue="3"/>
+                                                            <f:facet name="footer">
+                                                                <p:divider styleClass="p-mt-0" />
+                                                                <h:outputText value="3 Resultados" style="font-weight:bold;"/>
+                                                            </f:facet>
+                                                        </p:selectOneMenu>  
+                                                    </div> 
+                                                    <div class="p-field p-col-12 p-md-3">
+                                                        <label style="font-weight: bold; padding-left: 23px;">
+                                                            Razón Social<label style="color: red;">*</label>: 
+                                                        </label>
+                                                        <p:inputText id="razonCliente"
+                                                                     type="text" 
+                                                                     style="width: 250px; 
+                                                                     margin: 3px;"
+                                                                     value="#{personaController.persona_Juridica.razon_Social}"/> 
+
+                                                        <label style="font-weight: bold; padding-left: 145px">
+                                                            Email<label style="color: red;">*</label>:
+                                                        </label>
+                                                        <p:inputText id="emailCliente"
+                                                                     type="text" 
+                                                                     style="width: 180px;  
+                                                                     margin: 3px;"
+                                                                     value="#{personaController.persona_Juridica.correo}"/> 
+                                                    </div>
+
+                                                    <div class="p-field p-col-12 p-md-3">
+                                                        <label style="font-weight: bold; padding-left: 40px;">
+                                                            Teléfono 1<label style="color: red;">*</label>: 
+                                                        </label>
+                                                        <p:inputText id="telef1Cliente"
+                                                                     type="text" 
+                                                                     style="width: 250px; 
+                                                                     margin: 3px;"
+                                                                     value="#{personaController.persona_Juridica.tlf1}"/> 
+
+                                                        <label style="font-weight: bold; padding-left: 117px">
+                                                            Teléfono 2:
+                                                        </label>
+                                                        <p:inputText id="telef2Cliente"
+                                                                     placeholder="Opcional"
+                                                                     type="text" 
+                                                                     style="width: 180px;  
+                                                                     margin: 3px;"
+                                                                     value="#{personaController.persona_Juridica.tlf2}"/> 
+                                                    </div>
+
+                                                    <div class="p-field p-col-12 p-md-3">
+                                                        <label style="font-weight: bold; padding-left: 47px;">
+                                                            Dirección<label style="color: red;">*</label>: 
+                                                        </label>
+                                                        <p:inputText id="direccionCliente"
+                                                                     type="text" 
+                                                                     style="width: 250px;
+                                                                     margin: 3px;"
+                                                                     value="#{personaController.persona_Juridica.direccion}"/> 
+                                                        
+                                                        <label style="font-weight: bold; padding-left: 75px;" >
+                                                            Tipo de Cliente<label style="color: red;">*</label>:  
+                                                        </label>
+                                                        <p:selectOneMenu id="tipoClienteOption" value="#{personaController.persona_Juridica.id_tipoCliente}" style="width: 150px; height: 40px;">                            
+                                                            <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                                            <f:selectItem itemLabel="Mayoritario" itemValue="1"/>
+                                                            <f:selectItem itemLabel="Minoritario" itemValue="2"/>
+                                                        </p:selectOneMenu>
+                                                    </div>
+                                                </label>
+                                            </div>
+
+                                        </p:outputPanel>
+                                        <br/>
+                                        <div style="float: right;">
+                                            <p:commandButton value="Cancel" type="submit"
+                                                             icon="pi pi-times" 
+                                                             onclick="PF('ClientNew').hide()"
+                                                             class="ui-button-secondary"
+                                                             styleClass=" ui-button-danger"/>
+                                            <p:commandButton value="Guardar" ajax="false"
+                                                             icon="pi pi-save"
+                                                             update=":AgregaClienteJuridico"
+                                                             actionListener="#{personaController.registrar_Cliente_Juridico()}"
+                                                             styleClass=" ui-button-success"/>
+                                        </div>
+                                    </h:form>
+                                </p:tab>
+                                <p:tab title="Persona Natural" id="AgregaClienteNatural">
                                     <h:form >
                                         <p:outputPanel  class="ui-fluid">
                                             <div class="ui-fluid p-formgrid p-grid">
@@ -252,16 +362,15 @@
                                                         <label style="font-weight: bold; padding-left: 43px">
                                                             Fecha de Nacimiento<label style="color: red;">*</label>: 
                                                         </label>
-                                                        <p:inputText style="width: 150px;"
-                                                                      id="fecha"
+                                                        <p:datePicker style="width: 150px;"
+                                                                      id="fecha" readonly="true"
                                                                       placeholder="aaaa-mm-dd"
                                                                       value="#{personaController.persona_Natural.fecha_nacimiento}"/>
                                                     </div>
                                                 </label>
                                             </div>
-
                                         </p:outputPanel>
-
+                                        <br/>
                                         <div style="float: right;">
                                             <p:commandButton value="Cancelar" type="submit"
                                                              icon="pi pi-times" 
@@ -270,115 +379,8 @@
                                                              styleClass=" ui-button-danger"/>
                                             <p:commandButton value="Guardar" ajax="false"
                                                              icon="pi pi-save"
+                                                             update=":AgregaClienteNatural"
                                                              action="#{personaController.registrar_Cliente_Natural()}"
-                                                             styleClass=" ui-button-success"/>
-                                        </div>
-                                    </h:form>
-                                </p:tab>
-                                <p:tab title="Persona Jurídica">
-                                    <h:form >
-                                        <p:outputPanel  class="ui-fluid">
-                                            <div class="ui-fluid p-formgrid p-grid">
-                                                <label for="ClienteJuridico" style="width:500px;">
-
-                                                    <div class="p-field p-col-12 p-md-3">
-                                                        <label style="font-weight: bold; padding-left: 20px;">
-                                                            Identificación<label style="color: red;">*</label>: 
-                                                        </label>                                            
-                                                        <p:inputText id="identifica" 
-                                                                     type="text" 
-                                                                     style="width: 180px;
-                                                                     margin: 3px"
-                                                                     value="#{personaController.persona_Juridica.identificacion}"/> 
-
-                                                        <label style="font-weight: bold; padding-left: 103px;">
-                                                            Tipo de Identificación<label style="color: red;">*</label>: 
-                                                        </label>
-                                                        <p:selectOneMenu id="option" value="#{personaController.persona_Juridica.id_Tipo_Idenficacion}" style="width: 150px; height: 40px;">                            
-                                                            <f:selectItem itemLabel="Seleccione..." itemValue=""/>
-                                                            <f:selectItem itemLabel="Ruc" itemValue="1"/>
-                                                            <f:selectItem itemLabel="Cédula" itemValue="2"/>
-                                                            <f:selectItem itemLabel="Pasaporte" itemValue="3"/>
-                                                            <f:facet name="footer">
-                                                                <p:divider styleClass="p-mt-0" />
-                                                                <h:outputText value="3 Resultados" style="font-weight:bold;"/>
-                                                            </f:facet>
-                                                        </p:selectOneMenu>  
-                                                    </div> 
-                                                    <div class="p-field p-col-12 p-md-3">
-                                                        <label style="font-weight: bold; padding-left: 23px;">
-                                                            Razón Social<label style="color: red;">*</label>: 
-                                                        </label>
-                                                        <p:inputText id="razonCliente"
-                                                                     type="text" 
-                                                                     style="width: 250px; 
-                                                                     margin: 3px;"
-                                                                     value="#{personaController.persona_Juridica.razon_Social}"/> 
-
-                                                        <label style="font-weight: bold; padding-left: 145px">
-                                                            Email<label style="color: red;">*</label>:
-                                                        </label>
-                                                        <p:inputText id="emailCliente"
-                                                                     type="text" 
-                                                                     style="width: 180px;  
-                                                                     margin: 3px;"
-                                                                     value="#{personaController.persona_Juridica.correo}"/> 
-                                                    </div>
-
-                                                    <div class="p-field p-col-12 p-md-3">
-                                                        <label style="font-weight: bold; padding-left: 40px;">
-                                                            Teléfono 1<label style="color: red;">*</label>: 
-                                                        </label>
-                                                        <p:inputText id="telef1Cliente"
-                                                                     type="text" 
-                                                                     style="width: 250px; 
-                                                                     margin: 3px;"
-                                                                     value="#{personaController.persona_Juridica.tlf1}"/> 
-
-                                                        <label style="font-weight: bold; padding-left: 117px">
-                                                            Teléfono 2:
-                                                        </label>
-                                                        <p:inputText id="telef2Cliente"
-                                                                     placeholder="Opcional"
-                                                                     type="text" 
-                                                                     style="width: 180px;  
-                                                                     margin: 3px;"
-                                                                     value="#{personaController.persona_Juridica.tlf2}"/> 
-                                                    </div>
-
-                                                    <div class="p-field p-col-12 p-md-3">
-                                                        <label style="font-weight: bold; padding-left: 47px;">
-                                                            Dirección<label style="color: red;">*</label>: 
-                                                        </label>
-                                                        <p:inputText id="direccionCliente"
-                                                                     type="text" 
-                                                                     style="width: 250px;
-                                                                     margin: 3px;"
-                                                                     value="#{personaController.persona_Juridica.direccion}"/> 
-                                                        
-                                                        <label style="font-weight: bold; padding-left: 75px;" >
-                                                            Tipo de Cliente<label style="color: red;">*</label>:  
-                                                        </label>
-                                                        <p:selectOneMenu id="tipoClienteOption" value="#{personaController.persona_Juridica.id_tipoCliente}" style="width: 150px; height: 40px;">                            
-                                                            <f:selectItem itemLabel="Seleccione..." itemValue=""/>
-                                                            <f:selectItem itemLabel="Mayoritario" itemValue="1"/>
-                                                            <f:selectItem itemLabel="Minoritario" itemValue="2"/>
-                                                        </p:selectOneMenu>
-                                                    </div>
-                                                </label>
-                                            </div>
-
-                                        </p:outputPanel>
-                                        <br/>
-                                        <div style="float: right;">
-                                            <p:commandButton value="Cancel" type="submit"
-                                                             icon="pi pi-times" 
-                                                             onclick="PF('ClientNew').hide()"
-                                                             class="ui-button-secondary"
-                                                             styleClass=" ui-button-danger"/>
-                                            <p:commandButton value="Guardar" ajax="false"
-                                                             icon="pi pi-save" 
-                                                             action="#{personaController.registrar_Cliente_Juridico()}"
                                                              styleClass=" ui-button-success"/>
                                         </div>
                                     </h:form>
@@ -389,7 +391,7 @@
                         <p:dialog header="Editar Cliente Natural" minHeight="50"  
                                   height="auto" width="900px" showEffect="fade"
                                   modal="true" widgetVar="ClienteNaturalEdit">
-                            <h:form >
+                            <h:form>
                                 <p:outputPanel  class="ui-fluid">
                                     <div class="ui-fluid p-formgrid p-grid">
                                         <label for="Cliente" style="width:500px;">
@@ -401,16 +403,17 @@
                                                 <p:inputText id="identifica" 
                                                              type="text" 
                                                              style="width: 180px;
-                                                             margin: 3px"/> 
+                                                             margin: 3px"
+                                                             value="#{personaController.persona_Natural.identificacion}"/> 
 
                                                 <label style="font-weight: bold; padding-left: 103px;">
                                                     Tipo de Identificación<label style="color: red;">*</label>: 
                                                 </label>
-                                                <p:selectOneMenu id="option" style="width: 150px; height: 40px;">                            
+                                                <p:selectOneMenu id="option" value="#{personaController.persona_Natural.id_Tipo_Idenficacion}" style="width: 150px; height: 40px;">                            
                                                     <f:selectItem itemLabel="Seleccione..." itemValue=""/>
-                                                    <f:selectItem itemLabel="Ruc" itemValue="ejemplo1"/>
-                                                    <f:selectItem itemLabel="Cédula" itemValue="ejemplo2"/>
-                                                    <f:selectItem itemLabel="Pasaporte" itemValue="ejemplo3"/>
+                                                    <f:selectItem itemLabel="Ruc" itemValue="1"/>
+                                                    <f:selectItem itemLabel="Cédula" itemValue="2"/>
+                                                    <f:selectItem itemLabel="Pasaporte" itemValue="3"/>
                                                     <f:facet name="footer">
                                                         <p:divider styleClass="p-mt-0" />
                                                         <h:outputText value="3 Resultados" style="font-weight:bold;"/>
@@ -424,7 +427,8 @@
                                                 <p:inputText id="prinombreCliente"
                                                              type="text" 
                                                              style="width: 250px; 
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.nombre1}"/> 
 
                                                 <label style="font-weight: bold; padding-left: 70px">
                                                     Segundo Nombre:
@@ -433,7 +437,8 @@
                                                              placeholder="Opcional"
                                                              type="text" 
                                                              style="width: 180px;  
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.nombre2}"/> 
                                             </div>
 
                                             <div class="p-field p-col-12 p-md-3">
@@ -443,7 +448,8 @@
                                                 <p:inputText id="priapellidoCliente"
                                                              type="text" 
                                                              style="width: 250px; 
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.apellido1}"/> 
 
                                                 <label style="font-weight: bold; padding-left: 70px">
                                                     Segundo Apellido:
@@ -452,7 +458,8 @@
                                                              placeholder="Opcional"
                                                              type="text" 
                                                              style="width: 180px;  
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.apellidos2}"/> 
                                             </div>
 
                                             <div class="p-field p-col-12 p-md-3">
@@ -462,7 +469,8 @@
                                                 <p:inputText id="pritelefonoCliente"
                                                              type="text" 
                                                              style="width: 250px;
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.tlf1}"/> 
 
                                                 <label style="font-weight: bold; padding-left: 120px">
                                                     Télefono 2: 
@@ -471,13 +479,14 @@
                                                              placeholder="Opcional"
                                                              type="text" 
                                                              style="width: 180px;
-                                                             margin: 3px;"/>  
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.tlf2}"/>  
                                             </div>
                                             <div class="p-field p-col-12 p-md-3">
                                                 <label style="font-weight: bold; padding-left: 68px">
                                                     Género<label style="color: red;">*</label>: 
                                                 </label>
-                                                <p:selectOneMenu id="generoOption" style="width: 150px; height: 40px;">                            
+                                                <p:selectOneMenu id="generoOption" value="#{personaController.persona_Natural.genero}" style="width: 150px; height: 40px;">                            
                                                     <f:selectItem itemLabel="Seleccione..." itemValue=""/>
                                                     <f:selectItem itemLabel="Heterosexual" itemValue="Heterosexual"/>
                                                     <f:selectItem itemLabel="Bisexual" itemValue="Bisexual"/>
@@ -486,7 +495,7 @@
                                                 <label style="font-weight: bold; padding-left: 260px;">
                                                     Sexo<label style="color: red;">*</label>: 
                                                 </label>
-                                                <p:selectOneMenu id="sexoOption" style="width: 150px; height: 40px;">                            
+                                                <p:selectOneMenu id="sexoOption" value="#{personaController.persona_Natural.sexo}" style="width: 150px; height: 40px;">                            
                                                     <f:selectItem itemLabel="Seleccione..." itemValue=""/>
                                                     <f:selectItem itemLabel="M" itemValue="M"/>
                                                     <f:selectItem itemLabel="F" itemValue="F"/>
@@ -500,7 +509,8 @@
                                                 <p:inputText id="segapellidoCliente" 
                                                              type="text" 
                                                              style="width: 250px; 
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.correo}"/> 
                                             </div>
 
                                             <div class="p-field p-col-12 p-md-3">
@@ -510,17 +520,17 @@
                                                 <p:inputText id="direccionCliente" 
                                                              type="text"  
                                                              style="width: 250px; 
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             value="#{personaController.persona_Natural.direccion}"/> 
 
                                                 <label style="font-weight: bold; padding-left: 43px">
                                                     Fecha de Nacimiento<label style="color: red;">*</label>: 
                                                 </label>
                                                 <p:datePicker style="height: 133px; width: 150px;"
                                                               id="fecha" readonly="true" 
-                                                              placeholder="dd/mm/aaaa"/>
-
+                                                              placeholder="dd/mm/aaaa"
+                                                              value="#{personaController.persona_Natural.fecha_nacimiento}"/>
                                             </div>
-
                                         </label>
                                     </div>
 

@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author andy2
@@ -18,7 +20,7 @@ public class Persona_Natural extends Persona{
     private String nombre2;
     private String apellido1;
     private String apellidos2;
-    private String fecha_nacimiento;
+    private LocalDate fecha_nacimiento = LocalDate.now();
 
     
     public Persona_Natural() {
@@ -26,7 +28,7 @@ public class Persona_Natural extends Persona{
 
     public Persona_Natural(String sexo, String genero, String nombre1, 
                            String nombre2, String apellido1, String apellidos2,
-                           String fecha_nacimiento, int id_Tipo_Idenficacion, 
+                           LocalDate fecha_nacimiento, int id_Tipo_Idenficacion, 
                            String direccion, String identificacion, boolean estado,
                            String tlf1, String tlf2, String correo, int id_tipoCliente) {
         super(id_Tipo_Idenficacion, direccion, identificacion, estado, tlf1, tlf2, correo, id_tipoCliente);
@@ -87,11 +89,11 @@ public class Persona_Natural extends Persona{
         this.apellidos2 = apellidos2;
     }
 
-    public String getFecha_nacimiento() {
+    public LocalDate getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(String fecha_nacimiento) {
+    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
     

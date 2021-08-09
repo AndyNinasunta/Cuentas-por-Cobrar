@@ -17,8 +17,6 @@ public class Persona_Juridica extends Persona{
     public Persona_Juridica() {
     }
     
-    
-
     public Persona_Juridica(String razon_Social, int id_Tipo_Idenficacion,
                             String direccion, String identificacion,
                             boolean estado, String tlf1, String tlf2, 
