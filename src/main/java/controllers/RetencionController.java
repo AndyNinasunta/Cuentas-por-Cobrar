@@ -5,7 +5,9 @@
  */
 package controllers;
 
+import DataView.PersonaDAO;
 import DataView.RetencionDAO;
+import Model.Persona;
 import Model.Retencion;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,9 @@ public class RetencionController {
 
     Retencion retencion;
     RetencionDAO retencionDAO;
-    List<Retencion> listaRetenciones;
+    Persona persona;
+    List<Retencion> listaRetenciones;  
+    List<SelectItem> listaCliente;
     List<SelectItem> listaVenta;
     
     public RetencionController() {
@@ -54,14 +58,26 @@ public class RetencionController {
         this.listaRetenciones = listaRetenciones;
     }
     
+    public List<SelectItem> getListaCliente() {
+        listaCliente = new ArrayList<>();
+        PersonaDAO personaDAO = new PersonaDAO();
+        List<Persona> p = personaDAO.obtenerNombresClientes();
+        listaCliente.clear();
+        for (Persona nombres : p) {
+            SelectItem nombresItem = new SelectItem(nombres.getId_Cliente(),nombres.getRazon_nombre());
+            this.listaCliente.add(nombresItem); 
+        }
+        return listaCliente;
+    }
+    
     public List<SelectItem> getListaVentas(int idCliente){
         listaVenta=new ArrayList<>();
-        RetencionDAO retenDAO=new RetencionDAO();
-        List<Retencion> r=retenDAO.obtener_Ventas(idCliente);
-        listaVenta.clear();
-        for(Retencion retencion:r){
-            SelectItem ventasItem=new SelectItem(retencion.getId_Venta());
+        this.retencionDAO = new RetencionDAO();
+        List<Retencion> r=retencionDAO.obtener_Ventas(idCliente);
+        for(Retencion lret:r){
+            SelectItem ventasItem=new SelectItem(lret.getId_Venta());
             this.listaVenta.add(ventasItem);
+            System.out.println(lret.getId_Venta());
         }
         return listaVenta;
     }

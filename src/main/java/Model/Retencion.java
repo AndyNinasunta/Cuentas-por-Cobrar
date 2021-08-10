@@ -27,13 +27,13 @@ public class Retencion {
         this.EjerFiscal = EjerFiscal;
         this.valorRetenido = valorRetenido;
     }
+    
+    public Retencion(int id_Venta) {
+        this.id_Venta = id_Venta;
+    }
 
     public int getId_Retencion() {
         return id_Retencion;
-    }
-
-    public Retencion(int id_Venta) {
-        this.id_Venta = id_Venta;
     }
 
     public void setId_Retencion(int id_Retencion) {
@@ -48,8 +48,6 @@ public class Retencion {
     public void setEjerFiscal(String EjerFiscal) {
         this.EjerFiscal = EjerFiscal;
     }
-
-   
 
     public Double getBaseImponible() {
         return BaseImponible;
@@ -74,8 +72,6 @@ public class Retencion {
     public void setPorcen_Retencion(int porcen_Retencion) {
         this.porcen_Retencion = porcen_Retencion;
     }
-
-   
 
     public Double getValorRetenido() {
         return valorRetenido;

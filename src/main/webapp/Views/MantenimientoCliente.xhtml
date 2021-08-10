@@ -31,7 +31,8 @@
                         <!--Tabla que muestra el listado de clientes-->
                         <p:dataTable id="tblClientes" var="varClientes" rows="5" scrollable="true" scrollWidth="1030" 
                                      value="#{personaController.listaCliente}" paginator="true"
-                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}" style="font-size: 12px;">
+                                     rowsPerPageTemplate="5,10,{ShowAll|'All'}" 
+                                     style="font-size: 12px;">
 
                             <p:column headerText="Identificación"
                                       filterBy="#{varClientes.identificacion}" 
@@ -86,7 +87,8 @@
                                       filterBy="#{varClientes.estado}" 
                                       filterMatchMode="contains" 
                                       headerText="Estado">
-                                <h:outputText value="#{varClientes.descr_Estado}"/>
+                                <h:outputText value="#{varClientes.descr_Estado}"
+                                              styleClass="#{varClientes.createLabel()}"/>
                             </p:column>
 
                             <p:column style="text-align: center; width: 150px;" headerText="Acciones">
@@ -98,7 +100,8 @@
                                                  style="width: 35px; height: 30px;" 
                                                  styleClass="ui-button-danger" 
                                                  icon="pi pi-times-circle"/>
-                                <p:commandButton value="" style="width: 35px; height: 30px;" 
+                                <p:commandButton action="#{personaController.activarCliente(varClientes.id_Cliente)}"
+                                                 style="width: 35px; height: 30px;" 
                                                  styleClass="ui-button-success" 
                                                  icon="pi pi-check-circle"/>
                             </p:column>
@@ -204,7 +207,7 @@
                                         </p:outputPanel>
                                         <br/>
                                         <div style="float: right;">
-                                            <p:commandButton value="Cancel" type="submit"
+                                            <p:commandButton value="Cancel"
                                                              icon="pi pi-times" 
                                                              onclick="PF('ClientNew').hide()"
                                                              class="ui-button-secondary"

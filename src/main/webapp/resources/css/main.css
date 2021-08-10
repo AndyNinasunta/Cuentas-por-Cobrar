@@ -58,3 +58,11 @@ button.ui-button {
 .m1 {
     margin-right: 10px;
 }
+
+.SUCCESS{
+background-color : greenyellow !important;
+}
+
+.FAILURE{
+background-color: red !important;
+}

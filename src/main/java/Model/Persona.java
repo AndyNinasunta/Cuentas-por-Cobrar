@@ -1,11 +1,9 @@
-
 package Model;
 
 import java.io.Serializable;
 
+public class Persona implements Serializable {
 
-public class Persona implements Serializable{
-    
     //Declaración de las Variables
     private int id_Tipo_Idenficacion;
     private String direccion;
@@ -21,14 +19,14 @@ public class Persona implements Serializable{
     private int id_tipoCliente;
     private String descr_tipo_Cliente;
     private String descr_Estado;
-    
+
     public Persona() {
     }
-    
+
     //Constructor con los datos importantes
-    public Persona(int id_Tipo_Idenficacion, String direccion, 
-            String identificacion, boolean estado, String tlf1, 
-            String tlf2, String correo,int id_tipoCliente) {
+    public Persona(int id_Tipo_Idenficacion, String direccion,
+            String identificacion, boolean estado, String tlf1,
+            String tlf2, String correo, int id_tipoCliente) {
         this.id_Tipo_Idenficacion = id_Tipo_Idenficacion;
         this.direccion = direccion;
         this.identificacion = identificacion;
@@ -36,16 +34,14 @@ public class Persona implements Serializable{
         this.tlf1 = tlf1;
         this.tlf2 = tlf2;
         this.correo = correo;
-        this.id_tipoCliente=id_tipoCliente;
+        this.id_tipoCliente = id_tipoCliente;
     }
 
-   
-    
     //Constructor con los datos que se mostraran en la tabla
-    public Persona(int id_Cliente, String identificacion, 
-            String descr_identificacion,String razon_nombre,
-            String direccion, String tlf1, String tlf2, String correo,  
-            String descr_tipo_Cliente,String descr_Estado) {
+    public Persona(int id_Cliente, String identificacion,
+            String descr_identificacion, String razon_nombre,
+            String direccion, String tlf1, String tlf2, String correo,
+            String descr_tipo_Cliente, String descr_Estado) {
         this.direccion = direccion;
         this.identificacion = identificacion;
         this.tlf1 = tlf1;
@@ -55,10 +51,30 @@ public class Persona implements Serializable{
         this.descr_identificacion = descr_identificacion;
         this.razon_nombre = razon_nombre;
         this.descr_tipo_Cliente = descr_tipo_Cliente;
-        this.descr_Estado=descr_Estado;
+        this.descr_Estado = descr_Estado;
+    }
+
+    public Persona(int id_Cliente, String razon_nombre) {
+        this.id_Cliente = id_Cliente;
+        this.razon_nombre = razon_nombre;
     }
     
-    
+
+    public String createLabel() {
+
+        switch (descr_Estado) {
+
+            case "Activo":
+                return "SUCCESS";
+
+            case "Anulado":
+                return "FAILURE";
+
+            default:
+                return "DEFAULT";
+        }
+    }
+
     public int getId_Tipo_Idenficacion() {
         return id_Tipo_Idenficacion;
     }
@@ -130,8 +146,6 @@ public class Persona implements Serializable{
     public void setId_tipoCliente(int id_tipoCliente) {
         this.id_tipoCliente = id_tipoCliente;
     }
-    
-    
 
     public String getDescr_identificacion() {
         return descr_identificacion;
@@ -163,5 +177,5 @@ public class Persona implements Serializable{
 
     public void setDescr_Estado(String descr_Estado) {
         this.descr_Estado = descr_Estado;
-    } 
+    }
 }

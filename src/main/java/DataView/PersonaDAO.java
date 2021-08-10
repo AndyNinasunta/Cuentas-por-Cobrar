@@ -64,6 +64,25 @@ public class PersonaDAO implements Serializable {
         }
         return lista_Personas;
     }
+    
+    public List<Persona> obtenerNombresClientes() {
+        lista_Personas = new ArrayList<>();
+        if (conex.isEstado()) {
+            try {
+                String sentencia = "Select id, razon_nombres from Mostrar_Todos_los_Clientes()";
+                result = conex.ejecutarConsulta(sentencia);
+                while (result.next()) {
+                    lista_Personas.add(new Persona(result.getInt("id"),
+                                                   result.getString("razon_nombres")));
+                }
+            } catch (SQLException ex) {
+                lista_Personas.add(new Persona(-1, "-"));
+            } finally {
+                conex.cerrarConexion();
+            }
+        }
+        return lista_Personas;
+    }
 
     public int deshabilitar_cliente(int id) {
         String sentencia = "select Anular_Cliente(" + id + ")";
