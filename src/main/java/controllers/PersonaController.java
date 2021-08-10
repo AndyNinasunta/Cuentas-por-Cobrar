@@ -101,7 +101,6 @@ public class PersonaController implements Serializable {
     }
 
     public void anularCliente(int id) {
-        personaDAO = new PersonaDAO(persona);
         System.out.println(id);
         if (personaDAO.deshabilitar_cliente(id) > 0) {
             System.out.print("Cliente Anulado");
@@ -110,6 +109,17 @@ public class PersonaController implements Serializable {
             System.out.print("Error al anular");
         }
     }
+    
+    public void activarCliente(int id) {
+        System.out.println(id);
+        if (personaDAO.habilitar_cliente(id) > 0) {
+            System.out.print("Cliente Activado");
+            listaCliente = personaDAO.obtener_Todos_Los_Clientes();
+        } else {
+            System.out.print("Error al activar");
+        }
+    }
+    
 
     public void registrar_Cliente_Juridico() {
         persona_JuridicaDAO = new Persona_JuridicaDAO(persona_Juridica);

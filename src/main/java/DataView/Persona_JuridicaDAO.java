@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DataView;
 
 import Model.Persona;
@@ -13,10 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author andy2
- */
 public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
 
     Persona_Juridica person_Juridica;
@@ -35,8 +27,6 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
     public Persona_JuridicaDAO(Persona_Juridica person_Juridica) {
         this.person_Juridica = person_Juridica;
     }
-
-    
     
     //--Ejecutando Funcion (Ingresando Persona Juridica)
     public int insertar_Cliente_Juridico() {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -23,11 +24,13 @@ public class RetencionController {
     Retencion retencion;
     RetencionDAO retencionDAO;
     List<Retencion> listaRetenciones;
+    List<SelectItem> listaVenta;
+    
     public RetencionController() {
         retencion = new Retencion();
         retencionDAO = new RetencionDAO();
         listaRetenciones = new ArrayList<>();
-        listaRetenciones = retencionDAO.obtener_retenciones();
+        //listaRetenciones = retencionDAO.obtener_retenciones(3);
     }
 
     public Retencion getRetencion() {
@@ -41,9 +44,25 @@ public class RetencionController {
     public List<Retencion> getListaRetenciones() {
         return listaRetenciones;
     }
+    
+    public void cargarRetenciones(int idVenta){
+        listaRetenciones = new ArrayList<>();
+        listaRetenciones=retencionDAO.obtener_retenciones(idVenta);
+    }
 
     public void setListaRetenciones(List<Retencion> listaRetenciones) {
         this.listaRetenciones = listaRetenciones;
     }
     
+    public List<SelectItem> getListaVentas(int idCliente){
+        listaVenta=new ArrayList<>();
+        RetencionDAO retenDAO=new RetencionDAO();
+        List<Retencion> r=retenDAO.obtener_Ventas(idCliente);
+        listaVenta.clear();
+        for(Retencion retencion:r){
+            SelectItem ventasItem=new SelectItem(retencion.getId_Venta());
+            this.listaVenta.add(ventasItem);
+        }
+        return listaVenta;
+    }
 }

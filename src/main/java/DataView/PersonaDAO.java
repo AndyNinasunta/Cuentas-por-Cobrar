@@ -72,6 +72,15 @@ public class PersonaDAO implements Serializable {
         }
         return -1;
     }
+    
+    public int habilitar_cliente(int id) {
+        String sentencia = "select activar_cliente(" + id + ")";
+        if (conex.isEstado()) {
+            return conex.ejecutarProcedimiento(sentencia);
+        }
+        return -1;
+    }
+    
 
     public String identificar_cliente(int idCliente) {
         String tipo="0";
