@@ -23,6 +23,7 @@ import javax.faces.model.SelectItem;
 @RequestScoped
 public class RetencionController {
 
+    int aux = 0;
     Retencion retencion;
     RetencionDAO retencionDAO;
     Persona persona;
@@ -86,10 +87,6 @@ public class RetencionController {
     }
     
     public void registrarRetencion() {
-        System.out.println(retencion.getFecha_Emision());
-        System.out.println(retencion.getBaseImponible());
-        System.out.println(retencion.getDescImpuesto());
-        System.out.println(retencion.getPorcen_Retencion());
         retencionDAO=new RetencionDAO(retencion);
         if(retencionDAO.insertar_Retencion(3)>0){
             System.out.println("Se Ingresó Correctamente la retencion.");
@@ -98,7 +95,16 @@ public class RetencionController {
         }
     }
     
+    public void btnEditar(int idretencion){
+        System.out.println(idretencion);
+        retencion.setId_Retencion(idretencion);
+        aux = retencion.getId_Retencion();
+    }
+    
     public void actualizarRetencion(){
+        retencion.setId_Retencion(aux);
+        System.out.println(aux);
+        retencionDAO=new RetencionDAO(retencion);
         if(retencionDAO.actualizar_Retencion()>0){
             System.out.println("Se Editó Correctamente");
             //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones

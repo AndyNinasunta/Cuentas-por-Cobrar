@@ -26,6 +26,7 @@ public class RetencionDAO implements Serializable {
     }
 
     public RetencionDAO(Retencion retencion) {
+        conex = new Conexion();
         this.retencion = retencion;
     }
 
