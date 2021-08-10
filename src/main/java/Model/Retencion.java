@@ -27,6 +27,15 @@ public class Retencion {
         this.EjerFiscal = EjerFiscal;
         this.valorRetenido = valorRetenido;
     }
+
+    public Retencion(int id_Venta, int porcen_Retencion, Double BaseImponible, String descImpuesto, String EjerFiscal, Double valorRetenido) {
+        this.id_Venta = id_Venta;
+        this.porcen_Retencion = porcen_Retencion;
+        this.BaseImponible = BaseImponible;
+        this.descImpuesto = descImpuesto;
+        this.EjerFiscal = EjerFiscal;
+        this.valorRetenido = valorRetenido;
+    }
     
     public Retencion(int id_Venta) {
         this.id_Venta = id_Venta;

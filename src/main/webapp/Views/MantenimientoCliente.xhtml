@@ -95,15 +95,18 @@
                                 <p:commandButton oncomplete="PF('ClienteNaturalEdit').show()"
                                                  action="#{personaController.editar_cliente(varClientes.id_Cliente)}" 
                                                  style="width: 35px; height: 30px;" 
-                                                 icon="pi pi-pencil"/> 
+                                                 icon="pi pi-pencil"
+                                                 update="tblClientes"/> 
                                 <p:commandButton action="#{personaController.anularCliente(varClientes.id_Cliente)}" 
                                                  style="width: 35px; height: 30px;" 
                                                  styleClass="ui-button-danger" 
-                                                 icon="pi pi-times-circle"/>
+                                                 icon="pi pi-times-circle"
+                                                 update="tblClientes"/>
                                 <p:commandButton action="#{personaController.activarCliente(varClientes.id_Cliente)}"
                                                  style="width: 35px; height: 30px;" 
                                                  styleClass="ui-button-success" 
-                                                 icon="pi pi-check-circle"/>
+                                                 icon="pi pi-check-circle"
+                                                 update="tblClientes"/>
                             </p:column>
                         </p:dataTable>
                         <!-- Ventana Agregar Cliente  !-->
@@ -111,7 +114,7 @@
                                   height="auto" width="1000px" showEffect="fade"
                                   modal="true" widgetVar="ClienteNew">
                             <p:tabView>
-                                <p:tab title="Persona Jurídica" id="AgregaClienteJuridico">
+                                <p:tab title="Persona Jurídica">
                                     <h:form >
                                         <p:outputPanel  class="ui-fluid">
                                             <div class="ui-fluid p-formgrid p-grid">
@@ -125,6 +128,7 @@
                                                                      type="text" 
                                                                      style="width: 180px;
                                                                      margin: 3px"
+                                                                     maxlength="13"
                                                                      value="#{personaController.persona_Juridica.identificacion}"/> 
 
                                                         <label style="font-weight: bold; padding-left: 103px;">
@@ -169,6 +173,7 @@
                                                                      type="text" 
                                                                      style="width: 250px; 
                                                                      margin: 3px;"
+                                                                     maxlength="10"
                                                                      value="#{personaController.persona_Juridica.tlf1}"/> 
 
                                                         <label style="font-weight: bold; padding-left: 117px">
@@ -179,6 +184,7 @@
                                                                      type="text" 
                                                                      style="width: 180px;  
                                                                      margin: 3px;"
+                                                                     maxlength="10"
                                                                      value="#{personaController.persona_Juridica.tlf2}"/> 
                                                     </div>
 
@@ -214,7 +220,7 @@
                                                              styleClass=" ui-button-danger"/>
                                             <p:commandButton value="Guardar" ajax="false"
                                                              icon="pi pi-save"
-                                                             update=":AgregaClienteJuridico"
+                                                             update=":tblClientes"
                                                              actionListener="#{personaController.registrar_Cliente_Juridico()}"
                                                              styleClass=" ui-button-success"/>
                                         </div>
@@ -234,6 +240,7 @@
                                                                      type="text" 
                                                                      style="width: 180px;
                                                                      margin: 3px"
+                                                                     maxlength="13"
                                                                      value="#{personaController.persona_Natural.identificacion}"/> 
 
                                                         <label style="font-weight: bold; padding-left: 103px;">
@@ -300,6 +307,7 @@
                                                                      type="text" 
                                                                      style="width: 250px;
                                                                      margin: 3px;"
+                                                                     maxlength="10"
                                                                      value="#{personaController.persona_Natural.tlf1}"/> 
 
                                                         <label style="font-weight: bold; padding-left: 120px">
@@ -310,6 +318,7 @@
                                                                      type="text" 
                                                                      style="width: 180px;
                                                                      margin: 3px;"
+                                                                     maxlength="10"
                                                                      value="#{personaController.persona_Natural.tlf2}"/>  
                                                     </div>
                                                     <div class="p-field p-col-12 p-md-3">
@@ -407,6 +416,7 @@
                                                              type="text" 
                                                              style="width: 180px;
                                                              margin: 3px"
+                                                             maxlength="13"
                                                              value="#{personaController.persona_Natural.identificacion}"/> 
 
                                                 <label style="font-weight: bold; padding-left: 103px;">
@@ -473,6 +483,7 @@
                                                              type="text" 
                                                              style="width: 250px;
                                                              margin: 3px;"
+                                                             maxlength="10"
                                                              value="#{personaController.persona_Natural.tlf1}"/> 
 
                                                 <label style="font-weight: bold; padding-left: 120px">
@@ -483,6 +494,7 @@
                                                              type="text" 
                                                              style="width: 180px;
                                                              margin: 3px;"
+                                                             maxlength="10"
                                                              value="#{personaController.persona_Natural.tlf2}"/>  
                                             </div>
                                             <div class="p-field p-col-12 p-md-3">
@@ -567,7 +579,8 @@
                                                 <p:inputText id="identifica" 
                                                              type="text" 
                                                              style="width: 180px;
-                                                             margin: 3px"/> 
+                                                             margin: 3px"
+                                                             maxlength="13"/> 
 
                                                 <label style="font-weight: bold; padding-left: 103px;">
                                                     Tipo de Identificación<label style="color: red;">*</label>: 
@@ -608,7 +621,8 @@
                                                 <p:inputText id="priapellidoCliente"
                                                              type="text" 
                                                              style="width: 250px; 
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             maxlength="10"/> 
 
                                                 <label style="font-weight: bold; padding-left: 117px">
                                                     Teléfono 2:
@@ -617,7 +631,8 @@
                                                              placeholder="Opcional"
                                                              type="text" 
                                                              style="width: 180px;  
-                                                             margin: 3px;"/> 
+                                                             margin: 3px;"
+                                                             maxlength="10"/> 
                                             </div>
 
                                             <div class="p-field p-col-12 p-md-3">

@@ -34,7 +34,7 @@ public class RetencionController {
         retencion = new Retencion();
         retencionDAO = new RetencionDAO();
         listaRetenciones = new ArrayList<>();
-        //listaRetenciones = retencionDAO.obtener_retenciones(3);
+        listaRetenciones = retencionDAO.obtener_retenciones(3);
     }
 
     public Retencion getRetencion() {
@@ -69,16 +69,41 @@ public class RetencionController {
         }
         return listaCliente;
     }
+
+    public void setListaCliente(List<SelectItem> listaCliente) {
+        this.listaCliente = listaCliente;
+    }
     
-    public List<SelectItem> getListaVentas(int idCliente){
+    public List<SelectItem> getListaVentas(){
         listaVenta=new ArrayList<>();
         this.retencionDAO = new RetencionDAO();
-        List<Retencion> r=retencionDAO.obtener_Ventas(idCliente);
+        List<Retencion> r=retencionDAO.obtener_Ventas(5);
         for(Retencion lret:r){
             SelectItem ventasItem=new SelectItem(lret.getId_Venta());
             this.listaVenta.add(ventasItem);
-            System.out.println(lret.getId_Venta());
         }
         return listaVenta;
+    }
+    
+    public void registrarRetencion() {
+        System.out.println(retencion.getFecha_Emision());
+        System.out.println(retencion.getBaseImponible());
+        System.out.println(retencion.getDescImpuesto());
+        System.out.println(retencion.getPorcen_Retencion());
+        retencionDAO=new RetencionDAO(retencion);
+        if(retencionDAO.insertar_Retencion(3)>0){
+            System.out.println("Se Ingresó Correctamente la retencion.");
+        } else {
+            System.out.println("No se Registró");
+        }
+    }
+    
+    public void actualizarRetencion(){
+        if(retencionDAO.actualizar_Retencion()>0){
+            System.out.println("Se Editó Correctamente");
+            //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
+        } else {
+            System.out.println("No se Editó");
+        }
     }
 }

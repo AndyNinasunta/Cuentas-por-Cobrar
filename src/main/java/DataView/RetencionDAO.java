@@ -22,7 +22,7 @@ public class RetencionDAO implements Serializable {
     }
 
     public RetencionDAO() {
-        this.conex = conex;
+        conex = new Conexion();
     }
 
     public RetencionDAO(Retencion retencion) {
@@ -70,5 +70,42 @@ public class RetencionDAO implements Serializable {
             }
         }
         return lista_Retencion;
+    }
+    
+    public int insertar_Retencion(int idVenta) {
+        String sentenciaSQL = "Select Ingresar_Retencion(" + idVenta + ","
+                + retencion.getPorcen_Retencion() + ",'"
+                + retencion.getFecha_Emision() + "',"
+                + retencion.getBaseImponible() + ",'"
+                + retencion.getDescImpuesto() + "')";
+
+        //Verificamos la conexion
+        if (conex.isEstado()) {
+            //Una vez se asegura que la conexion este correcta.
+            //Se ejecuta la sentencia ingresada.
+            return conex.ejecutarProcedimiento(sentenciaSQL);
+        }
+        //Caso contrario: Se retorna -1 indicando que la conexión está
+        //en estado Falso
+        return -1;
+
+    }
+
+    //Modificar/Actualizar una retencion
+    public int actualizar_Retencion() {
+        String sentenciaSQL = "Select actualizar_retencion(" + retencion.getId_Retencion() + ","
+                + retencion.getPorcen_Retencion() + ",'"
+                + retencion.getFecha_Emision() + "',"
+                + retencion.getBaseImponible() + ",'"
+                + retencion.getDescImpuesto() + "')";
+        //Verificamos la conexion
+        if (conex.isEstado()) {
+            //Una vez se asegura que la conexion este correcta.
+            //Se ejecuta la sentencia ingresada.
+            return conex.ejecutarProcedimiento(sentenciaSQL);
+        }
+        //Caso contrario: Se retorna -1 indicando que la conexión está
+        //en estado Falso
+        return -1;
     }
 }

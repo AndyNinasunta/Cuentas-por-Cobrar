@@ -41,7 +41,7 @@ public class PersonaDAO implements Serializable {
         lista_Personas = new ArrayList<>();
         if (conex.isEstado()) {
             try {
-                String sentencia = "Select * from Mostrar_Todos_los_Clientes()";
+                String sentencia = "Select * from Mostrar_Todos_los_Clientes() order by id desc";
                 result = conex.ejecutarConsulta(sentencia);
                 while (result.next()) {
                     lista_Personas.add(new Persona(result.getInt("id"),

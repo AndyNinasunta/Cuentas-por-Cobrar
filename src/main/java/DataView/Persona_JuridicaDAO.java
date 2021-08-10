@@ -30,7 +30,7 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
     
     //--Ejecutando Funcion (Ingresando Persona Juridica)
     public int insertar_Cliente_Juridico() {
-        String sentenciaSQL = "Select Ingresar_Cliente_Juridico "
+        String sentenciaSQL = "Select Ingresar_Cliente_Juridico"
                 + "(" + person_Juridica.getId_Tipo_Idenficacion() + ",'"
                 + person_Juridica.getIdentificacion() + "','"
                 + person_Juridica.getDireccion() + "','"
