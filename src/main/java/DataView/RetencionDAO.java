@@ -26,7 +26,6 @@ public class RetencionDAO implements Serializable {
     }
 
     public RetencionDAO(Retencion retencion) {
-        conex = new Conexion();
         this.retencion = retencion;
     }
 
@@ -44,7 +43,7 @@ public class RetencionDAO implements Serializable {
                             result.getDouble("baseimponible_r"),
                             result.getString("descripcion_r"),
                             result.getString("ejerciciofiscal_r"),
-                            result.getDouble("total_r")));//result.getObject("fecha_nacimiento", LocalDate.class)
+                            result.getDouble("total_r")));
                 }
             } catch (SQLException ex) {
                 lista_Retencion.add(new Retencion(-1, -1, 0, null, 0.0, "", "", 0.0));

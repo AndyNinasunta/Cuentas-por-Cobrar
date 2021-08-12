@@ -34,6 +34,7 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
 
     public Persona_NaturalDAO(Persona_Natural person_Natural) {
         this.person_Natural = person_Natural;
+        conex = new Conexion();
     }
 
     
@@ -91,7 +92,6 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
 //Select actualizar_persona_natural(2,1,'1250599436','Parr. Nicolas Infante Días',
 //'0988152065',null,'andy2000-09@hotmail.com','Andy','Joel','Ninasunta','Rodríguez','M','Hetero','10/09/2000',1)
         
-        
         if (conex.isEstado()) {
             //Una vez se asegura que la conexion este correcta.
             //Se ejecuta la sentencia ingresada.
@@ -105,40 +105,46 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
     
     public Persona_Natural obtener_Cliente_Natural() {
         Persona_Natural p_natural=new Persona_Natural();
+        
         if (conex.isEstado()) {
             try {
-                String sentencia = "Select idcliente,Per.idtipoidentificacion,identificacion,nombre1,nombre2,apellido1\n" +
-                        ",apellido2,fecha_nacimiento,sexo,genero, direccion, estado,telefono1,telefono2,correo1\n" +
-                        ", Cl.idtipocliente \n" +
-                        "from Persona Per\n" +
-                        "inner join persona_natural PerN on Per.id_persona=PerN.id_persona\n" +
-                        "inner join clientes Cl on PerN.idpersonanatural=Cl.idpersonanatural\n" +
-                        "where idcliente="+person_Natural.getId_Cliente();
+                
+                String sentencia = "select*from obtener_cliente_natural("
+                        +person_Natural.getId_Cliente()+")";
+                
                 result = conex.ejecutarConsulta(sentencia);
-                while (result.next()) {//Orden: sexo,genero, nombre1, nombre2,apellido1,apellido2,
-                    //fecha_nacimiento, idTipo Identifica, direccion, identificacion, estado, tlf1, tlf2, correo , 
-                    //IdTipoCliente
+                
+                while (result.next()) {
+                     
+                    //Almacenamos en un objeto los datos personales de un 
+                    //Cliente Natural.
                      p_natural= new Persona_Natural(
-                                                result.getString("sexo"),
-                                                result.getString("genero"),
-                                                result.getString("nombre1"),
-                                                result.getString("nombre2"),
-                                                result.getString("apellido1"),
-                                                result.getString("apellido2"),
-                                                result.getObject("fecha_nacimiento", LocalDate.class),
-                                                result.getInt("idtipoidentificacion"),
-                                                result.getString("direccion"),
-                                                result.getString("identificacion"),
-                                                result.getBoolean("estado"),
-                                                result.getString("telefono1"),
-                                                result.getString("telefono2"),
-                                                result.getString("correo1"),
-                                                result.getInt("idtipocliente"));
+                        result.getString("sexo_r"),
+                        result.getString("genero_r"),
+                        result.getString("nombre1_r"),
+                        result.getString("nombre2_r"),
+                        result.getString("apellido1_r"),
+                        result.getString("apellido2_r"),
+                        result.getObject("fecha_nacimiento_r", LocalDate.class),
+                        result.getInt("idtipoidentificacion_r"),
+                        result.getString("direccion_r"),
+                        result.getString("identificacion_r"),
+                        result.getBoolean("estado_r"),
+                        result.getString("telefono1_r"),
+                        result.getString("telefono2_r"),
+                        result.getString("correo1_r"),
+                        result.getInt("idtipocliente_r"));
+                     
                 }
             } catch (SQLException ex) {
-                System.out.println("Error al Obtener Clientes: " + ex.getMessage());
+                
+                System.out.println("Error al Obtener los datos del cliente: " 
+                        + ex.getMessage());
+            
             } finally {
+                
                 conex.cerrarConexion();
+            
             }
         }
         return p_natural;

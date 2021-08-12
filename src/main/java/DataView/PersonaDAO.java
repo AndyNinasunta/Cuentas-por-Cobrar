@@ -34,6 +34,7 @@ public class PersonaDAO implements Serializable {
     }
 
     public PersonaDAO(Persona persona) {
+        conex = new Conexion();
         this.persona = persona;
     }
 

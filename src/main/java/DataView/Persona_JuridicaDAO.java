@@ -25,6 +25,7 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
     }
 
     public Persona_JuridicaDAO(Persona_Juridica person_Juridica) {
+        conex = new Conexion();
         this.person_Juridica = person_Juridica;
     }
     
@@ -51,7 +52,8 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
     }
 
     public int actualizar_Cliente_Juridico() {
-        String sentenciaSQL = "Select actualizar_persona_juridica(" + person_Juridica.getId_Cliente() + ","
+        String sentenciaSQL = "Select actualizar_persona_juridica(" 
+                + person_Juridica.getId_Cliente() + ","
                 + person_Juridica.getId_Tipo_Idenficacion() + ",'"
                 + person_Juridica.getIdentificacion() + "','"
                 + person_Juridica.getDireccion() + "','"
@@ -75,26 +77,24 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
         Persona_Juridica p_juridica=new Persona_Juridica();
         if (conex.isEstado()) {
             try {
-                String sentencia = "Select idcliente,Per.idtipoidentificacion, "
-                        + "identificacion, razon_social, direccion, estado, \n" +
-                        "telefono1,telefono2,correo1, Cl.idtipocliente \n" +
-                        "from Persona Per\n" +
-                        "inner join persona_juridica PerJ on Per.id_persona=PerJ.id_persona\n" +
-                        "inner join clientes Cl on PerJ.id_persona_juridica=Cl.id_persona_juridica\n" +
-                        "where idcliente="+person_Juridica.getId_Cliente();
+                String sentencia = "select*from obtener_cliente_juridico("
+                        +person_Juridica.getId_Cliente()+")";
                 result = conex.ejecutarConsulta(sentencia);
-                while (result.next()) {//Orden Razon Social, id tipo ident, direccion, 
-                                        //identificacion,estado,tlf1,tlf2,correo,idTipoCliente
+                while (result.next()) {
+                    
+                     //Almacenamos en un objeto los datos personales de un 
+                    //Cliente Juridico.
                      p_juridica= new Persona_Juridica(
-                                                result.getString("razon_social"),
-                                                result.getInt("idtipoidentificacion"),
-                                                result.getString("direccion"),
-                                                result.getString("identificacion"),
-                                                result.getBoolean("estado"),
-                                                result.getString("telefono1"),
-                                                result.getString("telefono2"),
-                                                result.getString("correo1"),
-                                                result.getInt("idtipocliente"));
+                                                result.getString("razon_social_r"),
+                                                result.getInt("idtipoidentificacion_r"),
+                                                result.getString("direccion_r"),
+                                                result.getString("identificacion_r"),
+                                                result.getBoolean("estado_r"),
+                                                result.getString("telefono1_r"),
+                                                result.getString("telefono2_r"),
+                                                result.getString("correo1_r"),
+                                                result.getInt("idtipocliente_r"));
+                     
                 }
             } catch (SQLException ex) {
                 p_juridica=new Persona_Juridica("",-1,"","",false,"","","",-1);
@@ -104,5 +104,4 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
         }
         return p_juridica;
     }
-
 }

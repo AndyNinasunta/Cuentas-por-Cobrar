@@ -6,125 +6,134 @@
 package Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  *
  * @author andy2
  */
-public class Plan_Pago implements Serializable{
+public class Plan_Pago implements Serializable {
 
-    //Declaración de las Variables
-    int id_Cliente;
-    String fecha_Facturacion;
-    int dias_Credito;
-    String fecha_Vencimiento;
-    String nombre_Del_Cliente;
-    int id_factura;
-    double valor_Total_Factura;
-    double valor_Pendiente;
-    String fecha_Ultimo_Pago;
-    int id_Estado_Factura;
-    String estado_Factura;
+    //Declaración de las Variables para los planes de pago
+    int idCliente;
+    LocalDate fechaFacturacion=LocalDate.now();
+    int diasCredito;
+    LocalDate fechaVencimiento=LocalDate.now();
+    String nombreDelCliente;
+    int idFactura;
+    double valorTotalFactura;
+    double valorPendiente;
+    LocalDate fechaUltimoPago=LocalDate.now();
+    int idEstadoFactura;
+    String estadoFactura;
     int diasMora;
-    
+
     public Plan_Pago() {
     }
-    
-    //Constructor para almacenar las facturas pendientes
 
-    public Plan_Pago(String fecha_Facturacion, int dias_Credito, String fecha_Vencimiento, String nombre_Del_Cliente, int id_factura, double valor_Total_Factura, double valor_Pendiente, String fecha_Ultimo_Pago, String estado_Factura, int diasMora) {
-        this.fecha_Facturacion = fecha_Facturacion;
-        this.dias_Credito = dias_Credito;
-        this.fecha_Vencimiento = fecha_Vencimiento;
-        this.nombre_Del_Cliente = nombre_Del_Cliente;
-        this.id_factura = id_factura;
-        this.valor_Total_Factura = valor_Total_Factura;
-        this.valor_Pendiente = valor_Pendiente;
-        this.fecha_Ultimo_Pago = fecha_Ultimo_Pago;
-        this.estado_Factura = estado_Factura;
+    //Constructor para almacenar las facturas pendientes
+    public Plan_Pago(LocalDate fecha_Facturacion, int dias_Credito,
+            LocalDate fecha_Vencimiento, String nombre_Del_Cliente, int id_factura,
+            double valor_Total_Factura, double valor_Pendiente,
+            LocalDate fecha_Ultimo_Pago, String estado_Factura, int diasMora) {
+        this.fechaFacturacion = fecha_Facturacion;
+        this.diasCredito = dias_Credito;
+        this.fechaVencimiento = fecha_Vencimiento;
+        this.nombreDelCliente = nombre_Del_Cliente;
+        this.idFactura = id_factura;
+        this.valorTotalFactura = valor_Total_Factura;
+        this.valorPendiente = valor_Pendiente;
+        this.fechaUltimoPago = fecha_Ultimo_Pago;
+        this.estadoFactura = estado_Factura;
         this.diasMora = diasMora;
     }
 
-    
- 
-    public int getId_Cliente() {
-        return id_Cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setId_Cliente(int id_Cliente) {
-        this.id_Cliente = id_Cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public String getFecha_Facturacion() {
-        return fecha_Facturacion;
+    public LocalDate getFechaFacturacion() {
+        return fechaFacturacion;
     }
 
-    public void setFecha_Facturacion(String fecha_Facturacion) {
-        this.fecha_Facturacion = fecha_Facturacion;
+    public void setFechaFacturacion(LocalDate fechaFacturacion) {
+        this.fechaFacturacion = fechaFacturacion;
     }
 
-    public String getFecha_Vencimiento() {
-        return fecha_Vencimiento;
+    public int getDiasCredito() {
+        return diasCredito;
     }
 
-    public void setFecha_Vencimiento(String fecha_Vencimiento) {
-        this.fecha_Vencimiento = fecha_Vencimiento;
+    public void setDiasCredito(int diasCredito) {
+        this.diasCredito = diasCredito;
     }
 
-    public String getNombre_Del_Cliente() {
-        return nombre_Del_Cliente;
+    public LocalDate getFechaVencimiento() {
+        return fechaVencimiento;
     }
 
-    public void setNombre_Del_Cliente(String nombre_Del_Cliente) {
-        this.nombre_Del_Cliente = nombre_Del_Cliente;
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 
-    public int getId_factura() {
-        return id_factura;
+    public String getNombreDelCliente() {
+        return nombreDelCliente;
     }
 
-    public void setId_factura(int id_factura) {
-        this.id_factura = id_factura;
+    public void setNombreDelCliente(String nombreDelCliente) {
+        this.nombreDelCliente = nombreDelCliente;
     }
 
-    public double getValor_Total_Factura() {
-        return valor_Total_Factura;
+    public int getIdFactura() {
+        return idFactura;
     }
 
-    public void setValor_Total_Factura(double valor_Total_Factura) {
-        this.valor_Total_Factura = valor_Total_Factura;
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
     }
 
-    public double getValor_Pendiente() {
-        return valor_Pendiente;
+    public double getValorTotalFactura() {
+        return valorTotalFactura;
     }
 
-    public void setValor_Pendiente(double valor_Pendiente) {
-        this.valor_Pendiente = valor_Pendiente;
+    public void setValorTotalFactura(double valorTotalFactura) {
+        this.valorTotalFactura = valorTotalFactura;
     }
 
-    public String getFecha_Ultimo_Pago() {
-        return fecha_Ultimo_Pago;
+    public double getValorPendiente() {
+        return valorPendiente;
     }
 
-    public void setFecha_Ultimo_Pago(String fecha_Ultimo_Pago) {
-        this.fecha_Ultimo_Pago = fecha_Ultimo_Pago;
+    public void setValorPendiente(double valorPendiente) {
+        this.valorPendiente = valorPendiente;
     }
 
-    public int getId_Estado_Factura() {
-        return id_Estado_Factura;
+    public LocalDate getFechaUltimoPago() {
+        return fechaUltimoPago;
     }
 
-    public void setId_Estado_Factura(int id_Estado_Factura) {
-        this.id_Estado_Factura = id_Estado_Factura;
+    public void setFechaUltimoPago(LocalDate fechaUltimoPago) {
+        this.fechaUltimoPago = fechaUltimoPago;
     }
 
-    public String getEstado_Factura() {
-        return estado_Factura;
+    public int getIdEstadoFactura() {
+        return idEstadoFactura;
     }
 
-    public void setEstado_Factura(String estado_Factura) {
-        this.estado_Factura = estado_Factura;
+    public void setIdEstadoFactura(int idEstadoFactura) {
+        this.idEstadoFactura = idEstadoFactura;
+    }
+
+    public String getEstadoFactura() {
+        return estadoFactura;
+    }
+
+    public void setEstadoFactura(String estadoFactura) {
+        this.estadoFactura = estadoFactura;
     }
 
     public int getDiasMora() {
@@ -134,8 +143,4 @@ public class Plan_Pago implements Serializable{
     public void setDiasMora(int diasMora) {
         this.diasMora = diasMora;
     }
-    
-    
-    
-    
 }

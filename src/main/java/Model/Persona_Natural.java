@@ -26,6 +26,7 @@ public class Persona_Natural extends Persona{
     public Persona_Natural() {
     }
 
+    //Constructor con los datos personales de un cliente natural
     public Persona_Natural(String sexo, String genero, String nombre1, 
                            String nombre2, String apellido1, String apellidos2,
                            LocalDate fecha_nacimiento, int id_Tipo_Idenficacion, 
