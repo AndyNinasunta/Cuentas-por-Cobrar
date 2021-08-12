@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../Plantilla/Plantilla.xhtml">
+
+            <ui:define name="content">
+                <p:panel>
+                    <!--Interfaz para agregar clientes juridicos -->
+                    <p:outputLabel style="font-weight: bold;" value="Nuevo Cliente Jurídico"/>
+                    <br/><br/>
+                    <p:growl id="messg" showDetail="true"/>
+                    <h:form >
+                        <p:outputPanel  class="ui-fluid">
+                            <div class="ui-fluid p-formgrid p-grid">
+                                <div class="p-field p-col-12 p-md-3">
+                                    <p:outputLabel for="identificaJuridico" 
+                                                   value="Identificación:"
+                                                   style="font-weight: bold; padding-left: 20px;">
+                                    </p:outputLabel>                                            
+                                    <p:inputText id="identificaJuridico" 
+                                                 type="text" 
+                                                 required="true"
+                                                 style="width: 180px;
+                                                 margin: 3px"
+                                                 maxlength="13"
+                                                 value="#{personaController.persona_Juridica.identificacion}"/> 
+
+                                    <p:outputLabel for="optionJuridico" 
+                                                   value="Tipo de Identificación:"
+                                                   style="font-weight: bold; padding-left: 103px;">
+                                    </p:outputLabel>
+                                    <p:selectOneMenu id="optionJuridico" value="#{personaController.persona_Juridica.idTipoIdenficacion}" 
+                                                     style="width: 150px; height: 40px;"
+                                                     required="true">                            
+                                        <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                        <f:selectItem itemLabel="Ruc" itemValue="1"/>
+                                        <f:selectItem itemLabel="Cédula" itemValue="2"/>
+                                        <f:selectItem itemLabel="Pasaporte" itemValue="3"/>
+                                        <f:facet name="footer">
+                                            <p:divider styleClass="p-mt-0" />
+                                            <h:outputText value="3 Resultados" style="font-weight:bold;"/>
+                                        </f:facet>
+                                    </p:selectOneMenu>  
+                                </div> 
+                                <div class="p-field p-col-12 p-md-3">
+                                    <p:outputLabel for="razonClienteJuridico" 
+                                                   value="Razón Social:"
+                                                   style="font-weight: bold; padding-left: 23px;"> 
+                                    </p:outputLabel>
+                                    <p:inputText id="razonClienteJuridico"
+                                                 type="text" 
+                                                 required="true"
+                                                 style="width: 250px; 
+                                                 margin: 3px;"
+                                                 value="#{personaController.persona_Juridica.razonSocial}"/> 
+
+                                    <p:outputLabel for="emailClienteJuridico"
+                                                   value="Email:"
+                                                   style="font-weight: bold; padding-left: 145px">
+                                    </p:outputLabel>
+                                    <p:inputText id="emailClienteJuridico"
+                                                 type="text" 
+                                                 required="true"
+                                                 style="width: 180px;  
+                                                 margin: 3px;"
+                                                 value="#{personaController.persona_Juridica.correo}"/> 
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <p:outputLabel for="telef1Cliente"
+                                                   value="Teléfono 1:"
+                                                   style="font-weight: bold; padding-left: 40px;">
+                                    </p:outputLabel>
+                                    <p:inputText id="telef1Cliente"
+                                                 type="text" 
+                                                 required="true"
+                                                 style="width: 250px; 
+                                                 margin: 3px;"
+                                                 maxlength="10"
+                                                 value="#{personaController.persona_Juridica.tlf1}"/> 
+
+                                    <p:outputLabel for="telef2Cliente" 
+                                                   value="Teléfono 2:"
+                                                   style="font-weight: bold; padding-left: 117px">
+                                    </p:outputLabel>
+                                    <p:inputText id="telef2Cliente"
+                                                 placeholder="Opcional"
+                                                 type="text" 
+                                                 required="true"
+                                                 style="width: 180px;  
+                                                 margin: 3px;"
+                                                 maxlength="10"
+                                                 value="#{personaController.persona_Juridica.tlf2}"/> 
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <p:outputLabel for="direccionCliente" 
+                                                   value="Dirección:"
+                                                   style="font-weight: bold; padding-left: 47px;">
+                                    </p:outputLabel>
+                                    <p:inputText id="direccionCliente"
+                                                 type="text"
+                                                 required="true"
+                                                 style="width: 250px;
+                                                 margin: 3px;"
+                                                 value="#{personaController.persona_Juridica.direccion}"/> 
+
+                                    <p:outputLabel for="tipoClienteOption" 
+                                                   value="Tipo de Cliente:"
+                                                   style="font-weight: bold; padding-left: 75px;" >
+                                    </p:outputLabel>
+                                    <p:selectOneMenu id="tipoClienteOption" 
+                                                     value="#{personaController.persona_Juridica.idTipoCliente}" 
+                                                     style="width: 150px; height: 40px;"
+                                                     required="true">                            
+                                        <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                        <f:selectItem itemLabel="Mayoritario" itemValue="1"/>
+                                        <f:selectItem itemLabel="Minoritario" itemValue="2"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                        </p:outputPanel>
+                        <br/>
+                        <div style="float: right;">
+                            <p:commandButton value="Cancel" ajax="false"
+                                             icon="pi pi-times" 
+                                             action="MantenimientoCliente"
+                                             class="ui-button-secondary"
+                                             styleClass=" ui-button-danger"/>
+                            <p:commandButton value="Guardar" ajax="false"
+                                             update=":messg"
+                                             icon="pi pi-save"
+                                             action="#{personaController.registrarClienteJuridico()}"
+                                             styleClass=" ui-button-success"/>
+                        </div>
+                    </h:form>
+                </p:panel>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

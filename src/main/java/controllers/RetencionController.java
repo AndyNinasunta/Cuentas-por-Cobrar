@@ -5,10 +5,10 @@
  */
 package controllers;
 
-import DataViews.PersonaDAO;
-import DataViews.RetencionDAO;
-import Models.Persona;
-import Models.Retencion;
+import dataviews.PersonaDAO;
+import dataviews.RetencionDAO;
+import models.Persona;
+import models.Retencion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
@@ -35,7 +35,7 @@ public class RetencionController {
         retencion = new Retencion();
         retencionDAO = new RetencionDAO();
         listaRetenciones = new ArrayList<>();
-        listaRetenciones = retencionDAO.obtener_retenciones(3);
+        listaRetenciones = retencionDAO.obtenerRetenciones(3);
     }
 
     public Retencion getRetencion() {
@@ -52,7 +52,7 @@ public class RetencionController {
     
     public void cargarRetenciones(int idVenta){
         listaRetenciones = new ArrayList<>();
-        listaRetenciones=retencionDAO.obtener_retenciones(idVenta);
+        listaRetenciones=retencionDAO.obtenerRetenciones(idVenta);
     }
 
     public void setListaRetenciones(List<Retencion> listaRetenciones) {
@@ -65,7 +65,7 @@ public class RetencionController {
         List<Persona> p = personaDAO.obtenerNombresClientes();
         listaCliente.clear();
         for (Persona nombres : p) {
-            SelectItem nombresItem = new SelectItem(nombres.getId_Cliente(),nombres.getRazon_nombre());
+            SelectItem nombresItem = new SelectItem(nombres.getIdCliente(),nombres.getRazonNombre());
             this.listaCliente.add(nombresItem); 
         }
         return listaCliente;
@@ -78,9 +78,9 @@ public class RetencionController {
     public List<SelectItem> getListaVentas(){
         listaVenta=new ArrayList<>();
         this.retencionDAO = new RetencionDAO();
-        List<Retencion> r=retencionDAO.obtener_Ventas(5);
+        List<Retencion> r=retencionDAO.obtenerVentas(5);
         for(Retencion lret:r){
-            SelectItem ventasItem=new SelectItem(lret.getId_Venta());
+            SelectItem ventasItem=new SelectItem(lret.getIdVenta());
             this.listaVenta.add(ventasItem);
         }
         return listaVenta;
@@ -88,7 +88,7 @@ public class RetencionController {
     
     public void registrarRetencion() {
         retencionDAO=new RetencionDAO(retencion);
-        if(retencionDAO.insertar_Retencion(3)>0){
+        if(retencionDAO.insertarRetencion(3)>0){
             System.out.println("Se Ingresó Correctamente la retencion.");
         } else {
             System.out.println("No se Registró");
@@ -97,15 +97,15 @@ public class RetencionController {
     
     public void btnEditar(int idretencion){
         System.out.println(idretencion);
-        retencion.setId_Retencion(idretencion);
-        aux = retencion.getId_Retencion();
+        retencion.setIdRetencion(idretencion);
+        aux = retencion.getIdRetencion();
     }
     
     public void actualizarRetencion(){
-        retencion.setId_Retencion(aux);
+        retencion.setIdRetencion(aux);
         System.out.println(aux);
         retencionDAO=new RetencionDAO(retencion);
-        if(retencionDAO.actualizar_Retencion()>0){
+        if(retencionDAO.actualizarRetencion()>0){
             System.out.println("Se Editó Correctamente");
             //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
         } else {

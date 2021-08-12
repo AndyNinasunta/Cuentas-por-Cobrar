@@ -11,29 +11,38 @@
         <ui:composition template="./../Plantilla/Plantilla.xhtml">
 
             <ui:define name="content">
-                <p:growl id="growl" widgetVar="growl" showDetail="true" life="2000"/> 
+
                 <div style="font-weight: bold; background-color: #036fab; 
                      color: white; text-align: center; height: 25px;">
                     <h2>AGREGAR RETENCIONES</h2>
                 </div>
                 <p:panel>
+                    <p:growl id="growl" widgetVar="growl" showDetail="true" life="2000"/> 
                     <div class="ui-datatable ui-widget">
                         <h:form>
+
                             <div class="ui-grid-row" style="height: 135px;">
                                 <div>
                                     <div style="float: left;">
                                         <p:outputLabel value="Cliente: "
                                                        style="font-weight:bold;"/>
                                         <br/> <br/>
-                                        <p:selectOneMenu id="optionClientes" style="width: 300px; height: 40px;"> 
-                                            <f:selectItem itemLabel="Seleccione..." itemValue=""/>
-                                            <f:selectItems value="#{retencionController.listaCliente}" var="c" itemLabel="#{c.description}" itemValue="#{c.label}"/>
+                                        <p:selectOneMenu id="optionClientes" 
+                                                         style="width: 300px; 
+                                                         height: 40px;"> 
+                                            <f:selectItem itemLabel="Seleccione..." 
+                                                          itemValue=""/>
+                                            <f:selectItems value="#{retencionController.listaCliente}"/>
                                         </p:selectOneMenu>
                                     </div>
                                     <div style="float: left; padding-left: 100px;">
-                                        <p:outputLabel value="N° Factura: " style="font-weight:bold;" />
+                                        <p:outputLabel value="N° Factura: " 
+                                                       for="optionFactura"
+                                                       style="font-weight:bold;" />
                                         <br/> <br/>
-                                        <p:selectOneMenu id="option" style="width: 200px; height: 40px;">                            
+                                        <p:selectOneMenu id="optionFactura" 
+                                                         required="true"
+                                                         style="width: 200px; height: 40px;">                            
                                             <f:selectItem itemLabel="Seleccione..." itemValue=""/>
                                             <f:selectItems value="#{retencionController.listaVentas}"/>
                                         </p:selectOneMenu>
@@ -48,7 +57,7 @@
                                         <p:datePicker id="fecha" readonly="true"
                                                       style="width: 150px;"
                                                       placeholder="dd/mm/aaaa"
-                                                      value="#{retencionController.retencion.fecha_Emision}"/>
+                                                      value="#{retencionController.retencion.fechaEmision}"/>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +66,8 @@
                                 <p:commandButton icon="pi pi-replay " value="Cargar Retención" 
                                                  styleClass=" ui-button-secondary" 
                                                  style="margin:.3rem;"/>
-                                <p:commandButton icon="pi pi-plus " value="Añadir Nueva Retención" 
+                                <p:commandButton icon="pi pi-plus " 
+                                                 value="Añadir Nueva Retención" 
                                                  onclick="PF('RetencionNew').show()"
                                                  styleClass=" ui-button-success" 
                                                  style="margin:.3rem;"/>
@@ -83,22 +93,26 @@
                                     </p:column>
                                     <p:column headerText="% Retención" 
                                               style="text-align: center;">
-                                        <h:outputText value="#{varRetenciones.porcen_Retencion}" />
+                                        <h:outputText value="#{varRetenciones.porcenRetencion}" />
                                     </p:column>
                                     <p:column headerText="Valor Retenido" 
                                               style="text-align: center;">
                                         <h:outputText value="#{varRetenciones.valorRetenido}" />
                                     </p:column>
                                     <p:column style="text-align: center; width: 150px;" headerText="Acciones">
-                                        <p:commandButton action="#{retencionController.btnEditar(varRetenciones.id_Retencion)}"
+                                        <p:commandButton action="#{retencionController.btnEditar(varRetenciones.idRetencion)}"
                                                          update="tblRetenciones" ajax="true"
                                                          oncomplete="PF('RetencionEdit').show()"
                                                          style="width: 35px; height: 30px;" 
                                                          icon="pi pi-pencil"/> 
-                                        <p:commandButton update="tblRetenciones" ajax="true"
+                                        <p:commandButton update=":growl tblRetenciones"
                                                          style="width: 35px; height: 30px;" 
                                                          styleClass="ui-button-danger" 
-                                                         icon="pi pi-times-circle"/>
+                                                         icon="pi pi-times-circle">
+                                            <p:confirm header="Advertencia" 
+                                                       message="¿Seguro que desea inactivar esta retención?" 
+                                                       icon="pi pi-info-circle"/>
+                                        </p:commandButton>
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
@@ -115,7 +129,7 @@
                                             Base Imponible<label style="color: red;">*</label>: 
                                         </label>
                                         <p:inputText id="baseImponible"
-                                                     type="number" 
+                                                     type="text" 
                                                      style="width: 80px; 
                                                      margin: 3px;"
                                                      value="#{retencionController.retencion.baseImponible}">
@@ -139,10 +153,10 @@
                                         </label>
                                         <p:inputText id="porcRetenido"
                                                      maxlength="3"
-                                                     type="number" 
+                                                     type="text" 
                                                      style="width: 50px; 
                                                      margin: 3px;"
-                                                     value="#{retencionController.retencion.porcen_Retencion}"/> 
+                                                     value="#{retencionController.retencion.porcenRetencion}"/> 
                                         <label>%</label>
                                     </div>
                                 </p:outputPanel>
@@ -196,7 +210,7 @@
                                                      type="text" 
                                                      style="width: 50px; 
                                                      margin: 3px;"
-                                                     value="#{retencionController.retencion.porcen_Retencion}"/> 
+                                                     value="#{retencionController.retencion.porcenRetencion}"/> 
                                         <label>%</label>
                                     </div>
                                 </p:outputPanel>
@@ -213,11 +227,25 @@
                                 </div>
                             </h:form>
                         </p:dialog>
+                        <!-- DIALOG  Inactivar Retencion-->
+                        <p:dialog modal="true" height="400" 
+                                  width="400" widgetVar="inactivaRetencion">
+                            <h:form>
+                                <p:confirmDialog global="true" showEffect="fade" 
+                                                 hideEffect="fade" 
+                                                 responsive="true" 
+                                                 width="350">
+
+                                    <p:commandButton value="Cancelar" 
+                                                     styleClass="ui-confirmdialog-no ui-button-flat" />
+                                    <p:commandButton value="Aceptar" 
+                                                     styleClass="ui-confirmdialog-yes"/>
+                                </p:confirmDialog>
+                            </h:form>
+                        </p:dialog>
                     </div> 
                 </p:panel>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>

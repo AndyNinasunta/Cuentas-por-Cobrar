@@ -60,9 +60,11 @@ button.ui-button {
 }
 
 .SUCCESS{
-background-color : greenyellow !important;
+    border-radius: 10px;
+    background-color : greenyellow !important;
 }
 
 .FAILURE{
-background-color: red !important;
+    border-radius: 10px;
+    background-color: red !important;
 }

@@ -1,7 +1,8 @@
 
-import DataViews.RetencionDAO;
-import Models.Retencion;
+
+import dataviews.RetencionDAO;
 import java.util.List;
+import models.Retencion;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +22,7 @@ public class Main {
         // TODO code application logic here
         Retencion retencion = new Retencion();
         RetencionDAO retencionDAO = new RetencionDAO();
-        List<Retencion> listaRetenciones = retencionDAO.obtener_retenciones(3);
+        List<Retencion> listaRetenciones = retencionDAO.obtenerRetenciones(3);
         System.out.println(listaRetenciones.size());
     }
 
