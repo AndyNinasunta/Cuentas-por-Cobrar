@@ -1,6 +1,6 @@
 
-import DataView.RetencionDAO;
-import Model.Retencion;
+import DataViews.RetencionDAO;
+import Models.Retencion;
 import java.util.List;
 
 /*

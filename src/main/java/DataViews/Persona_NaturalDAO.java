@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package DataView;
 
-import Model.Persona;
-import Model.Persona_Natural;
+package DataViews;
+
+import Models.Persona;
+import Models.Persona_Natural;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- *
- * @author andy2
- */
+
 public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
     
     Persona_Natural person_Natural;

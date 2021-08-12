@@ -5,12 +5,12 @@
  */
 package controllers;
 
-import DataView.PersonaDAO;
-import DataView.Persona_JuridicaDAO;
-import DataView.Persona_NaturalDAO;
-import Model.Persona;
-import Model.Persona_Juridica;
-import Model.Persona_Natural;
+import DataViews.PersonaDAO;
+import DataViews.Persona_JuridicaDAO;
+import DataViews.Persona_NaturalDAO;
+import Models.Persona;
+import Models.Persona_Juridica;
+import Models.Persona_Natural;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

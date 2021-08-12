@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Model;
+
+package Models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-/**
- *
- * @author andy2
- */
 public class Plan_Pago implements Serializable {
 
     //Declaración de las Variables para los planes de pago
@@ -27,6 +19,8 @@ public class Plan_Pago implements Serializable {
     int idEstadoFactura;
     String estadoFactura;
     int diasMora;
+    double intereses;
+    
 
     public Plan_Pago() {
     }
@@ -48,6 +42,8 @@ public class Plan_Pago implements Serializable {
         this.diasMora = diasMora;
     }
 
+    //Declaracion de  Getters y Setters
+    
     public int getIdCliente() {
         return idCliente;
     }
@@ -143,4 +139,15 @@ public class Plan_Pago implements Serializable {
     public void setDiasMora(int diasMora) {
         this.diasMora = diasMora;
     }
+
+    public double getIntereses() {
+        return intereses;
+    }
+
+    public void setIntereses(double intereses) {
+        this.intereses = intereses;
+    }
+    
+    
+    
 }

@@ -1,8 +1,8 @@
 
-package DataView;
+package DataViews;
 
-import Model.Persona;
-import Model.Persona_Juridica;
+import Models.Persona;
+import Models.Persona_Juridica;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;

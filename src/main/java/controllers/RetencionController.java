@@ -5,10 +5,10 @@
  */
 package controllers;
 
-import DataView.PersonaDAO;
-import DataView.RetencionDAO;
-import Model.Persona;
-import Model.Retencion;
+import DataViews.PersonaDAO;
+import DataViews.RetencionDAO;
+import Models.Persona;
+import Models.Retencion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
