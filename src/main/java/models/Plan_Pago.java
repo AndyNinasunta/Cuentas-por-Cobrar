@@ -7,19 +7,19 @@ import java.time.LocalDate;
 public class Plan_Pago implements Serializable {
 
     //Declaración de las Variables para los planes de pago
-    int idCliente;
-    LocalDate fechaFacturacion=LocalDate.now();
-    int diasCredito;
-    LocalDate fechaVencimiento=LocalDate.now();
-    String nombreDelCliente;
-    int idFactura;
-    double valorTotalFactura;
-    double valorPendiente;
-    LocalDate fechaUltimoPago=LocalDate.now();
-    int idEstadoFactura;
-    String estadoFactura;
-    int diasMora;
-    double intereses;
+    private int idCliente;
+    private LocalDate fechaFacturacion=LocalDate.now();
+    private int diasCredito;
+    private LocalDate fechaVencimiento=LocalDate.now();
+    private String nombreDelCliente;
+    private int idFactura;
+    private double valorTotalFactura;
+    private double valorPendiente;
+    private LocalDate fechaUltimoPago=LocalDate.now();
+    private int idEstadoFactura;
+    private String estadoFactura;
+    private int diasMora;
+    private double intereses;
     
 
     public Plan_Pago() {
