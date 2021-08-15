@@ -29,6 +29,7 @@ public class RetencionDAO implements Serializable {
         this.retencion = retencion;
     }
 
+    //Esta funcion retorna una lista con todas las retenciones de un cliente.
     public List<Retencion> obtenerRetenciones(int idCliente) {
         lista_Retencion = new ArrayList<>();
         if (conex.isEstado()) {
@@ -53,25 +54,38 @@ public class RetencionDAO implements Serializable {
         }
         return lista_Retencion;
     }
-
+    
+    // Con esta función retornamos todos los id de las ventas/facturas de un
+    // Cliente en específico.
     public List<Retencion> obtenerVentas(int idCliente) {
         lista_Retencion = new ArrayList<>();
         if (conex.isEstado()) {
             try {
+                
                 String sentencia ="select*from obtener_idfacturas_de_Cliente("+idCliente+")";
                 result = conex.ejecutarConsulta(sentencia);
+                
                 while (result.next()) {
+                    
                     lista_Retencion.add(new Retencion(result.getInt("idventa_r")));
+                    
                 }
+                
             }catch (SQLException ex) {
+                
                 lista_Retencion.add(new Retencion(-1));
+                
             } finally {
+                
                 conex.cerrarConexion();
+                
             }
         }
         return lista_Retencion;
     }
     
+    //funcion para Insertar una retencion, retorna 1 o -1 dependiendo si la
+    //funcion ejecuta correctamente.
     public int insertarRetencion(int idVenta) {
         String sentenciaSQL = "Select Ingresar_Retencion(" + idVenta + ","
                 + retencion.getPorcenRetencion() + ",'"
@@ -91,18 +105,23 @@ public class RetencionDAO implements Serializable {
 
     }
 
-    //Modificar/Actualizar una retencion
+    //Modificar/Actualizar una retencion, retorna 1 o -1 dependiendo si la
+    //funcion ejecuta correctamente.
     public int actualizarRetencion() {
+        
         String sentenciaSQL = "Select actualizar_retencion(" + retencion.getIdRetencion() + ","
                 + retencion.getPorcenRetencion() + ",'"
                 + retencion.getFechaEmision() + "',"
                 + retencion.getBaseImponible() + ",'"
                 + retencion.getDescImpuesto() + "')";
+        
         //Verificamos la conexion
         if (conex.isEstado()) {
+            
             //Una vez se asegura que la conexion este correcta.
             //Se ejecuta la sentencia ingresada.
             return conex.ejecutarProcedimiento(sentenciaSQL);
+            
         }
         //Caso contrario: Se retorna -1 indicando que la conexión está
         //en estado Falso
