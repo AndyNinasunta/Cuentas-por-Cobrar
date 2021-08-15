@@ -10,73 +10,67 @@
         <ui:composition template="./../Plantilla/Plantilla.xhtml">
 
             <ui:define name="content">
-                <div style="font-weight: bold; background-color: #036fab; 
-                     color: white; text-align: center; height: 25px;">
+                <div class="titleView">
                     <h2>ESTADO DE CUENTA</h2>
                 </div>
                 <br/>
-                <p:panel>
-                    <div class="ui-datatable ui-widget">
-                        <div class="card">
-                            <h:form id="form">
-                                <p:dataTable id="tblEstadoDeCuenta" var="varEstadoDeCuenta"
-                                 emptyMessage="No existen Registros." style="font-size: 12px;">
+                <h:form id="formEstadoCuenta">
+                    <p:panel>
+                        <p:dataTable id="tblEstadoDeCuenta" var="varEstadoDeCuenta"
+                                     emptyMessage="No existen Registros." style="font-size: 12px;">
 
-                                    <p:column headerText="Nº">
-                                        <h:outputText value="" />
+                            <p:column headerText="Nº">
+                                <h:outputText value="" />
 
-                                    </p:column>
-                                    <p:column headerText="Cliente">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Dirección">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Teléfonos">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Total">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Corriente">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Vencido">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A -30d">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 30d">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 60d">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 90d">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A +90d">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                </p:dataTable>
-                            </h:form>
+                            </p:column>
+                            <p:column headerText="Cliente">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="Dirección">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="Teléfonos">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="Total">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="Corriente">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="Vencido">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="A -30d">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="A 30d">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="A 60d">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="A 90d">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="A +90d">
+                                <h:outputText value="" />
+                            </p:column>
+                        </p:dataTable>
+                        <br/>
+                        <div style="float: right;">
+                            <p:commandButton id="btnExcel" 
+                                             value="EXCEL" icon="pi pi-file-excel"
+                                             style="background: green;"/>
+                            &nbsp;&nbsp;
+                            <p:commandButton id="btnPdf" 
+                                             value="PDF" icon="pi pi-file-pdf"
+                                             style="background: #E42E2E;">
+                            </p:commandButton>
                         </div>
+                    </p:panel>
 
-                        <h:form>
-                            <div style="padding: 10px; text-align: right;">  
-                                <p:commandButton id="btnExcel" 
-                                                 value="EXCEL" icon="pi pi-file-excel"
-                                                 style="background: green;"/>
-                                &nbsp;&nbsp;
-                                <p:commandButton id="btnPdf" 
-                                                 value="PDF" icon="pi pi-file-pdf"
-                                                 style="background: #E42E2E;">
-                                </p:commandButton>
-                            </div>
-                        </h:form>
-                    </div>
-                </p:panel>
+                </h:form>
             </ui:define>
 
         </ui:composition>

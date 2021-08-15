@@ -11,137 +11,111 @@
         <ui:composition template="./../Plantilla/Plantilla.xhtml">
 
             <ui:define name="content">
-                <div style="font-weight: bold; background-color: #036fab; 
-                     color: white; text-align: center; height: 25px;">
+                <div class="titleView">
                     <h2>CARTERA x EDADES DE VENCIMIENTO</h2>
                 </div>
                 <p:panel>
-                    <h:form>
-                        <div class="ui-grid-row" style="height: 100px;">
-                            <div>
-                                <div style="float: left; padding-left: 15px; padding-left: 10px;">
-                                    <p:outputLabel value="Sucursal: " style="font-weight:bold;" />
+                    <div class="ui-datatable ui-widget">
+                        <h:form id="formCarteraVencida">
+                            
+                            <div class="ui-grid-row">
+                                <div>
+                                    <p:outputLabel value="Cliente: "
+                                                   style="font-weight:bold;"/>
                                     <br/> <br/>
-                                    <p:selectOneMenu id="option" style="width: 200px; height: 40px;">                            
-                                        <f:selectItem itemLabel="Seleccione..." itemValue=""/>
-                                        <f:selectItem itemLabel="001" itemValue="ejemplo1"/>
-                                        <f:selectItem itemLabel="002" itemValue="ejemplo2"/>
-                                        <f:selectItem itemLabel="003" itemValue="ejemplo3"/>
-                                        <f:facet name="footer">
-                                            <p:divider styleClass="p-mt-0" />
-                                            <h:outputText value="3 Resultados" style="font-weight:bold;"/>
-                                        </f:facet>
+                                    <p:selectOneMenu id="optionClientes" 
+                                                     style="width: 300px; 
+                                                     height: 40px;"> 
+                                        <f:selectItem itemLabel="Seleccione..." 
+                                                      itemValue=""/>
                                     </p:selectOneMenu>
                                 </div>
-                                
-                                <div style="float: left; padding-left: 10px;">
-                                    <p:outputLabel value="Cliente: " for="txtBuscar" 
-                                                   style="font-weight:bold;"/>
-                                    <br/> <br/> 
-                                    <p:inputText id="txtBuscar" style="width: 280px; height: 40px;"/> 
-                                </div>
                             </div>
-                            <div>
-                                <div style="height: 133px; float: left; 
-                                     padding-left: 10px;">
-                                    <p:outputLabel value="Fecha Corte: " for="fechaCorte" 
-                                                   style="font-weight:bold;"/>
-                                    <br/> <br/> 
-                                    <p:datePicker id="fechaCorte" readonly="true" 
-                                                  placeholder="dd/mm/aaaa"/>
-                                </div>
-                                
-                                <div style="float: left; padding-left: 35px; margin: auto;">
-                                    <br/>
-                                    <p:commandButton id="btnBuscarCliente" 
-                                                 value="Mostrar Cartera de Cliente" 
-                                                 icon="pi pi-search"/>
-                                </div>
-                            </div>
-                        </div>
-                    </h:form>
-                    <br/>
-                    <div style="float: left;"><p>NOMBRE DE CLIENTE</p></div>
-                    <br/><br/>
-                    <div class="ui-datatable ui-widget">
-                        <div class="card">
-                            <h:form id="form">
-                                <p:dataTable id="tblCarteraVencimiento" var="varCarteraVencimiento"
-                                             emptyMessage="No existen Registros."  style="font-size: 12px;">
+                            <p:dataTable id="tblCarteraVencimiento" var="varCarteraVencimiento"
+                                         scrollable="true" 
+                                         emptyMessage="No existen Registros."  
+                                         style="font-size: 12px;">
 
-                                    <p:column headerText="Suc" style="width: 30px;">
-                                        <h:outputText value="" />
+                                <p:column headerText="FECHA DE CORTE"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
 
-                                    </p:column>
-                                    <p:column headerText="Consecutivo">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Generado">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Fecha Lim">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Plazo/Venc">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Saldo Corte">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Saldo Vencer">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A -30d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 30d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 60d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 90d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A +180d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                </p:dataTable>
-                            </h:form>
-                        </div>
+                                </p:column>
+                                <p:column headerText="FECHA DE EMISIÓN"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="DOCUMENTO"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="CLIENTE"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="DÍAS DE CRÉDITO"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="FECHA DE VENCIMIENTO"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="VALOR A COBRAR"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="DÍAS VENCIDOS"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="POR VENCER"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="VENCIDO 1 A 30 DÍAS"
+                                          style="color: red; text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="VENCIDO 31 A 60 DÍAS" 
+                                          style="color: red; text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="VENCIDO MAYOR A 60 DÍAS" 
+                                          style="color: red; text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
                         <br/>
-                        <div class="card">
-                            <h:form id="form2">
-                                <p:dataTable id="tblCarteraVencimientoTotal" var="varCarteraVencimientoTotal"
-                                             emptyMessage="No existen Registros."  style="font-size: 12px;">
+                        <h:form id="formCarteraTotal">
+                            <p:dataTable id="tblCarteraVencimientoTotal" 
+                                         var="varCarteraVencimientoTotal"
+                                         emptyMessage="No existen Registros."  
+                                         style="font-size: 12px;">
 
-                                    <p:column headerText="Vlr Facturas">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Saldo Corte">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="Saldo Vencer">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A -30d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 30d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 60d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A 90d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column headerText="A +180d" style="color: red;">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                </p:dataTable>
-                            </h:form>
-                        </div>
+                                <p:column headerText="TOTAL VALOR A COBRAR"
+                                          style="text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="TOTAL VENCIDO 1 A 30 DÍAS"
+                                          style="color: red; text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="TOTAL VENCIDO 31 A 60 DÍAS" 
+                                          style="color: red; text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="TOTAL VENCIDO MAYOR A 60 DÍAS" 
+                                          style="color: red; text-align: center; width: 100px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column headerText="Items" 
+                                          style="text-align: center; width: 50px;">
+                                    <h:outputText value="" />
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
                         <h:form>
                             <div style="padding: 10px; text-align: right;">  
                                 <p:commandButton id="btnExcel" 

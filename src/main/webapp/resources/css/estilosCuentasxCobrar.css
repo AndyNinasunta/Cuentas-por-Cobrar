@@ -1,0 +1,68 @@
+.titleView{
+    font-weight: bold; 
+    background-color: #036fab; 
+    color: white; 
+    text-align: center; 
+    height: 25px;
+}
+
+.tamanoInput{
+    text-align: center; 
+    width: 150px;
+}
+
+#identi{
+    text-align: center;
+}
+
+.tamanoInputClienteNJ{
+    width: 150px; 
+    height: 40px;
+}
+
+.tamanoColumnActions{
+    text-align: center; 
+    width: 150px;
+}
+
+.tamanoButtonActions{
+    width: 35px; 
+    height: 40px;
+}
+
+#divFactura{
+    float: left; 
+    padding-left: 100px;
+}
+
+#fechaEmision{
+    text-align: center; 
+    width: 150px; 
+    height: 40px;
+}
+
+#tblRetenciones{
+    font-size: 12px;
+}
+
+#optionFactura{
+    width: 200px; 
+    height: 40px;
+}
+
+#divFechaEmision{
+    height: 133px; 
+    width: 250px;
+    float: left; 
+    padding-left: 100px;
+}
+
+.success{
+    border-radius: 10px;
+    background-color : greenyellow !important;
+}
+
+.failure{
+    border-radius: 10px;
+    background-color: red !important;
+}
