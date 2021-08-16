@@ -9,6 +9,7 @@ public class Abono implements Serializable{
     private int idAbono;
     private int idPlanDePago;
     private int idFormaDePago;
+    private String descrFormaPago;
     private double valorAbonado;
     private LocalDate fechaAbono=LocalDate.now();
     
@@ -18,13 +19,22 @@ public class Abono implements Serializable{
     }
     
     //Constructor con todas las variables del modelo.
-
-    public Abono(int idAbono, int idPlanDePago, int idFormaDePago, double valorAbonado) {
+    public Abono(int idAbono, int idPlanDePago, int idFormaDePago, String descrFormaPago, double valorAbonado) {
         this.idAbono = idAbono;
         this.idPlanDePago = idPlanDePago;
         this.idFormaDePago = idFormaDePago;
+        this.descrFormaPago = descrFormaPago;
         this.valorAbonado = valorAbonado;
     }
+
+    //Constructor para llenar una lista de abonos, solo con datos informativos.
+    public Abono(int idAbono, String descrFormaPago, double valorAbonado,LocalDate fechaAbono) {
+        this.idAbono = idAbono;
+        this.descrFormaPago = descrFormaPago;
+        this.valorAbonado = valorAbonado;
+        this.fechaAbono=fechaAbono;
+    }
+    
 
     //Declaracion de  Getters y Setters
     public int getIdAbono() {
@@ -66,4 +76,14 @@ public class Abono implements Serializable{
     public void setFechaAbono(LocalDate fechaAbono) {
         this.fechaAbono = fechaAbono;
     }
+
+    public String getDescrFormaPago() {
+        return descrFormaPago;
+    }
+
+    public void setDescrFormaPago(String descrFormaPago) {
+        this.descrFormaPago = descrFormaPago;
+    }
+    
+    
 }
