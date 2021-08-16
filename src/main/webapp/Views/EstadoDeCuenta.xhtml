@@ -14,10 +14,11 @@
                     <h2>ESTADO DE CUENTA</h2>
                 </div>
                 <br/>
-                <h:form id="formEstadoCuenta">
-                    <p:panel>
+                <p:panel>
+                    <h:form id="formEstadoCuenta">
                         <p:dataTable id="tblEstadoDeCuenta" var="varEstadoDeCuenta"
-                                     emptyMessage="No existen Registros." style="font-size: 12px;">
+                                     emptyMessage="No existen Registros." 
+                                     style="font-size: 12px;">
 
                             <p:column headerText="Nº">
                                 <h:outputText value="" />
@@ -57,20 +58,17 @@
                                 <h:outputText value="" />
                             </p:column>
                         </p:dataTable>
-                        <br/>
-                        <div style="float: right;">
+                        <div class="alinearBotones">  
                             <p:commandButton id="btnExcel" 
                                              value="EXCEL" icon="pi pi-file-excel"
                                              style="background: green;"/>
-                            &nbsp;&nbsp;
+                            &nbsp;
                             <p:commandButton id="btnPdf" 
                                              value="PDF" icon="pi pi-file-pdf"
-                                             style="background: #E42E2E;">
-                            </p:commandButton>
+                                             style="background: red;"/>
                         </div>
-                    </p:panel>
-
-                </h:form>
+                    </h:form>
+                </p:panel>
             </ui:define>
 
         </ui:composition>

@@ -15,92 +15,94 @@
                     <h2>LISTADO DE COBRO</h2>
                 </div>
                 <br/>
-                <h:form class="ui-datatable ui-widget">
-                    <div style="border: 3px solid #036fab; width: 850px; height: 180px; margin: auto;">
-                        <div>
-                            <br/><br/>
-                            <p:outputLabel value="Identificación: " for="txtidentificacion" 
-                                           style="font-weight: bold; padding: 10px;"/>
-                            <p:inputText id="txtidentificacion" type="text" 
-                                         style="width: 150px;"/> 
-                            &nbsp;
-                            <p:commandButton id="btnconsulta" icon="pi pi-search" 
-                                             styleClass="ui-button-warning" />
+                <h:form id="formListaCobros">
+                    <p:panel>
+                        <div class="divListaCobro">
+                            <div>
+                                <br/><br/>
+                                <p:outputLabel value="Identificación: " for="txtidentificacion" 
+                                               style="font-weight: bold; padding: 10px;"/>
+                                <p:inputText id="txtidentificacion" type="text" 
+                                             style="width: 150px;"/> 
+                                &nbsp;
+                                <p:commandButton id="btnconsulta" icon="pi pi-search" 
+                                                 styleClass="ui-button-warning" />
 
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <p:outputLabel value="Nombre: " for="txtnombrecliente" 
-                                           style="font-weight: bold; padding: 10px;"/>
-                            <p:inputText id="txtnombrecliente" disabled="true" type="text" 
-                                         style="width: 350px; background-color: gray;"/> 
-                        </div>
-                        <br/>
-                        <div>
-                            <div class="p-field p-col-12 p-md-4">
-                                <p:outputLabel style="font-weight: bold; padding: 15px;" 
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <p:outputLabel value="Nombre: " for="txtnombrecliente" 
+                                               class="outputListaCobros"/>
+                                <p:inputText id="txtnombrecliente" disabled="true" type="text" 
+                                             class="inputListaCobros"/> 
+                            </div>
+                            <br/>
+                            <div>
+                                <p:outputLabel class="outputListaCobros"
                                                for="txtdocumentos" 
                                                value="Documentos: "/>
-                                <p:selectOneMenu id="txtdocumentos" style="width: 150px;">
-                                    <f:selectItem itemLabel="Cheques" itemValue="Cheques"/>
-                                    <f:selectItem itemLabel="NotaCredito" itemValue="Nota de Crédito"/>
+                                <p:selectOneMenu id="txtdocumentos" 
+                                                 style="width: 150px;">
+                                    <f:selectItem itemLabel="Cheques" 
+                                                  itemValue="Cheques"/>
+                                    <f:selectItem itemLabel="NotaCredito" 
+                                                  itemValue="Nota de Crédito"/>
                                 </p:selectOneMenu>
                             </div>
                         </div>
-                    </div>
-                    <br/>
-                    <div style="text-align: center;">
-                        <p:commandButton id="btncargar" value="Cargar Cobro" 
-                                         icon="pi pi-refresh"/>
-                        &nbsp;&nbsp;
-                        <p:commandButton id="btncheque" value="Cheque a fecha" 
-                                         icon="pi pi-id-card" action="ChequePorFecha"/>
-                    </div> 
-                    <br/>
-                </h:form>
-                <div class="titleView">
-                    <h2>FACTURAS VENCIDAS</h2>
-                </div>
-                <br/>
-                <h:form>
-                    <p:dataTable id="tblFacturasVencidas" var="varFacturasVencidas"
-                                 emptyMessage="No existen Registros." style="font-size: 12px;">
+                        <br/>
+                        <div style="text-align: center;">
+                            <p:commandButton id="btncargar" value="Cargar Cobro" 
+                                             icon="pi pi-refresh"/>
+                            &nbsp;&nbsp;
+                            <p:commandButton id="btncheque" value="Cheque a fecha" 
+                                             icon="pi pi-id-card" action="ChequePorFecha"/>
+                        </div> 
+                        <br/><br/>
+                        <div class="titleView">
+                            <h3>FACTURAS VENCIDAS</h3>
+                        </div>
+                        <br/>
+                        <p:dataTable id="tblFacturasVencidas" var="varFacturasVencidas"
+                                     emptyMessage="No existen Registros."
+                                     style="font-size: 12px;">
 
-                        <p:column headerText="Nº Factura">
-                            <h:outputText value=""/>
-                        </p:column>
+                            <p:column headerText="Nº Factura">
+                                <h:outputText value=""/>
+                            </p:column>
 
-                        <p:column headerText="Dias Vencidos">
-                            <h:outputText value=""/>
-                        </p:column>
+                            <p:column headerText="Dias Vencidos">
+                                <h:outputText value=""/>
+                            </p:column>
 
-                        <p:column class="center"
-                                  headerText="Subtotal">
-                            <h:outputText value=""/>
-                        </p:column>
+                            <p:column class="center"
+                                      headerText="Subtotal">
+                                <h:outputText value=""/>
+                            </p:column>
 
-                        <p:column class="center" headerText="N/C">
-                            <h:outputText value=""/>
-                        </p:column>
+                            <p:column class="center" headerText="N/C">
+                                <h:outputText value=""/>
+                            </p:column>
 
-                        <p:column class="center" headerText="Pag. Ret.">
-                            <h:outputText value=""/>
-                        </p:column>
+                            <p:column class="center" headerText="Pag. Ret.">
+                                <h:outputText value=""/>
+                            </p:column>
 
-                        <p:column class="center" headerText="Abonos">
-                            <h:outputText value=""/>
-                        </p:column>
-                        
-                        <p:column class="center" headerText="Total">
-                            <h:outputText value=""/>
-                        </p:column>
-                        
-                        <p:column class="center" headerText="Pagos">
-                            <h:outputText value=""/>
-                        </p:column>
-                        
-                        <p:column class="center" headerText="Saldo">
-                            <h:outputText value=""/>
-                        </p:column>
-                    </p:dataTable>
+                            <p:column class="center" headerText="Abonos">
+                                <h:outputText value=""/>
+                            </p:column>
+
+                            <p:column class="center" headerText="Total">
+                                <h:outputText value=""/>
+                            </p:column>
+
+                            <p:column class="center" headerText="Pagos">
+                                <h:outputText value=""/>
+                            </p:column>
+
+                            <p:column class="center" headerText="Saldo">
+                                <h:outputText value=""/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
                 </h:form>
             </ui:define>
 

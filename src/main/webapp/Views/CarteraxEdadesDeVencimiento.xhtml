@@ -15,120 +15,120 @@
                     <h2>CARTERA POR EDADES DE VENCIMIENTO</h2>
                 </div>
                 <p:panel>
-                    <div class="ui-datatable ui-widget">
-                        <h:form id="formCarteraVencida">
+                    <h:form id="formCarteraVencida">
+                        <p:panelGrid columns="3" >
+                            <p:outputLabel value="Cliente: "
+                                           style="font-weight:bold;"/>
                             
-                            <div class="ui-grid-row">
-                                <div>
-                                    <p:outputLabel value="Cliente: "
-                                                   style="font-weight:bold;"/>
-                                    <br/> <br/>
-                                    <p:selectOneMenu id="optionClientes" 
-                                                     style="width: 300px; 
-                                                     height: 40px;"> 
-                                        <f:selectItem itemLabel="Seleccione..." 
-                                                      itemValue=""/>
-                                    </p:selectOneMenu>
-                                </div>
-                            </div>
-                            <p:dataTable id="tblCarteraVencimiento" var="varCarteraVencimiento"
-                                         scrollable="true" 
-                                         emptyMessage="No existen Registros."  
-                                         style="font-size: 12px;">
+                            <p:selectOneMenu id="optionClientes" 
+                                             style="width: 300px; 
+                                             height: 40px;"> 
+                                <f:selectItem itemLabel="Seleccione..." 
+                                              itemValue=""/>
+                            </p:selectOneMenu>
+                            
+                            <p:commandButton style="height: 40px;" 
+                                             icon="pi pi-search" 
+                                             value="Buscar"/>
+                        </p:panelGrid>
+                        <br/><br/>
+                        <p:dataTable id="tblCarteraVencimiento" 
+                                     var="varCarteraVencimiento"
+                                     scrollable="true" paginator="true" 
+                                     rows="5" rowSelectMode="add"
+                                     paginatorPosition="bottom"  
+                                     emptyMessage="No existen Registros."  
+                                     style="font-size: 12px;">
 
-                                <p:column headerText="FECHA DE CORTE"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="FECHA DE CORTE">
+                                <h:outputText value="" />
 
-                                </p:column>
-                                <p:column headerText="FECHA DE EMISIÓN"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="DOCUMENTO"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="CLIENTE"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="DÍAS DE CRÉDITO"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="FECHA DE VENCIMIENTO"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="VALOR A COBRAR"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="DÍAS VENCIDOS"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="POR VENCER"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="VENCIDO 1 A 30 DÍAS"
-                                          style="color: red; text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="VENCIDO 31 A 60 DÍAS" 
-                                          style="color: red; text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="VENCIDO MAYOR A 60 DÍAS" 
-                                          style="color: red; text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
-                        <br/>
-                        <h:form id="formCarteraTotal">
-                            <p:dataTable id="tblCarteraVencimientoTotal" 
-                                         var="varCarteraVencimientoTotal"
-                                         emptyMessage="No existen Registros."  
-                                         style="font-size: 12px;">
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="FECHA DE EMISIÓN">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="DOCUMENTO">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="CLIENTE">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column headerText="DÍAS DE CRÉDITO"
+                                      style="text-align: center; width: 100px;">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="FECHA DE VENCIMIENTO">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="VALOR A COBRAR">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="DÍAS VENCIDOS">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="POR VENCER">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="diasVencidos" 
+                                      headerText="VENCIDO 1 A 30 DÍAS">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="diasVencidos" 
+                                      headerText="VENCIDO 31 A 60 DÍAS">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="diasVencidos" 
+                                      headerText="VENCIDO MAYOR A 60 DÍAS">
+                                <h:outputText value="" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <br/>
+                    <h:form id="formCarteraTotal">
+                        <p:dataTable id="tblCarteraVencimientoTotal" 
+                                     var="varCarteraVencimientoTotal"
+                                     emptyMessage="No existen Registros."  
+                                     style="font-size: 12px;">
 
-                                <p:column headerText="TOTAL VALOR A COBRAR"
-                                          style="text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="TOTAL VENCIDO 1 A 30 DÍAS"
-                                          style="color: red; text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="TOTAL VENCIDO 31 A 60 DÍAS" 
-                                          style="color: red; text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="TOTAL VENCIDO MAYOR A 60 DÍAS" 
-                                          style="color: red; text-align: center; width: 100px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                                <p:column headerText="Items" 
-                                          style="text-align: center; width: 50px;">
-                                    <h:outputText value="" />
-                                </p:column>
-                            </p:dataTable>
-                        </h:form>
-                        <h:form>
-                            <div style="padding: 10px; text-align: right;">  
-                                <p:commandButton id="btnExcel" 
-                                                 value="EXCEL" icon="pi pi-file-excel"
-                                                 style="background: green;"/>
-                                &nbsp;&nbsp;
-                                <p:commandButton id="btnPdf" 
-                                                 value="PDF" icon="pi pi-file-pdf"
-                                                 style="background: #E42E2E;">
-                                </p:commandButton>
-                            </div>
-                        </h:form>
-                    </div>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="TOTAL VALOR A COBRAR">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="diasVencidos" style="text-align: center;" 
+                                      headerText="TOTAL VENCIDO 1 A 30 DÍAS">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="diasVencidos" style="text-align: center;"
+                                      headerText="TOTAL VENCIDO 31 A 60 DÍAS">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="diasVencidos" style="text-align: center;"
+                                      headerText="TOTAL VENCIDO MAYOR A 60 DÍAS">
+                                <h:outputText value="" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="ITEMS">
+                                <h:outputText value="" />
+                            </p:column>
+                        </p:dataTable>
+                        <div class="alinearBotones">  
+                            <p:commandButton id="btnExcel" 
+                                             value="EXCEL" icon="pi pi-file-excel"
+                                             style="background: green;"/>
+                            &nbsp;
+                            <p:commandButton id="btnPdf" 
+                                             value="PDF" icon="pi pi-file-pdf"
+                                             style="background: red;"/>
+                        </div>
+                    </h:form>
                 </p:panel>
             </ui:define>
 

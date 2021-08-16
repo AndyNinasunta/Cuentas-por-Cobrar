@@ -28,7 +28,12 @@
                     </div>
                 </div>
                 <h:form id="form">
-                    <p:dataTable style="font-size: 12px;">
+                    <p:dataTable id="tblReciboCobro" var="reciboCobro"
+                                 emptyMessage="No existen Registros."
+                                 scrollable="true" paginator="true" 
+                                 rows="5" rowSelectMode="add"
+                                 paginatorPosition="bottom" 
+                                 style="font-size: 12px;">
                         <p:column headerText="Nº">
                             <h:outputText value="" />
                         </p:column>

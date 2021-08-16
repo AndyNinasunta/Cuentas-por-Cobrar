@@ -80,83 +80,109 @@
                         <div class="card">
                             <h:form id="form">
                                 <p:dataTable id="tblRegistroCobro" var="varRegistroCobro"
-                                 emptyMessage="No existen Registros." style="font-size: 12px;">
-                                    <div style="text-align: center;">
-                                        <p:column headerText="Documento">
-                                            <h:outputText value="1" />
-                                        </p:column>
-                                        <p:column headerText="N° Fact">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Fecha">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="$ Monto">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="$ Saldo">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Elegir">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="$ Valor">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Tipo Pago">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Descripción del pago">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Fecha">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Vendedor">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Observación">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                    </div>
+                                             emptyMessage="No existen Registros." 
+                                             scrollable="true" paginator="true" 
+                                             rows="5" rowSelectMode="add"
+                                             paginatorPosition="bottom" 
+                                             style="font-size: 12px;">
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Documento">
+                                        <h:outputText value="1" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="N° Fact">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Fecha">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="$ Monto">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="$ Saldo">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Elegir">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="$ Valor">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Tipo Pago">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Descripción del pago">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Fecha">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Vendedor">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Observación">
+                                        <h:outputText value="" />
+                                    </p:column>
                                 </p:dataTable>
                             </h:form>
                         </div>
                         <br/>
                         <div class="card">
                             <h:form id="form2">
-                                <p:dataTable style="font-size: 12px;">
-                                    <div style="text-align: center;">  
-                                        <p:column headerText="Formas de Pago">
-                                            <h:outputText value="1" />
+                                <p:dataTable id="tblr" var="varRegistro"
+                                             emptyMessage="No existen Registros." 
+                                             scrollable="true" paginator="true" 
+                                             rows="5" rowSelectMode="add"
+                                             paginatorPosition="bottom" 
+                                             style="font-size: 12px;">
 
-                                        </p:column>
-                                        <p:column headerText="$ Pago">
-                                            <h:outputText value="" />
-                                            <h:inputText value="Hola"/>
-                                        </p:column>
-                                        <p:column headerText="Fecha">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Banco">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Cuenta">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Cheque / N° Comprobante">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Secuencia">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="Autorización">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                        <p:column headerText="#Cheques">
-                                            <h:outputText value="" />
-                                        </p:column>
-                                    </div>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Formas de Pago">
+                                        <h:outputText value="1" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="$ Pago">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Fecha">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Banco">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Cuenta">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Cheque / N° Comprobante">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Secuencia">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="Autorización">
+                                        <h:outputText value="" />
+                                    </p:column>
+                                    <p:column class="tamanoInput" style="text-align: center;"
+                                              headerText="#Cheques">
+                                        <h:outputText value="" />
+                                    </p:column>
+
                                 </p:dataTable>
                             </h:form>
                         </div>
