@@ -23,7 +23,17 @@ public class Main {
         Retencion retencion = new Retencion();
         RetencionDAO retencionDAO = new RetencionDAO();
         List<Retencion> listaRetenciones = retencionDAO.obtenerRetenciones(3);
-        System.out.println(listaRetenciones.size());
+        for(Retencion lst : listaRetenciones ){
+            System.out.println(lst.getBaseImponible());
+            System.out.println(lst.getDescImpuesto());
+            System.out.println(lst.getEjerFiscal());
+            System.out.println(lst.getFechaEmision());
+            System.out.println(lst.getIdCliente());
+            System.out.println(lst.getIdRetencion());
+            System.out.println(lst.getIdVenta());
+            System.out.println(lst.getPorcenRetencion());
+            System.out.println(lst.getValorRetenido());
+        }
     }
 
 }

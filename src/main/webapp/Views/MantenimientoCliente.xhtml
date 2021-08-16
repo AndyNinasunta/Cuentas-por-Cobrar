@@ -42,59 +42,59 @@
                                      rowKey="#{varClientes.idCliente}"
                                      paginator="true" rows="5" rowSelectMode="add"
                                      paginatorPosition="bottom" 
-                                     style="font-size: 12px;">
+                                     style="font-size: 14px;">
 
                             <p:column class="tamanoInput" style="text-align: center;"
-                                      headerText="IDENTIFICACIÓN"
+                                      headerText="Identificación"
                                       filterBy="#{varClientes.identificacion}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.identificacion}"/>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;"
-                                      headerText="TIPO DE IDENTIFICACIÓN"
+                                      headerText="Tipo de Identificación"
                                       filterBy="#{varClientes.descrIdentificacion}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.descrIdentificacion}"/>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;"    
-                                      headerText="CLIENTE"
+                                      headerText="Cliente"
                                       filterBy="#{varClientes.razonNombre}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.razonNombre}"/>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;" 
-                                      headerText="DIRECCIÓN" 
+                                      headerText="Dirección" 
                                       filterBy="#{varClientes.direccion}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.direccion}"/>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;"  
-                                      headerText="TELÉFONO"
+                                      headerText="Teléfono"
                                       filterBy="#{varClientes.tlf1}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.tlf1}"/>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;"  
-                                      headerText="CORREO"
+                                      headerText="Correo"
                                       filterBy="#{varClientes.correo}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.correo}"/>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;"  
-                                      headerText="TIPO DE CLIENTE"
+                                      headerText="Tipo de Cliente"
                                       filterBy="#{varClientes.descrTipoCliente}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.descrTipoCliente}"/>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;" 
-                                      headerText="ESTADO"
+                                      headerText="Estado"
                                       filterBy="#{varClientes.estado}" 
                                       filterMatchMode="contains">
                                 <h:outputText value="#{varClientes.descrEstado}"
@@ -103,11 +103,11 @@
 
                             <p:column class="tamanoColumnActions" style="text-align: center;" 
                                       headerText="Acciones">
-                                <p:commandButton oncomplete="PF('ClienteNaturalEdit').show()"
-                                                 actionListener="#{personaController.editarCliente(varClientes.idCliente)}" 
+                                <p:commandButton oncomplete="PF('ClienteJuridicoEdit').show()"
+                                                 actionListener="#{personaController.cargarClientes(varClientes)}" 
                                                  class="tamanoButtonActions"
                                                  icon="pi pi-pencil"
-                                                 update="tblClientes"/> 
+                                                 update="formEditarClienteN"/> 
                                 <p:commandButton action="#{personaController.inactivarCliente(varClientes.idCliente)}" 
                                                  class="tamanoButtonActions" 
                                                  styleClass="ui-button-danger" 
@@ -613,7 +613,8 @@
                     <h:form id="formEditarClienteJ">
                         <p:dialog header="Editar Cliente Jurídico" minHeight="50"  
                                   height="auto" width="900px" showEffect="fade"
-                                  modal="true" widgetVar="ClienteJuridicoEdit">
+                                  modal="true" widgetVar="ClienteJuridicoEdit"
+                                  id="dialogEditarClienteJ">
                             <p:panelGrid columns="4" layout="grid">
                                 <p:outputLabel for="identificaJuridico" 
                                                value="Identificación:"

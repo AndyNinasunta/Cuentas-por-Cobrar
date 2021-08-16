@@ -23,7 +23,7 @@ import javax.faces.model.SelectItem;
 @RequestScoped
 public class RetencionController {
 
-    int aux = 0;
+    int idRetencion;
     Retencion retencion;
     RetencionDAO retencionDAO;
     Persona persona;
@@ -50,9 +50,10 @@ public class RetencionController {
         return listaRetenciones;
     }
     
-    public void cargarRetenciones(int idVenta){
-        listaRetenciones = new ArrayList<>();
-        listaRetenciones=retencionDAO.obtenerRetenciones(idVenta);
+    public void cargarRetenciones(Retencion ret){
+        this.retencion = ret;
+        idRetencion = ret.getIdRetencion();
+        System.out.println("Id Retencion: " + ret.getIdRetencion());
     }
 
     public void setListaRetenciones(List<Retencion> listaRetenciones) {
@@ -74,7 +75,7 @@ public class RetencionController {
     public void setListaCliente(List<SelectItem> listaCliente) {
         this.listaCliente = listaCliente;
     }
-    
+
     public List<SelectItem> getListaVentas(){
         listaVenta=new ArrayList<>();
         this.retencionDAO = new RetencionDAO();
@@ -95,17 +96,18 @@ public class RetencionController {
         }
     }
     
-    public void btnEditar(int idretencion){
-        System.out.println(idretencion);
-        retencion.setIdRetencion(idretencion);
-        aux = retencion.getIdRetencion();
-    }
-    
     public void actualizarRetencion(){
-        retencion.setIdRetencion(aux);
-        System.out.println(aux);
-        retencionDAO=new RetencionDAO(retencion);
-        if(retencionDAO.actualizarRetencion()>0){
+//        retencion.setIdRetencion(this.idRetencion);
+        System.out.println(retencion.getIdRetencion());
+        System.out.println(retencion.getBaseImponible());
+        System.out.println(retencion.getDescImpuesto());
+        System.out.println(retencion.getPorcenRetencion());
+        System.out.println(retencion.getFechaEmision());
+        System.out.println(retencion.getEjerFiscal());
+        System.out.println(retencion.getIdVenta());
+//        System.out.println(retencion.getValorRetenido());
+        System.out.println(retencion.getIdCliente());
+        if(retencionDAO.actualizarRetencion(retencion)>0){
             System.out.println("Se Editó Correctamente");
             //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
         } else {

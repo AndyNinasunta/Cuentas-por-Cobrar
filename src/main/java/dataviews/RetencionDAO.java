@@ -30,11 +30,11 @@ public class RetencionDAO implements Serializable {
     }
 
     //Esta funcion retorna una lista con todas las retenciones de un cliente.
-    public List<Retencion> obtenerRetenciones(int idCliente) {
+    public List<Retencion> obtenerRetenciones(int idVenta) {
         lista_Retencion = new ArrayList<>();
         if (conex.isEstado()) {
             try {
-                String sentencia = "Select *from Obtener_Retenciones(" + idCliente + ")";
+                String sentencia = "Select *from Obtener_Retenciones(" + idVenta + ")";
                 result = conex.ejecutarConsulta(sentencia);
                 while (result.next()) {
                     lista_Retencion.add(new Retencion(result.getInt("idretencion_r"),
@@ -107,19 +107,19 @@ public class RetencionDAO implements Serializable {
 
     //Modificar/Actualizar una retencion, retorna 1 o -1 dependiendo si la
     //funcion ejecuta correctamente.
-    public int actualizarRetencion() {
-        
-        String sentenciaSQL = "Select actualizar_retencion(" + retencion.getIdRetencion() + ","
-                + retencion.getPorcenRetencion() + ",'"
-                + retencion.getFechaEmision() + "',"
-                + retencion.getBaseImponible() + ",'"
-                + retencion.getDescImpuesto() + "')";
+    public int actualizarRetencion(Retencion ret) {
+        String sentenciaSQL = "Select actualizar_retencion(" + ret.getIdRetencion() + ","
+                + ret.getPorcenRetencion() + ",'"
+                + ret.getFechaEmision() + "',"
+                + ret.getBaseImponible() + ",'"
+                + ret.getDescImpuesto() + "')";
         
         //Verificamos la conexion
         if (conex.isEstado()) {
             
             //Una vez se asegura que la conexion este correcta.
             //Se ejecuta la sentencia ingresada.
+            System.out.println("update 1: " + sentenciaSQL);
             return conex.ejecutarProcedimiento(sentenciaSQL);
             
         }

@@ -14,6 +14,7 @@ import models.Persona_Natural;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.primefaces.event.RowEditEvent;
@@ -36,9 +37,11 @@ public class PersonaController implements Serializable {
 
     //Declaro mi listaCliente que van hacer cargadas en el datatable
     List<Persona> listaCliente;
+    int idCliente = 0;
 
     //Constructor que instancia mis clases declaradas
-    public PersonaController() {
+    @PostConstruct
+    public void main() {
         persona = new Persona();
         personaDAO = new PersonaDAO();
 
@@ -99,6 +102,19 @@ public class PersonaController implements Serializable {
     public void setPersona_Juridica(Persona_Juridica persona_Juridica) {
         this.persona_Juridica = persona_Juridica;
     }
+    
+     public void cargarClientes(Persona persona){
+         idCliente = persona.getIdCliente();
+         if (personaDAO.identificar_cliente(idCliente).equals("J")) {
+             System.out.println("Entra al if");
+             this.persona_Juridica.setIdentificacion("000923029");
+             System.out.println(persona_Juridica.getIdentificacion());
+         }
+//        this.persona = personaj;
+//        idCliente = personaj.getIdCliente();
+//        System.out.println("Id Cliente: " + personaj.getIdCliente());
+//        System.out.println("Nombre Cliente: " + personaj.getRazonNombre());
+    }
 
     //Método que retorna los clientes Juridicos
     public void inactivarCliente(int id) {
@@ -158,9 +174,8 @@ public class PersonaController implements Serializable {
     }
 
     public void editarCliente(int idCliente) {
-
         if (personaDAO.identificar_cliente(idCliente).equals("J")) {
-            //obtener_Un_Cliente_Juridico(idCliente);
+//            obtenerUnClienteJuridico(idCliente);
             System.out.println("Es Juridico");
         } else if (personaDAO.identificar_cliente(idCliente).equals("N")) {
             obtenerUnClienteNatural(idCliente);
