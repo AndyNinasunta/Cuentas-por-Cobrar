@@ -7,21 +7,22 @@ package controllers;
 
 import dataviews.PersonaDAO;
 import dataviews.RetencionDAO;
+import java.io.Serializable;
 import models.Persona;
 import models.Retencion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.model.SelectItem;
+import javax.faces.view.ViewScoped;
 
 /**
  *
  * @author PERSONAL
  */
 @Named(value = "retencionController")
-@RequestScoped
-public class RetencionController {
+@ViewScoped
+public class RetencionController implements Serializable{
 
     int idRetencion;
     Retencion retencion;
@@ -98,15 +99,15 @@ public class RetencionController {
     
     public void actualizarRetencion(){
 //        retencion.setIdRetencion(this.idRetencion);
-        System.out.println(retencion.getIdRetencion());
-        System.out.println(retencion.getBaseImponible());
-        System.out.println(retencion.getDescImpuesto());
-        System.out.println(retencion.getPorcenRetencion());
-        System.out.println(retencion.getFechaEmision());
-        System.out.println(retencion.getEjerFiscal());
-        System.out.println(retencion.getIdVenta());
+//        System.out.println(retencion.getIdRetencion());
+//        System.out.println(retencion.getBaseImponible());
+//        System.out.println(retencion.getDescImpuesto());
+//        System.out.println(retencion.getPorcenRetencion());
+//        System.out.println(retencion.getFechaEmision());
+//        System.out.println(retencion.getEjerFiscal());
+//        System.out.println(retencion.getIdVenta());
 //        System.out.println(retencion.getValorRetenido());
-        System.out.println(retencion.getIdCliente());
+        
         if(retencionDAO.actualizarRetencion(retencion)>0){
             System.out.println("Se Editó Correctamente");
             //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones

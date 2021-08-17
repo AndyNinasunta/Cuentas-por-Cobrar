@@ -14,13 +14,14 @@ import models.Persona_Natural;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
 
 @Named(value = "personaController")
-@RequestScoped
+@ViewScoped
 public class PersonaController implements Serializable {
 
     //Declaro mis clases Persona y PersonaDAO
@@ -40,8 +41,7 @@ public class PersonaController implements Serializable {
     int idCliente = 0;
 
     //Constructor que instancia mis clases declaradas
-    @PostConstruct
-    public void main() {
+    public PersonaController() {
         persona = new Persona();
         personaDAO = new PersonaDAO();
 
@@ -102,18 +102,19 @@ public class PersonaController implements Serializable {
     public void setPersona_Juridica(Persona_Juridica persona_Juridica) {
         this.persona_Juridica = persona_Juridica;
     }
-    
-     public void cargarClientes(Persona persona){
-         idCliente = persona.getIdCliente();
-         if (personaDAO.identificar_cliente(idCliente).equals("J")) {
-             System.out.println("Entra al if");
-             this.persona_Juridica.setIdentificacion("000923029");
-             System.out.println(persona_Juridica.getIdentificacion());
-         }
-//        this.persona = personaj;
-//        idCliente = personaj.getIdCliente();
-//        System.out.println("Id Cliente: " + personaj.getIdCliente());
-//        System.out.println("Nombre Cliente: " + personaj.getRazonNombre());
+
+    public void cargarClientes(Persona per) {
+        PrimeFaces current = PrimeFaces.current();
+        this.persona = per;
+        idCliente = per.getIdCliente();
+        if (personaDAO.identificar_cliente(idCliente).equals("J")) {
+            System.out.println("Entra al if Juridico");
+            current.executeScript("PF('ClienteJuridicoEdit').show();");
+
+        } else{
+            System.out.println("Entra al if Natural");
+            current.executeScript("PF('ClienteNaturalEdit').show();");
+        }
     }
 
     //Método que retorna los clientes Juridicos
@@ -126,51 +127,33 @@ public class PersonaController implements Serializable {
             System.out.print("Error al inactivar cliente");
         }
     }
-    
+
     public void activarCliente(int id) {
         System.out.println(id);
         if (personaDAO.habilitarCliente(id) > 0) {
             System.out.print("Cliente Activado");
-            listaCliente = personaDAO.obtenerTodosLosClientes();
+            this.listaCliente = personaDAO.obtenerTodosLosClientes();
         } else {
             System.out.print("Error al activar cliente");
         }
     }
-    
 
-    public String registrarClienteJuridico() {
-        System.out.println(persona_Juridica.getRazonSocial());
+    public void registrarClienteJuridico() {
         persona_JuridicaDAO = new Persona_JuridicaDAO(persona_Juridica);
-//        persona_Juridica.setIdentificacion("1297742873");
-//        persona_Juridica.setRazon_Social("Maria Flores INC");
-//        persona_Juridica.setId_Tipo_Idenficacion(2);
-//        persona_Juridica.setCorreo("mariaflor@hotmail.com");
-//        persona_Juridica.setTlf1("0985353454");
-//        persona_Juridica.setTlf2("");
-//        persona_Juridica.setDireccion("Calle Segundo Bolaños");
-//        persona_Juridica.setId_tipoCliente(1);
-        
         if (persona_JuridicaDAO.insertarClienteJuridico() > 0) {
-            System.out.println("Si se ejecuta if");
-            System.out.println("Se Ingresó Correctamente el cliente." + persona_Juridica.getRazonSocial());
-            return "MantenimientoCliente"; 
-        }
-        else{
+            this.listaCliente = personaDAO.obtenerTodosLosClientes();
+        } else {
             System.out.println("No se Ingresó el Cliente Juridico.");
         }
-        return "MantenimientoCliente";
     }
 
-    public String registrarClienteNatural() {
+    public void registrarClienteNatural() {
         persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
         if (persona_NaturalDAO.insertarClienteNatural() > 0) {
-            System.out.println("Se Ingresó Correctamente el cliente." + persona_Natural.getNombre1());
-            return "MantenimientoCliente";
-        }
-        else{
+            this.listaCliente = personaDAO.obtenerTodosLosClientes();
+        } else {
             System.out.println("No se Ingresó el Cliente Natural.");
         }
-        return "MantenimientoCliente";
     }
 
     public void editarCliente(int idCliente) {

@@ -103,16 +103,16 @@
 
                             <p:column class="tamanoColumnActions" style="text-align: center;" 
                                       headerText="Acciones">
-                                <p:commandButton oncomplete="PF('ClienteJuridicoEdit').show()"
+                                <p:commandButton 
                                                  actionListener="#{personaController.cargarClientes(varClientes)}" 
                                                  class="tamanoButtonActions"
                                                  icon="pi pi-pencil"
-                                                 update="formEditarClienteN"/> 
+                                                 update=":dialogEditarClienteJ"/> 
                                 <p:commandButton action="#{personaController.inactivarCliente(varClientes.idCliente)}" 
                                                  class="tamanoButtonActions" 
                                                  styleClass="ui-button-danger" 
                                                  icon="pi pi-times-circle"
-                                                 update="formEditarClienteJ">
+                                                 update="tblClientes">
                                     <p:confirm header="Advertencia" 
                                                message="¿Seguro que desea inactivar este cliente?" 
                                                icon="pi pi-info-circle"/>
@@ -131,10 +131,10 @@
                     </h:form>
 
                     <!-- Ventana Agregar Cliente Natural  !-->
-                    <h:form id="formNuevoClienteN">
-                        <p:dialog header="Nuevo Cliente Natural" minHeight="50" 
-                                  height="auto" width="900px" showEffect="fade"
-                                  modal="true" widgetVar="clienteNaturalNew">
+                    <p:dialog header="Nuevo Cliente Natural" minHeight="50"
+                              height="auto" width="900px" showEffect="fade"
+                              modal="true" widgetVar="clienteNaturalNew">
+                        <h:form>
                             <p:panelGrid columns="4" layout="grid">
                                 <p:outputLabel for="identificaNatural" 
                                                value="Identificación:"
@@ -290,32 +290,35 @@
                                 </p:outputLabel>
                                 <p:datePicker monthNavigator="true" yearNavigator="true"
                                               id="fechaNacimientoNatural"
+                                              style="width: 100px;"
+                                              readonly="true"
                                               required="true"
                                               placeholder="aaaa-mm-dd"
                                               value="#{personaController.persona_Natural.fechaNacimiento}"/>
                             </p:panelGrid>
-                            <div>
-                                <f:facet name="footer">
-                                    <p:commandButton value="Cancel" ajax="false"
-                                                     icon="pi pi-times" 
-                                                     onclick="PF('clienteNaturalNew').hide()"
-                                                     class="ui-button-secondary"
-                                                     styleClass=" ui-button-danger"/>
-                                    <p:commandButton value="Guardar" ajax="false"
-                                                     update="frmtblClientes"
-                                                     icon="pi pi-save"
-                                                     action="#{personaController.registrarClienteNatural()}"
-                                                     styleClass=" ui-button-success"/>
-                                </f:facet>
+                            <br/>
+                            <div style="float: right;">
+                                <p:commandButton value="Cancel"
+                                                 icon="pi pi-times" 
+                                                 immediate="true"
+                                                 oncomplete="PF('clienteNaturalNew').hide()"
+                                                 class="ui-button-secondary"
+                                                 styleClass=" ui-button-danger"/>
+                                &nbsp; 
+                                <p:commandButton value="Guardar"
+                                                 icon="pi pi-save"
+                                                 oncomplete="PF('clienteNaturalNew').hide()"
+                                                 actionListener="#{personaController.registrarClienteNatural()}"
+                                                 styleClass=" ui-button-success"/>
                             </div>
-                        </p:dialog>
-                    </h:form>
+                        </h:form>
+                    </p:dialog>
 
                     <!-- Ventana Agregar Cliente Juridico!-->
-                    <h:form id="formNuevoClienteJ">
-                        <p:dialog header="Nuevo Cliente Jurídico" minHeight="50" 
-                                  height="auto" width="800px" showEffect="fade"
-                                  modal="true" widgetVar="clienteJuridicoNew">
+                    <p:dialog header="Nuevo Cliente Jurídico" minHeight="50" 
+                              height="auto" width="800px" showEffect="fade"
+                              modal="true" widgetVar="clienteJuridicoNew">
+                        <h:form>
                             <p:panelGrid columns="4" layout="grid">
                                 <p:outputLabel for="identificaJuridico" 
                                                value="Identificación:"
@@ -411,28 +414,30 @@
                                     <f:selectItem itemLabel="Minoritario" itemValue="2"/>
                                 </p:selectOneMenu>
                             </p:panelGrid>
-                            <div>
-                                <f:facet name="footer">
-                                    <p:commandButton value="Cancel"
-                                                     icon="pi pi-times" 
-                                                     onclick="PF('clienteJuridicoNew').hide()"
-                                                     class="ui-button-secondary"
-                                                     styleClass=" ui-button-danger"/>
-                                    <p:commandButton value="Guardar" ajax="false"
-                                                     icon="pi pi-save"
-                                                     update=":formNuevoClienteJ frmtblClientes"
-                                                     action="#{personaController.registrarClienteJuridico()}"
-                                                     styleClass=" ui-button-success"/>
-                                </f:facet>
-                            </div>
-                        </p:dialog>
-                    </h:form>
+                            <br/>
+                            <div style="float: right;">
+                                <p:commandButton value="Cancel"
+                                                 icon="pi pi-times" 
+                                                 immediate="true"
+                                                 oncomplete="PF('clienteJuridicoNew').hide()"
+                                                 class="ui-button-secondary"
+                                                 styleClass=" ui-button-danger"/>
+                                &nbsp;
+                                <p:commandButton value="Guardar" ajax="false"
+                                                 icon="pi pi-save"
+                                                 oncomplete="PF('clienteJuridicoNew').hide()"
+                                                 action="#{personaController.registrarClienteJuridico()}"
+                                                 styleClass=" ui-button-success"/>
+                            </div>                               
+                        </h:form>
+                    </p:dialog>
 
                     <!-- Ventana Editar Cliente Natural  !-->
-                    <h:form id="formEditarClienteN">
-                        <p:dialog header="Editar Cliente Natural" minHeight="50" 
-                                  height="auto" width="900px" showEffect="fade"
-                                  modal="true" widgetVar="clienteNaturalEdit">
+                    <p:dialog header="Editar Cliente Natural" minHeight="50" 
+                              height="auto" width="900px" showEffect="fade"
+                              modal="true" widgetVar="ClienteNaturalEdit"
+                              id="dialogEditarClienteN">
+                        <h:form>
                             <p:panelGrid columns="4" layout="grid">
                                 <p:outputLabel for="identificaNatural" 
                                                value="Identificación:"
@@ -592,29 +597,30 @@
                                               placeholder="aaaa-mm-dd"
                                               value="#{personaController.persona_Natural.fechaNacimiento}"/>
                             </p:panelGrid>
-                            <div>
-                                <f:facet name="footer">
-                                    <p:commandButton value="Cancel" ajax="false"
-                                                     icon="pi pi-times" 
-                                                     onclick="PF('clienteNaturalEdit').hide()"
-                                                     class="ui-button-secondary"
-                                                     styleClass=" ui-button-danger"/>
-                                    <p:commandButton value="Guardar" ajax="false"
-                                                     update="frmtblClientes"
-                                                     icon="pi pi-save"
-                                                     actionListener="#{personaController.actualizarClienteNatural()}"
-                                                     styleClass=" ui-button-success"/>
-                                </f:facet>
+                            <br/>
+                            <div style="float: right;">
+                                <p:commandButton value="Cancel"
+                                                 icon="pi pi-times" 
+                                                 immediate="true"
+                                                 oncomplete="PF('ClienteNaturalEdit').hide()"
+                                                 class="ui-button-secondary"
+                                                 styleClass=" ui-button-danger"/>
+                                &nbsp;
+                                <p:commandButton value="Guardar Cambios" 
+                                                 icon="pi pi-save"
+                                                 oncomplete="PF('ClienteNaturalEdit').hide()"
+                                                 actionListener="#{personaController.actualizarClienteNatural()}"
+                                                 styleClass=" ui-button-success"/>
                             </div>
-                        </p:dialog>
-                    </h:form>
-                    
+                        </h:form>
+                    </p:dialog>
+
                     <!-- Ventana Editar Cliente Juridico  !-->
-                    <h:form id="formEditarClienteJ">
-                        <p:dialog header="Editar Cliente Jurídico" minHeight="50"  
-                                  height="auto" width="900px" showEffect="fade"
-                                  modal="true" widgetVar="ClienteJuridicoEdit"
-                                  id="dialogEditarClienteJ">
+                    <p:dialog header="Editar Cliente Jurídico" minHeight="50"  
+                              height="auto" width="900px" showEffect="fade"
+                              modal="true" widgetVar="ClienteJuridicoEdit"
+                              id="dialogEditarClienteJ">
+                        <h:form>
                             <p:panelGrid columns="4" layout="grid">
                                 <p:outputLabel for="identificaJuridico" 
                                                value="Identificación:"
@@ -710,23 +716,23 @@
                                     <f:selectItem itemLabel="Minoritario" itemValue="2"/>
                                 </p:selectOneMenu>
                             </p:panelGrid>
-
-                            <div>
-                                <f:facet name="footer">
-                                    <p:commandButton value="Cancel"
-                                                     icon="pi pi-times" 
-                                                     onclick="PF('clienteJuridicoEdit').hide()"
-                                                     class="ui-button-secondary"
-                                                     styleClass=" ui-button-danger"/>
-                                    <p:commandButton value="Guardar" ajax="false"
-                                                     icon="pi pi-save"
-                                                     update="formEditarClienteJ"
-                                                     action="#{personaController.actualizarClienteJuridico()}"
-                                                     styleClass=" ui-button-success"/>
-                                </f:facet>
+                            <br/>
+                            <div style="float: right;">
+                                <p:commandButton value="Cancel"
+                                                 icon="pi pi-times" 
+                                                 immediate="true"
+                                                 oncomplete="PF('ClienteJuridicoEdit').hide()"
+                                                 class="ui-button-secondary"
+                                                 styleClass=" ui-button-danger"/>
+                                &nbsp;
+                                <p:commandButton value="Guardar Cambios"
+                                                 icon="pi pi-save"
+                                                 oncomplete="PF('ClienteJuridicoEdit').hide()"
+                                                 actionListener="#{personaController.actualizarClienteJuridico()}"
+                                                 styleClass=" ui-button-success"/>
                             </div>
-                        </p:dialog>
-                    </h:form>
+                        </h:form>
+                    </p:dialog>
 
                     <!-- DIALOG Inactivar Cliente-->
                     <p:dialog modal="true" height="400" 
@@ -744,7 +750,7 @@
                             </p:confirmDialog>
                         </h:form>
                     </p:dialog>
-                    
+
                     <!-- DIALOG  Activar Cliente-->
                     <p:dialog modal="true" height="400" 
                               width="400" widgetVar="activaCliente">

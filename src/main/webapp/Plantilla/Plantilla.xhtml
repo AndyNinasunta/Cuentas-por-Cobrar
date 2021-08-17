@@ -32,9 +32,9 @@
                 <div>
                     <ui:insert name="left"> 
                         <h:form>
-                            <p:growl>
+                           <!-- <p:growl>
                                 <p:autoUpdate/>
-                            </p:growl>
+                            </p:growl> -->
                             <p:panelMenu style="width:260px" >
                                 <p:submenu label ="Cuentas por cobrar" expanded="true">
                                     <p:menuitem value="Mantenimiento de Clientes"
@@ -55,7 +55,6 @@
                                     <p:submenu label="Reportes" icon="pi pi-book">
                                         <p:menuitem value="Listado de Clientes con/sin deuda"
                                                     outcome="/Views/ListaClienteConSinDeuda.xhtml"/>
-                                        <p:menuitem value="Pendientes de Cobro"/>
                                         <p:menuitem value="Estado de Cuenta" 
                                                     outcome="/Views/EstadoDeCuenta.xhtml"/>
                                         <p:menuitem value="Facturas Pendientes" 

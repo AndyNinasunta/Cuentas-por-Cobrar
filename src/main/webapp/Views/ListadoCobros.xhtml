@@ -26,7 +26,7 @@
                                              style="width: 150px;"/> 
                                 &nbsp;
                                 <p:commandButton id="btnconsulta" icon="pi pi-search" 
-                                                 styleClass="ui-button-warning" />
+                                                 styleClass="ui-button-primary" />
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <p:outputLabel value="Nombre: " for="txtnombrecliente" 
@@ -54,7 +54,8 @@
                                              icon="pi pi-refresh"/>
                             &nbsp;&nbsp;
                             <p:commandButton id="btncheque" value="Cheque a fecha" 
-                                             icon="pi pi-id-card" action="ChequePorFecha"/>
+                                             icon="pi pi-id-card" 
+                                             action="ChequePorFecha"/>
                         </div> 
                         <br/><br/>
                         <div class="titleView">
@@ -75,10 +76,6 @@
 
                             <p:column class="center"
                                       headerText="Subtotal">
-                                <h:outputText value=""/>
-                            </p:column>
-
-                            <p:column class="center" headerText="N/C">
                                 <h:outputText value=""/>
                             </p:column>
 
