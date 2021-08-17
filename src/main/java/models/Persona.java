@@ -54,6 +54,18 @@ public class Persona implements Serializable {
         this.descrEstado = descr_Estado;
     }
 
+    //Constructor para la lista de clientes con y sin adeudo
+    public Persona(int idCliente, String descrIdentificacion, String razonNombre,String direccion, String tlf1, String tlf2, String correo) {
+        this.idCliente = idCliente;
+        this.descrIdentificacion = descrIdentificacion;
+        this.razonNombre = razonNombre;
+        this.direccion = direccion;
+        this.tlf1 = tlf1;
+        this.tlf2 = tlf2;
+        this.correo = correo;
+    }
+    
+    
     public Persona(int id_Cliente, String razon_nombre) {
         this.idCliente = id_Cliente;
         this.razonNombre = razon_nombre;
