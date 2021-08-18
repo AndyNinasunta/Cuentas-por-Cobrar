@@ -74,12 +74,12 @@ public class Persona_JuridicaDAO extends PersonaDAO implements Serializable {
     }
     
     //Método que retorna los clientes Juridicos
-    public Persona_Juridica obtenerClienteJuridico() {
+    public Persona_Juridica obtenerClienteJuridico(int idCliente) {
         Persona_Juridica p_juridica=new Persona_Juridica();
         if (conex.isEstado()) {
             try {
                 String sentencia = "select*from obtener_cliente_juridico("
-                        +person_Juridica.getIdCliente()+")";
+                        +idCliente+")";
                 result = conex.ejecutarConsulta(sentencia);
                 while (result.next()) {
                     

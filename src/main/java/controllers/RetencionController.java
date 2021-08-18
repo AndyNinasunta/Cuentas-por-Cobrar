@@ -82,8 +82,10 @@ public class RetencionController implements Serializable{
     }
     
     public void registrarRetencion() {
+        System.out.println("SI EJECUTA");
         retencionDAO=new RetencionDAO(retencion);
-        if(retencionDAO.insertarRetencion(3)>0){
+        
+        if(retencionDAO.insertarRetencion(5,3)>0){
             System.out.println("Se Ingresó Correctamente la retencion.");
         } else {
             System.out.println("No se Registró");
@@ -101,7 +103,7 @@ public class RetencionController implements Serializable{
 //        System.out.println(retencion.getIdVenta());
 //        System.out.println(retencion.getValorRetenido());
         
-        if(retencionDAO.actualizarRetencion(retencion)>0){
+        if(retencionDAO.actualizarRetencion(retencion,5)>0){
             System.out.println("Se Editó Correctamente");
             //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
         } else {

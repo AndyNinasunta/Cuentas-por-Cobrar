@@ -26,8 +26,8 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
     }
 
     public Persona_NaturalDAO(Persona_Natural person_Natural) {
-        this.person_Natural = person_Natural;
         conex = new Conexion();
+        this.person_Natural = person_Natural;
     }
 
     //Método que retorna los clientes Naturales
@@ -96,14 +96,14 @@ public class Persona_NaturalDAO extends PersonaDAO implements Serializable {
     }
     
     //Método que retorna los clientes Naturales
-    public Persona_Natural obtenerClienteNatural() {
+    public Persona_Natural obtenerClienteNatural(int idCliente) {
         Persona_Natural p_natural=new Persona_Natural();
         
         if (conex.isEstado()) {
             try {
                 
                 String sentencia = "select*from obtener_cliente_natural("
-                        +person_Natural.getIdCliente()+")";
+                        +idCliente+")";
                 
                 result = conex.ejecutarConsulta(sentencia);
                 

@@ -107,13 +107,20 @@ public class PersonaController implements Serializable {
         PrimeFaces current = PrimeFaces.current();
         this.persona = per;
         idCliente = per.getIdCliente();
-        if (personaDAO.identificar_cliente(idCliente).equals("J")) {
-            System.out.println("Entra al if Juridico");
-            current.executeScript("PF('ClienteJuridicoEdit').show();");
+        if (personaDAO.identificar_cliente(idCliente).equals("N")) {
+            
+            System.out.println("Entra al if Natural");
+            //CARGAR EN EL OBJETO PERSONA NATURAL LOS DATOS.
+            obtenerUnClienteNatural(idCliente);
+            current.executeScript("PF('ClienteNaturalEdit').show();");
 
         } else{
-            System.out.println("Entra al if Natural");
-            current.executeScript("PF('ClienteNaturalEdit').show();");
+            
+            System.out.println("Entra al if Juridico");
+            //CARGAR EN EL OBJETO PERSONA JURIDICA LOS DATOS.
+            obtenerUnClienteJuridico(idCliente);
+            current.executeScript("PF('ClienteJuridicoEdit').show();");
+            
         }
     }
 
@@ -156,38 +163,43 @@ public class PersonaController implements Serializable {
         }
     }
 
-    public void editarCliente(int idCliente) {
-        if (personaDAO.identificar_cliente(idCliente).equals("J")) {
-//            obtenerUnClienteJuridico(idCliente);
-            System.out.println("Es Juridico");
-        } else if (personaDAO.identificar_cliente(idCliente).equals("N")) {
-            obtenerUnClienteNatural(idCliente);
-            System.out.println("Es Natural");
-        } else {
-            System.out.println("Falló inesperadamente...");
-        }
-
-    }
-
     //Al momento de darle click al icono de editar, se ejecuta este procedi.
-    public void obtenerUnClienteJuridico(RowEditEvent<Persona_Juridica> event) {
-        persona_Juridica = event.getObject();
-        System.out.println(persona_Juridica.getIdCliente());
+    public void obtenerUnClienteJuridico(int idClienteJ) {
         //Se almacena el id cliente en una variable auxiliar
-        int aux = persona_Juridica.getIdCliente();
+        int aux = idClienteJ;
         persona_JuridicaDAO = new Persona_JuridicaDAO(persona_Juridica);
         //Se obtiene ese cliente por el id
-        Persona_Juridica per_juridica = persona_JuridicaDAO.obtenerClienteJuridico();
+        Persona_Juridica per_juridica = persona_JuridicaDAO.obtenerClienteJuridico(idClienteJ);
+
         //Se remplazan los objetos
         persona_Juridica = per_juridica;
         //Ubicamos nuevamente el id de la variable auxiliar
         persona_Juridica.setIdCliente(aux);
-
         //Se instancia nuevamente la personaJuridicaDAO pero con todos los 
         //datos recopilados
         persona_JuridicaDAO = new Persona_JuridicaDAO(persona_Juridica);
     }
 
+    public void obtenerUnClienteNatural(int idClienteN) {
+        //Se almacena el id cliente en una variable auxiliar
+        int aux = idClienteN;
+        persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
+
+        //Se obtiene ese cliente por el id
+        Persona_Natural per_Natural = persona_NaturalDAO.obtenerClienteNatural(idClienteN);   
+        
+        //Se remplazan los objetos
+        persona_Natural = per_Natural;
+
+        //Ubicamos nuevamente el id de la variable auxiliar
+        persona_Natural.setIdCliente(aux);
+
+        //Se instancia nuevamente la personaJuridicaDAO pero con todos los 
+        //datos recopilados
+        persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
+
+    }
+    
     public void actualizarClienteJuridico() {
         if (persona_JuridicaDAO.actualizarClienteJuridico() > 0) {
             System.out.println("Se Editó Correctamente");
@@ -195,29 +207,6 @@ public class PersonaController implements Serializable {
         } else {
             System.out.println("No se Editó");
         }
-    }
-
-    public void obtenerUnClienteNatural(int id) {
-        persona_Natural.setIdCliente(id);
-        System.out.println(persona_Natural.getIdCliente());
-
-        //Se almacena el id cliente en una variable auxiliar
-        int aux = persona_Natural.getIdCliente();
-        persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
-
-        //Se obtiene ese cliente por el id
-        Persona_Natural per_Natural = persona_NaturalDAO.obtenerClienteNatural();
-
-        //Se remplazan los objetos
-        persona_Natural = per_Natural;
-
-        //Ubicamos nuevamente el id de la variable auxiliar
-        persona_Natural.setIdCliente(aux);
-        System.out.println(persona_Natural.getIdentificacion());
-        //Se instancia nuevamente la personaJuridicaDAO pero con todos los 
-        //datos recopilados
-        persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
-
     }
 
     public void actualizarClienteNatural() {

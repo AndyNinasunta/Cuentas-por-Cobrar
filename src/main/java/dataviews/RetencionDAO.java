@@ -26,6 +26,7 @@ public class RetencionDAO implements Serializable {
     }
 
     public RetencionDAO(Retencion retencion) {
+        conex = new Conexion();
         this.retencion = retencion;
     }
 
@@ -86,9 +87,9 @@ public class RetencionDAO implements Serializable {
     
     //funcion para Insertar una retencion, retorna 1 o -1 dependiendo si la
     //funcion ejecuta correctamente.
-    public int insertarRetencion(int idVenta) {
-        String sentenciaSQL = "Select Ingresar_Retencion(" + idVenta + ","
-                + retencion.getPorcenRetencion() + ",'"
+    public int insertarRetencion(int idCliente,int idVenta) {
+        String sentenciaSQL = "Select Ingresar_Retencion(" + idCliente + ","
+                + idVenta + ",'"
                 + retencion.getFechaEmision() + "',"
                 + retencion.getBaseImponible() + ",'"
                 + retencion.getDescImpuesto() + "')";
@@ -107,9 +108,9 @@ public class RetencionDAO implements Serializable {
 
     //Modificar/Actualizar una retencion, retorna 1 o -1 dependiendo si la
     //funcion ejecuta correctamente.
-    public int actualizarRetencion(Retencion ret) {
-        String sentenciaSQL = "Select actualizar_retencion(" + ret.getIdRetencion() + ","
-                + ret.getPorcenRetencion() + ",'"
+    public int actualizarRetencion(Retencion ret,int idcliente) {
+        String sentenciaSQL = "Select actualizar_retencion(" + idcliente + ","
+                + ret.getIdRetencion() + ",'"
                 + ret.getFechaEmision() + "',"
                 + ret.getBaseImponible() + ",'"
                 + ret.getDescImpuesto() + "')";

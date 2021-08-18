@@ -107,7 +107,7 @@
                                                  actionListener="#{personaController.cargarClientes(varClientes)}" 
                                                  class="tamanoButtonActions"
                                                  icon="pi pi-pencil"
-                                                 update=":dialogEditarClienteJ"/> 
+                                                 update=":dialogEditarClienteJ dialogEditarClienteN"/> 
                                 <p:commandButton action="#{personaController.inactivarCliente(varClientes.idCliente)}" 
                                                  class="tamanoButtonActions" 
                                                  styleClass="ui-button-danger" 
@@ -726,6 +726,7 @@
                                                  styleClass=" ui-button-danger"/>
                                 &nbsp;
                                 <p:commandButton value="Guardar Cambios"
+                                                 ajax="False"
                                                  icon="pi pi-save"
                                                  oncomplete="PF('ClienteJuridicoEdit').hide()"
                                                  actionListener="#{personaController.actualizarClienteJuridico()}"
