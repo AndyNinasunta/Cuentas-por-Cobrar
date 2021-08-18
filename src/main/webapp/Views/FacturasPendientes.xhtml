@@ -33,7 +33,8 @@
                                                            style="font-weight:bold;"/>
                                             <p:inputText id="txttotalventa" 
                                                          style="width: 100px; text-align: right;" 
-                                                         readonly="true" value="#{facturas_PendientesController.totalVentaCartera[0]}"/> $ 
+                                                         readonly="true" 
+                                                         value="#{facturas_PendientesController.totalVentaCartera[0]}"/> $ 
                                         </span>
                                         <br/><br/><br/>
                                         <span style="float: right;">
@@ -41,40 +42,52 @@
                                                            style="font-weight:bold;"/>
                                             <p:inputText id="txtcarterapendiente" 
                                                          style="width: 100px; text-align: right;" 
-                                                         readonly="true" value="#{facturas_PendientesController.totalVentaCartera[1]}"/> $  
+                                                         readonly="true" 
+                                                         value="#{facturas_PendientesController.totalVentaCartera[1]}"/> $  
                                         </span>
                                         <br/><br/><br/>
                                     </div>
                                 </f:facet>
-                                <p:column headerText="Fecha Facturación">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Fecha Facturación">
                                     <h:outputText value="#{facPendientes.fechaFacturacion}" />
 
                                 </p:column>
-                                <p:column headerText="Días de Crédito ">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Días de Crédito ">
                                     <h:outputText value="#{facPendientes.diasCredito}" />
                                 </p:column>
-                                <p:column headerText="Fecha Vencimiento">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Fecha Vencimiento">
                                     <h:outputText value="#{facPendientes.fechaVencimiento}" />
                                 </p:column>
-                                <p:column headerText="Nombre de Cliente">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Nombre de Cliente">
                                     <h:outputText value="#{facPendientes.nombreDelCliente}" />
                                 </p:column>
-                                <p:column headerText="Nº Factura">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Nº Factura">
                                     <h:outputText value="#{facPendientes.idFactura}" />
                                 </p:column>
-                                <p:column headerText="Valor de Factura">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Valor de Factura">
                                     <h:outputText value="#{facPendientes.valorTotalFactura}" />
                                 </p:column>
-                                <p:column headerText="Valor Pendiente">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Valor Pendiente">
                                     <h:outputText value="#{facPendientes.valorPendiente}" />
                                 </p:column>
-                                <p:column headerText="Fecha de Pago">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Fecha de Pago">
                                     <h:outputText value="#{facPendientes.fechaUltimoPago}" />
                                 </p:column>
-                                <p:column headerText="Estado de Factura">
-                                    <h:outputText value="#{facPendientes.estadoFactura}" />
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Estado de Factura">
+                                    <h:outputText value="#{facPendientes.estadoFactura}"
+                                                  styleClass="#{facPendientes.identificaEstado()}"/>
                                 </p:column>
-                                <p:column headerText="Días Mora/Próximo">
+                                <p:column class="tamanoInput" style="text-align: center;"
+                                          headerText="Días Mora/Próximo">
                                     <h:outputText value="#{facPendientes.diasMora}" />
                                 </p:column>
                             </p:dataTable>

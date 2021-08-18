@@ -93,3 +93,18 @@
     border-radius: 10px;
     background-color: red !important;
 }
+
+.pendiente{
+    border-radius: 10px;
+    background-color : yellow !important;
+}
+
+.pagado{
+    border-radius: 10px;
+    background-color : greenyellow !important;
+}
+
+.vencido{
+    border-radius: 10px;
+    background-color : red !important;
+}

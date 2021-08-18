@@ -1,27 +1,27 @@
-
 package models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Facturas_Pendientes implements Serializable{
+public class Facturas_Pendientes implements Serializable {
+
     //Declaración de las Variables para las facturas pendientes
-    private LocalDate fechaFacturacion=LocalDate.now();
+    private LocalDate fechaFacturacion = LocalDate.now();
     private int diasCredito;
-    private LocalDate fechaVencimiento=LocalDate.now();
+    private LocalDate fechaVencimiento = LocalDate.now();
     private String nombreDelCliente;
     private int idFactura;
     private double valorTotalFactura;
     private double valorPendiente;
-    private LocalDate fechaUltimoPago=LocalDate.now();
+    private LocalDate fechaUltimoPago = LocalDate.now();
     private String estadoFactura;
     private int diasMora;
 
     //Constructor Vacío
     public Facturas_Pendientes() {
     }
-    
-     //Constructor para almacenar las facturas pendientes
+
+    //Constructor para almacenar las facturas pendientes
     public Facturas_Pendientes(LocalDate fechaFacturacion, int diasCredito, LocalDate fechaVencimiento, String nombreDelCliente, int idFactura, double valorTotalFactura, double valorPendiente, LocalDate fechaUltimoPago, String estadoFactura, int diasMora) {
         this.fechaFacturacion = fechaFacturacion;
         this.diasCredito = diasCredito;
@@ -35,9 +35,25 @@ public class Facturas_Pendientes implements Serializable{
         this.diasMora = diasMora;
     }
 
-    
-    
-     //Declaracion de  Getters y Setters
+    public String identificaEstado() {
+
+        switch (estadoFactura) {
+
+            case "PENDIENTE":
+                return "pendiente";
+
+            case "PAGADO":
+                return "pagado";
+
+            case "VENCIDO":
+                return "vencido";
+
+            default:
+                return "DEFAULT";
+        }
+    }
+
+    //Declaracion de  Getters y Setters
     public LocalDate getFechaFacturacion() {
         return fechaFacturacion;
     }

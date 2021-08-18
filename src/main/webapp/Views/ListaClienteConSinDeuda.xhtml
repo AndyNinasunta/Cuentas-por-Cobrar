@@ -19,7 +19,8 @@
                         <p:dataTable id="tblListaDeudas" var="varListaDeuda"
                                      value="#{clientes_Con_Sin_DeudaController.lista_Clientes_con_sin_deudas}"
                                      emptyMessage="No existen Registros." 
-                                     paginator="true"
+                                     paginator="true" rows="5" rowSelectMode="add"
+                                     paginatorPosition="bottom" 
                                      style="font-size: 14px;">
 
                             <p:column class="tamanoInput" style="text-align: center;"

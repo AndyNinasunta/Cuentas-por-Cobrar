@@ -26,6 +26,8 @@ public class RetencionController implements Serializable{
     List<Retencion> listaRetenciones;  
     List<SelectItem> listaCliente;
     List<SelectItem> listaVenta;
+
+    int idFactura=0;
     
     public RetencionController() {
         retencion = new Retencion();
@@ -56,6 +58,8 @@ public class RetencionController implements Serializable{
         this.listaRetenciones = listaRetenciones;
     }
     
+    
+    
     public List<SelectItem> getListaCliente() {
         listaCliente = new ArrayList<>();
         PersonaDAO personaDAO = new PersonaDAO();
@@ -72,10 +76,19 @@ public class RetencionController implements Serializable{
         this.listaCliente = listaCliente;
     }
 
+    public int getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
+    }
+ 
     public List<SelectItem> getListaVentas(){
         listaVenta=new ArrayList<>();
         this.retencionDAO = new RetencionDAO();
-        List<Retencion> r=retencionDAO.obtenerVentas(5);
+        System.out.println("idFactura: " + idFactura);
+        List<Retencion> r=retencionDAO.obtenerVentas(idFactura);
         for(Retencion lret:r){
             SelectItem ventasItem=new SelectItem(lret.getIdVenta());
             this.listaVenta.add(ventasItem);
@@ -114,5 +127,16 @@ public class RetencionController implements Serializable{
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
                 "Error", mensaje);
         FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    //Metodo para obtener las Facturas de un cliente
+    public void cargarFacturas(){
+        listaVenta=new ArrayList<>();
+        this.retencionDAO = new RetencionDAO();
+        List<Retencion> r=retencionDAO.obtenerVentas(5);
+        for(Retencion lret:r){
+            SelectItem ventasItem=new SelectItem(lret.getIdVenta());
+            this.listaVenta.add(ventasItem);
+        }
     }
 }

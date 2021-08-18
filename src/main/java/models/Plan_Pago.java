@@ -55,6 +55,24 @@ public class Plan_Pago implements Serializable {
         this.estadoFactura = estadoFactura;
         this.diasMora = diasMora;
     }
+    
+    public String estadoFac(){
+
+        switch (estadoFactura) {
+
+            case "PENDIENTE":
+                return "pendiente";
+
+            case "PAGADO":
+                return "pagado";
+
+            case "VENCIDO":
+                return "vencido";
+
+            default:
+                return "DEFAULT";
+        }
+    }
 
     //Declaracion de  Getters y Setters
     public int getIdCliente() {

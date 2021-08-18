@@ -35,7 +35,8 @@ public class RetencionDAO implements Serializable {
         lista_Retencion = new ArrayList<>();
         if (conex.isEstado()) {
             try {
-                String sentencia = "Select *from Obtener_Retenciones(" + idVenta + ")";
+                String sentencia = "Select *from Obtener_Retenciones(" + idVenta + ") "
+                        + "order by idretencion_r desc";
                 result = conex.ejecutarConsulta(sentencia);
                 while (result.next()) {
                     lista_Retencion.add(new Retencion(result.getInt("idretencion_r"),
