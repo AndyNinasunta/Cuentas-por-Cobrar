@@ -22,7 +22,7 @@
                                                style="font-weight:bold;"/>
                                 <p:inputText id="txttotalventa" 
                                              style="width: 100px; text-align: right;" 
-                                             readonly="true" value="0.00"/> $ 
+                                             readonly="true" value="#{facturas_PendientesController.totalVentaCartera[0]}"/> $ 
                             </div>
                             <br/><br/><br/>
                             <div style="float: right;">
@@ -30,7 +30,7 @@
                                                style="font-weight:bold;"/>
                                 <p:inputText id="txtcarterapendiente" 
                                              style="width: 100px; text-align: right;" 
-                                             readonly="true" value="0.00"/> $  
+                                             readonly="true" value="#{facturas_PendientesController.totalVentaCartera[1]}"/> $  
                             </div>
                         </div>
                         <p:dataTable id="tblFacturasPendientes"
@@ -39,37 +39,38 @@
                                      scrollable="true" paginator="true" 
                                      rows="5" rowSelectMode="add"
                                      paginatorPosition="bottom" 
+                                     value="#{facturas_PendientesController.listaFacturas_Pendientes}"
                                      style="font-size: 14px;">
                             <p:column headerText="Fecha Facturación">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.fechaFacturacion}" />
 
                             </p:column>
                             <p:column headerText="Días de Crédito ">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.diasCredito}" />
                             </p:column>
                             <p:column headerText="Fecha Vencimiento">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.fechaVencimiento}" />
                             </p:column>
                             <p:column headerText="Nombre de Cliente">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.nombreDelCliente}" />
                             </p:column>
                             <p:column headerText="Nº Factura">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.idFactura}" />
                             </p:column>
                             <p:column headerText="Valor de Factura">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.valorTotalFactura}" />
                             </p:column>
                             <p:column headerText="Valor Pendiente">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.valorPendiente}" />
                             </p:column>
                             <p:column headerText="Fecha de Pago">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.fechaUltimoPago}" />
                             </p:column>
                             <p:column headerText="Estado de Factura">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.estadoFactura}" />
                             </p:column>
                             <p:column headerText="Días Mora/Próximo">
-                                <h:outputText value="" />
+                                <h:outputText value="#{facPendientes.diasMora}" />
                             </p:column>
                         </p:dataTable>
                     </h:form>

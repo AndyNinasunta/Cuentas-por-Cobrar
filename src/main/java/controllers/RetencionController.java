@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controllers;
 
 import dataviews.PersonaDAO;
@@ -16,10 +12,7 @@ import javax.inject.Named;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 
-/**
- *
- * @author PERSONAL
- */
+
 @Named(value = "retencionController")
 @ViewScoped
 public class RetencionController implements Serializable{

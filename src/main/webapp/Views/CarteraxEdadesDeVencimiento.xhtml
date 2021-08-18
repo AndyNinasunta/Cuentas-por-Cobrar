@@ -23,9 +23,13 @@
                             <p:selectOneMenu id="optionClientes" 
                                              style="width: 300px; 
                                              height: 40px;"> 
-                                <f:selectItem itemLabel="Seleccione..." 
-                                              itemValue=""/>
+                                <f:selectItem itemLabel="Todos los Clientes..." 
+                                              itemValue="-1"/>
+                                <f:selectItems value="#{cartera_X_EdadesController.listaCliente}"
+                                                       />
                             </p:selectOneMenu>
+                            
+                            
                             
                             <p:commandButton style="height: 40px;" 
                                              icon="pi pi-search" 
@@ -38,56 +42,52 @@
                                      rows="5" rowSelectMode="add"
                                      paginatorPosition="bottom"  
                                      emptyMessage="No existen Registros."  
+                                     value="#{cartera_X_EdadesController.lista_Cartera_X_Edades}"
                                      style="font-size: 14px;">
-
-                            <p:column class="tamanoInput" style="text-align: center;"
-                                      headerText="Fecha Corte">
-                                <h:outputText value="" />
-
-                            </p:column>
+                            
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Fecha Emisión">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.fechaEmision}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Documento">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.idDocumento}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Cliente">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.nombreClientes}" />
                             </p:column>
                             <p:column headerText="Dias de Crédito"
                                       style="text-align: center; width: 100px;">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.diasDeCredito}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Fecha de Vencimiento">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.fechaVencimiento}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Valor a Cobrar">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.valorTotalDoc}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Dias Vencidos">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.diasMora}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Por Vencer">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.valorACobrar}" />
                             </p:column>
                             <p:column class="diasVencidos" style="text-align: center;" 
                                       headerText="Vencido 1 a 30 días">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.vencido30Dias}" />
                             </p:column>
                             <p:column class="diasVencidos" style="text-align: center;"
                                       headerText="Vencido 31 a 60 días">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.vencido60Dias}" />
                             </p:column>
                             <p:column class="diasVencidos" style="text-align: center;"
                                       headerText="Vencido mayor a 60 días">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimiento.vencidoMas60Dias}" />
                             </p:column>
                         </p:dataTable>
                     </h:form>
@@ -96,23 +96,28 @@
                         <p:dataTable id="tblCarteraVencimientoTotal" 
                                      var="varCarteraVencimientoTotal"
                                      emptyMessage="No existen Registros."  
+                                     value="#{cartera_X_EdadesController.listaSum_Cartera_X_Edades}"
                                      style="font-size: 14px;">
 
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Total Valor a Cobrar">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimientoTotal.valorTotalDoc}" />
+                            </p:column>
+                            <p:column class="tamanoInput" style="text-align: center;"
+                                      headerText="Total por Vencer">
+                                <h:outputText value="#{varCarteraVencimientoTotal.valorACobrar}" />
                             </p:column>
                             <p:column class="diasVencidos" style="text-align: center;" 
                                       headerText="Total Vencido 1 a 30 días">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimientoTotal.vencido30Dias}" />
                             </p:column>
                             <p:column class="diasVencidos" style="text-align: center;"
                                       headerText="Total Vencido 31 a 60 días">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimientoTotal.vencido60Dias}" />
                             </p:column>
                             <p:column class="diasVencidos" style="text-align: center;"
                                       headerText="Total Vencido mayor a 60 días">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varCarteraVencimientoTotal.vencidoMas60Dias}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Items">

@@ -57,7 +57,9 @@ public class Cartera_X_EdadesDAO implements Serializable {
                     lista_CarteraxEdades.add(new Cartera_X_Edades(
                             result.getObject("fechaemision_r", LocalDate.class),
                             result.getInt("documento_r"),
-                            result.getInt("diasdecredito_r"),
+                            result.getInt("idcliente_i"),
+                            result.getString("nombres"),
+                            result.getInt("diasdecredito_"),
                             result.getObject("fechavencimiento_r", LocalDate.class),
                             result.getDouble("valortotaldoc_r"),
                             result.getDouble("valoracobrar_r"),
@@ -76,6 +78,8 @@ public class Cartera_X_EdadesDAO implements Serializable {
                             null,
                             -1,
                             -1,
+                            "",
+                            -1,
                             null,
                             -1,
                             -1,
@@ -93,26 +97,26 @@ public class Cartera_X_EdadesDAO implements Serializable {
         return lista_CarteraxEdades;
     }
     
-    //Funcion para enlistar la cartera por edades
-    public List<Cartera_X_Edades> obtenerSumCarteraxEdades() {
+    //Funcion para enlistar la cartera por edades con las sumatorias
+    public List<Cartera_X_Edades> obtenerSumCarteraxEdades(int idCliente) {
         lista_CarteraxEdades = new ArrayList<>();
 
         //verificamos la conexion
         if (conex.isEstado()) {
             try {
                 /* Se obtiene una TABLA con las cartera vencida por edades*/
-                String sentencia = "select*from obtener_sum_carteraxedades()";
+                String sentencia = "select*from obtener_sum_carteraxedades("+idCliente+")";
                 result = conex.ejecutarConsulta(sentencia);
 
                 //Recorremos la TABLA retornada y la almacenamos en la lista.
                 while (result.next()) {
 
                     lista_CarteraxEdades.add(new Cartera_X_Edades(
-                            result.getDouble("valortotaldoc_r"),
-                            result.getDouble("valoracobrar_r"),
-                            result.getDouble("vencido30dias_r"),
-                            result.getDouble("vencido60dias_r"),
-                            result.getDouble("vencidomas60dias_r")));
+                            result.getDouble("totalvalordoc_r"),
+                            result.getDouble("totalvalorcobrar_r"),
+                            result.getDouble("totalvencido30_r"),
+                            result.getDouble("totalvencido60_r"),
+                            result.getDouble("totalvencidomas60_r")));
 
                 }
 

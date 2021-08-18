@@ -3,7 +3,7 @@ package models;
 
 import java.io.Serializable;
 
-
+//Reporte para los clientes con y sin Deuda
 public class Clientes_Con_Sin_Deuda extends Persona implements Serializable{
     //Declaracion de las variables que necesita una Cartera x Edades
     private double valorPendiente;

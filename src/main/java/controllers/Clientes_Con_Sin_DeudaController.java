@@ -1,0 +1,71 @@
+package controllers;
+
+import java.io.Serializable;
+import javax.inject.Named;
+import javax.faces.view.ViewScoped;
+import models.Clientes_Con_Sin_Deuda;
+import dataviews.Clientes_Con_Sin_DeudaDAO;
+import java.util.ArrayList;
+import java.util.List;
+
+@Named(value = "clientes_Con_Sin_DeudaController")
+@ViewScoped
+public class Clientes_Con_Sin_DeudaController implements Serializable {
+
+    //Se Declaran las clases Clientes_Con_Sin_Deuda y Clientes_Con_Sin_DeudaDAO
+    Clientes_Con_Sin_Deuda clientes_Con_Sin_Deuda;
+    Clientes_Con_Sin_DeudaDAO clientes_Con_Sin_DeudaDAO;
+
+    //Declaro mi lista de Clientes con y sin Deudas que van hacer cargadas en el
+    //datatable
+    List<Clientes_Con_Sin_Deuda> lista_Clientes_con_sin_deudas;
+    List<Clientes_Con_Sin_Deuda> lista_Clientes_Con_Deudas;
+    List<Clientes_Con_Sin_Deuda> lista_Clientes_Sin_Deudas;
+
+    //Procedimiento principal(Se ejecuta una vez se llame al controlador)
+    public Clientes_Con_Sin_DeudaController() {
+        
+        //Para que carguen en el data table todos los cliente que tengan y no 
+        //tengan deudas.
+        clientes_Con_Sin_DeudaDAO = new Clientes_Con_Sin_DeudaDAO();
+        lista_Clientes_con_sin_deudas = new ArrayList<>();
+        lista_Clientes_con_sin_deudas = clientes_Con_Sin_DeudaDAO.obtenerClientesConSinDeudas();
+
+        //Lista con los todos los cliente CON deudas
+        lista_Clientes_Con_Deudas=new ArrayList<>();
+        lista_Clientes_Con_Deudas=clientes_Con_Sin_DeudaDAO.obtenerClientesConDeudas();
+        
+        //Lista con los todos los cliente SIN deudas
+        lista_Clientes_Sin_Deudas=new ArrayList<>();
+        lista_Clientes_Sin_Deudas=clientes_Con_Sin_DeudaDAO.obtenerClientesSinDeudas();
+        
+
+    }
+
+    //Getters y Setters de las Listas
+    //Inicio
+    public List<Clientes_Con_Sin_Deuda> getLista_Clientes_con_sin_deudas() {
+        return lista_Clientes_con_sin_deudas;
+    }
+
+    public void setLista_Clientes_con_sin_deudas(List<Clientes_Con_Sin_Deuda> lista_Clientes_con_sin_deudas) {
+        this.lista_Clientes_con_sin_deudas = lista_Clientes_con_sin_deudas;
+    }
+
+    public List<Clientes_Con_Sin_Deuda> getLista_Clientes_Con_Deudas() {
+        return lista_Clientes_Con_Deudas;
+    }
+
+    public void setLista_Clientes_Con_Deudas(List<Clientes_Con_Sin_Deuda> lista_Clientes_Con_Deudas) {
+        this.lista_Clientes_Con_Deudas = lista_Clientes_Con_Deudas;
+    }
+
+    public List<Clientes_Con_Sin_Deuda> getLista_Clientes_Sin_Deudas() {
+        return lista_Clientes_Sin_Deudas;
+    }
+
+    public void setLista_Clientes_Sin_Deudas(List<Clientes_Con_Sin_Deuda> lista_Clientes_Sin_Deudas) {
+        this.lista_Clientes_Sin_Deudas = lista_Clientes_Sin_Deudas;
+    }
+    //Fin 
+}

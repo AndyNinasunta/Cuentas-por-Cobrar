@@ -18,28 +18,29 @@
                     <h:form id="formEstadoCuenta">
                         <p:dataTable id="tblEstadoDeCuenta" var="varEstadoDeCuenta"
                                      emptyMessage="No existen Registros." 
+                                     value="#{estado_De_CuentaController.lista_Estado_De_Cuenta}"
                                      style="font-size: 14px;">
 
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Documento">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varEstadoDeCuenta.idVenta}" />
 
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Fecha">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varEstadoDeCuenta.fechacredito}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Cargo">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varEstadoDeCuenta.totalFactura}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Abono">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varEstadoDeCuenta.totalAbonos}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Saldo">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varEstadoDeCuenta.totalPendientes}" />
                             </p:column>
                         </p:dataTable>
                         <div class="alinearBotones">  

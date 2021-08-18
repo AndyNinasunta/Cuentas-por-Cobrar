@@ -17,37 +17,38 @@
                 <p:panel>
                     <h:form id="formListaClienteDeudas">
                         <p:dataTable id="tblListaDeudas" var="varListaDeuda"
+                                     value="#{clientes_Con_Sin_DeudaController.lista_Clientes_con_sin_deudas}"
                                      emptyMessage="No existen Registros." 
                                      style="font-size: 14px;">
 
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Identificación">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varListaDeuda.descrIdentificacion}" />
 
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Razon/Nombres">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varListaDeuda.razonNombre}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Dirección">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varListaDeuda.direccion}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Teléfono 1">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varListaDeuda.tlf1}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Teléfono 2">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varListaDeuda.tlf2}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Correo">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varListaDeuda.correo}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Total Pendiente">
-                                <h:outputText value="" />
+                                <h:outputText value="#{varListaDeuda.valorPendiente}" />
                             </p:column>
                         </p:dataTable>
                         <div class="alinearBotones">  

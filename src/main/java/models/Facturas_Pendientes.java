@@ -4,10 +4,8 @@ package models;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Plan_Pago implements Serializable {
-
-    //Declaración de las Variables para los planes de pago
-    private int idCliente;
+public class Facturas_Pendientes implements Serializable{
+    //Declaración de las Variables para las facturas pendientes
     private LocalDate fechaFacturacion=LocalDate.now();
     private int diasCredito;
     private LocalDate fechaVencimiento=LocalDate.now();
@@ -16,41 +14,30 @@ public class Plan_Pago implements Serializable {
     private double valorTotalFactura;
     private double valorPendiente;
     private LocalDate fechaUltimoPago=LocalDate.now();
-    private int idEstadoFactura;
     private String estadoFactura;
     private int diasMora;
-    private double intereses;
-    
 
-    public Plan_Pago() {
+    //Constructor Vacío
+    public Facturas_Pendientes() {
     }
-
-    //Constructor para almacenar las facturas pendientes
-    public Plan_Pago(LocalDate fecha_Facturacion, int dias_Credito,
-            LocalDate fecha_Vencimiento, String nombre_Del_Cliente, int id_factura,
-            double valor_Total_Factura, double valor_Pendiente,
-            LocalDate fecha_Ultimo_Pago, String estado_Factura, int diasMora) {
-        this.fechaFacturacion = fecha_Facturacion;
-        this.diasCredito = dias_Credito;
-        this.fechaVencimiento = fecha_Vencimiento;
-        this.nombreDelCliente = nombre_Del_Cliente;
-        this.idFactura = id_factura;
-        this.valorTotalFactura = valor_Total_Factura;
-        this.valorPendiente = valor_Pendiente;
-        this.fechaUltimoPago = fecha_Ultimo_Pago;
-        this.estadoFactura = estado_Factura;
+    
+     //Constructor para almacenar las facturas pendientes
+    public Facturas_Pendientes(LocalDate fechaFacturacion, int diasCredito, LocalDate fechaVencimiento, String nombreDelCliente, int idFactura, double valorTotalFactura, double valorPendiente, LocalDate fechaUltimoPago, String estadoFactura, int diasMora) {
+        this.fechaFacturacion = fechaFacturacion;
+        this.diasCredito = diasCredito;
+        this.fechaVencimiento = fechaVencimiento;
+        this.nombreDelCliente = nombreDelCliente;
+        this.idFactura = idFactura;
+        this.valorTotalFactura = valorTotalFactura;
+        this.valorPendiente = valorPendiente;
+        this.fechaUltimoPago = fechaUltimoPago;
+        this.estadoFactura = estadoFactura;
         this.diasMora = diasMora;
     }
 
-    //Declaracion de  Getters y Setters
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
+    
+    
+     //Declaracion de  Getters y Setters
     public LocalDate getFechaFacturacion() {
         return fechaFacturacion;
     }
@@ -115,14 +102,6 @@ public class Plan_Pago implements Serializable {
         this.fechaUltimoPago = fechaUltimoPago;
     }
 
-    public int getIdEstadoFactura() {
-        return idEstadoFactura;
-    }
-
-    public void setIdEstadoFactura(int idEstadoFactura) {
-        this.idEstadoFactura = idEstadoFactura;
-    }
-
     public String getEstadoFactura() {
         return estadoFactura;
     }
@@ -138,15 +117,4 @@ public class Plan_Pago implements Serializable {
     public void setDiasMora(int diasMora) {
         this.diasMora = diasMora;
     }
-
-    public double getIntereses() {
-        return intereses;
-    }
-
-    public void setIntereses(double intereses) {
-        this.intereses = intereses;
-    }
-    
-    
-    
 }
