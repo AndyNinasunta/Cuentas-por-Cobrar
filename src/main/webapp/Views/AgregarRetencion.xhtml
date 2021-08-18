@@ -26,13 +26,16 @@
                                                    style="font-weight:bold;"/>
                                     <br/> <br/>
                                     <p:inputText id="identificacionCliente" 
-                                                 type="text" 
+                                                 type="text"
+                                                 maxlength="13"
+                                                 value="#{retencionController.identificacion}"
                                                  style="width: 150px;" />
                                     &nbsp;&nbsp;
                                     <div style="float: right;">
                                         <p:commandButton id="btnconsulta" icon="pi pi-replay" 
                                              styleClass="ui-button-secondary"
-                                             update=":growl optionFactura"/>
+                                             update=":growl optionFactura"
+                                             actionListener="#{retencionController.cargarFacturas()}"/>
                                     </div>
                                 </div>
                                 <div id="divFactura">
@@ -41,6 +44,7 @@
                                                    style="font-weight:bold;" />
                                     <br/> <br/>
                                     <p:selectOneMenu id="optionFactura" 
+                                                     value="#{retencionController.idFactura}"
                                                      required="true"
                                                      style="height: 40px; width: 130px;">                            
                                         <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
@@ -66,13 +70,18 @@
                             <p:toolbarGroup>
                                 <div>
                                     <h:form>
-                                        <p:commandButton icon="pi pi-replay " value="Cargar Retención" 
+                                        <p:commandButton icon="pi pi-replay " 
+                                                         value="Cargar Retención" 
+                                                         ajax="false"
+                                                         actionListener="#{retencionController.cargarRetenciones()}"
                                                          styleClass=" ui-button-secondary" 
-                                                         update=":growl"
+                                                         update=":growl tblRetenciones"
                                                          style="margin:.3rem;"/>
                                         <p:commandButton icon="pi pi-plus " 
+                                                         ajax="false"
                                                          value="Añadir Nueva Retención" 
-                                                         oncomplete="PF('RetencionNew').show()"
+                                                         actionListener="#{retencionController.cargarIngresarRetencion()}"
+                                                         update="growl dialogAddRetencion"
                                                          styleClass=" ui-button-success" 
                                                          style="margin:.3rem;"/>
                                     </h:form>
@@ -110,7 +119,7 @@
                             <p:column class="tamanoColumnActions"
                                       style="text-align: center;" 
                                       headerText="Acciones">
-                                <p:commandButton actionListener="#{retencionController.cargarRetenciones(varRetenciones)}"
+                                <p:commandButton actionListener="#{retencionController.CargarDatos(varRetenciones)}"
                                                  class="tamanoButtonActions"
                                                  update=":dialogEditarRetencion"
                                                  oncomplete="PF('RetencionEdit').show()" 
@@ -165,7 +174,7 @@
                                 <p:commandButton actionListener="#{retencionController.registrarRetencion()}"
                                                  icon="pi pi-save" value="Guardar"
                                                  ajax="false"
-                                                 update=":growl frmprincipal:tblRetenciones"
+                                                 update=":growl "
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
@@ -215,7 +224,7 @@
                                                  styleClass=" ui-button-danger"/> 
                                 &nbsp;
                                 <p:commandButton actionListener="#{retencionController.actualizarRetencion()}"
-                                                 icon="pi pi-save" ajax="true"
+                                                 icon="pi pi-save" ajax="false"
                                                  value="Guardar Cambios"
                                                  update=":growl frmprincipal:tblRetenciones"
                                                  styleClass=" ui-button-success"/> 
