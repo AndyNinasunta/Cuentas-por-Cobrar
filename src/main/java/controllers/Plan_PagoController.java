@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.Serializable;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import models.Plan_Pago;
 import dataviews.Plan_PagoDAO;
@@ -39,7 +38,7 @@ public class Plan_PagoController implements Serializable {
         persona = new Persona();
         //Cargamos el nombre del cliente en el input
         persona = personaDAO.obtenerNombreClienteXIdentificacion(identificacion);
-
+            System.out.println("EJECUTA "+persona.getIdCliente());
         //Este if nos permite verificar si existe o no un cliente.
         if (persona.getIdCliente() == 0) {
             System.out.println("El Cliente NO EXISTE O ESTA INACTIVO ");

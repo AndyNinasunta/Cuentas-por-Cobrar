@@ -1,4 +1,3 @@
-
 package dataviews;
 
 import models.Persona;
@@ -7,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class PersonaDAO implements Serializable {
 
@@ -58,7 +56,7 @@ public class PersonaDAO implements Serializable {
         }
         return lista_Personas;
     }
-    
+
     public List<Persona> obtenerNombresClientes() {
         lista_Personas = new ArrayList<>();
         if (conex.isEstado()) {
@@ -68,15 +66,40 @@ public class PersonaDAO implements Serializable {
                 result = conex.ejecutarConsulta(sentencia);
                 while (result.next()) {
                     lista_Personas.add(new Persona(result.getInt("id"),
-                                                   result.getString("razon_nombres")));
+                            result.getString("razon_nombres")));
                 }
             } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
                 lista_Personas.add(new Persona(-1, "-"));
             } finally {
                 conex.cerrarConexion();
             }
         }
         return lista_Personas;
+    }
+
+    public Persona obtenerNombreClienteXIdentificacion(String identificacion) {
+        persona = new Persona();
+        if (conex.isEstado()) {
+            try {
+                String sentencia = "Select id,identificacion, razon_nombres "
+                        + "from Mostrar_Todos_los_Clientes() \n"
+                        + "Where estado_r='Activo' and identificacion='" + identificacion + "'";
+                result = conex.ejecutarConsulta(sentencia);
+                while (result.next()) {
+                    persona = new Persona(result.getString("identificacion"), result.getInt("id"),
+                            result.getString("razon_nombres"));
+
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                persona = new Persona("", -1,
+                        "");
+            } finally {
+                conex.cerrarConexion();
+            }
+        }
+        return persona;
     }
 
     public int deshabilitarCliente(int id) {
@@ -86,7 +109,7 @@ public class PersonaDAO implements Serializable {
         }
         return -1;
     }
-    
+
     public int habilitarCliente(int id) {
         String sentencia = "select activar_cliente(" + id + ")";
         if (conex.isEstado()) {
@@ -94,10 +117,9 @@ public class PersonaDAO implements Serializable {
         }
         return -1;
     }
-    
 
     public String identificar_cliente(int idCliente) {
-        String tipo="0";
+        String tipo = "0";
         if (conex.isEstado()) {
             try {
                 String sentencia = "Select Case when id_persona_juridica > 0 then  CAST('J' AS varchar)\n"
@@ -105,8 +127,9 @@ public class PersonaDAO implements Serializable {
                         + "from clientes where idcliente=" + idCliente;
                 result = conex.ejecutarConsulta(sentencia);
                 result.next();
-                tipo=result.getString("tipo");
+                tipo = result.getString("tipo");
             } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
                 return tipo;
             } finally {
                 conex.cerrarConexion();

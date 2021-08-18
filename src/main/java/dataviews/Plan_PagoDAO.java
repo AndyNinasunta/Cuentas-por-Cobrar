@@ -1,3 +1,4 @@
+
 package dataviews;
 
 import models.Plan_Pago;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class Plan_PagoDAO implements Serializable {
 
-    List<Plan_Pago> lista_facturaspendientes;
+    List<Plan_Pago> lista_cobros;
     Conexion conex;
     Plan_Pago plan_pago;
     ResultSet result;
@@ -109,4 +110,47 @@ public class Plan_PagoDAO implements Serializable {
         return valorPendiente;
     }
 
+    //Funcion que devuelve una lista con los cobros de un cliente
+    public List<Plan_Pago> obtenerCobrosCliente(int idCliente){
+        lista_cobros=new ArrayList<>();
+        
+        //verificamos la conexion
+        if (conex.isEstado()) {
+            try {
+                /* Se obtiene una TABLA con todas las facturas que se pagaron a
+                credito, con sus respectivo datos calculados como la 
+                fecha de vencimiento =fecha actual+diascredito */
+                String sentencia = "select*from obtener_cobros_x_cliente("+idCliente+")";
+                result = conex.ejecutarConsulta(sentencia);
+
+                //Recorremos la TABLA retornada y la almacenamos en la lista.
+                while (result.next()) {
+
+                    lista_cobros.add(
+                            new Plan_Pago(result.getObject("fechacredito_i", LocalDate.class),
+                                    result.getInt("diasdecredito_i"),
+                                    result.getObject("fechavencimiento_i", LocalDate.class),
+                                    result.getInt("idventa_i"),
+                                    result.getDouble("valortotalfactura_i"),
+                                    result.getDouble("saldopendiente_i"), 
+                                    result.getDouble("totalabonos_i"), 
+                                    result.getString("descripcionestado_i"),
+                                    result.getInt("diasmora_i")));
+                }
+            } catch (SQLException ex) {
+                /*Enviamos su respectivo mensaje de error a su ves una lista 
+                    con valores incorrectos.*/
+                System.out.println(ex.getMessage());
+                lista_cobros.add(
+                        new Plan_Pago(null,-1,null, -1, -1, -1,-1,"", -1));
+            } finally {
+
+                conex.cerrarConexion();
+
+            }
+        }
+        return lista_cobros;
+    }
+
+    
 }

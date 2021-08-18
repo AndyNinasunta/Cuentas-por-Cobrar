@@ -8,13 +8,14 @@ public class Plan_Pago implements Serializable {
 
     //Declaración de las Variables para los planes de pago
     private int idCliente;
-    private LocalDate fechaFacturacion=LocalDate.now();
+    private LocalDate fechaFacturacion;
     private int diasCredito;
-    private LocalDate fechaVencimiento=LocalDate.now();
+    private LocalDate fechaVencimiento;
     private String nombreDelCliente;
     private int idFactura;
     private double valorTotalFactura;
     private double valorPendiente;
+    private double totalAbonos;
     private LocalDate fechaUltimoPago=LocalDate.now();
     private int idEstadoFactura;
     private String estadoFactura;
@@ -39,6 +40,19 @@ public class Plan_Pago implements Serializable {
         this.valorPendiente = valor_Pendiente;
         this.fechaUltimoPago = fecha_Ultimo_Pago;
         this.estadoFactura = estado_Factura;
+        this.diasMora = diasMora;
+    }
+
+    //Constructor para cargar los cobros 
+    public Plan_Pago(LocalDate fechaFacturacion, int diasCredito, LocalDate fechaVencimiento, int idFactura, double valorTotalFactura, double valorPendiente, double totalAbonos, String estadoFactura, int diasMora) {
+        this.fechaFacturacion = fechaFacturacion;
+        this.diasCredito = diasCredito;
+        this.fechaVencimiento = fechaVencimiento;
+        this.idFactura = idFactura;
+        this.valorTotalFactura = valorTotalFactura;
+        this.valorPendiente = valorPendiente;
+        this.totalAbonos = totalAbonos;
+        this.estadoFactura = estadoFactura;
         this.diasMora = diasMora;
     }
 
@@ -146,7 +160,12 @@ public class Plan_Pago implements Serializable {
     public void setIntereses(double intereses) {
         this.intereses = intereses;
     }
-    
-    
-    
+
+    public double getTotalAbonos() {
+        return totalAbonos;
+    }
+
+    public void setTotalAbonos(double totalAbonos) {
+        this.totalAbonos = totalAbonos;
+    }
 }

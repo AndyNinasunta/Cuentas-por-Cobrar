@@ -23,15 +23,19 @@
                                 <p:outputLabel value="Identificación: " for="txtidentificacion" 
                                                style="font-weight: bold; padding: 10px;"/>
                                 <p:inputText id="txtidentificacion" type="text" 
+                                             value="#{plan_PagoController.identificacion}"
                                              style="width: 150px;"/> 
                                 &nbsp;
                                 <p:commandButton id="btnconsulta" icon="pi pi-search" 
-                                                 styleClass="ui-button-primary" />
+                                                 styleClass="ui-button-primary"
+                                                 update="txtnombrecliente"
+                                                 actionListener="#{plan_PagoController.buscarCliente()}"/>
 
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <p:outputLabel value="Nombre: " for="txtnombrecliente" 
                                                class="outputListaCobros"/>
                                 <p:inputText id="txtnombrecliente" disabled="true" type="text" 
+                                             value="#{plan_PagoController.persona.razonNombre}"
                                              class="inputListaCobros"/> 
                             </div>
                             <br/>
