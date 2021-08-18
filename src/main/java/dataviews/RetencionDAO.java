@@ -98,6 +98,7 @@ public class RetencionDAO implements Serializable {
         if (conex.isEstado()) {
             //Una vez se asegura que la conexion este correcta.
             //Se ejecuta la sentencia ingresada.
+            System.out.println(sentenciaSQL);
             return conex.ejecutarProcedimiento(sentenciaSQL);
         }
         //Caso contrario: Se retorna -1 indicando que la conexión está

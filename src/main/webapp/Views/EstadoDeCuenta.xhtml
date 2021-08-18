@@ -21,36 +21,49 @@
                                      value="#{estado_De_CuentaController.lista_Estado_De_Cuenta}"
                                      style="font-size: 14px;">
 
-                            <p:column class="tamanoInput" style="text-align: center;"
+                            <p:column class="tamanoInput" 
+                                      style="text-align: center;"
                                       headerText="Documento">
                                 <h:outputText value="#{varEstadoDeCuenta.idVenta}" />
 
                             </p:column>
-                            <p:column class="tamanoInput" style="text-align: center;"
+                            <p:column class="tamanoInput" 
+                                      style="text-align: center;"
                                       headerText="Fecha">
                                 <h:outputText value="#{varEstadoDeCuenta.fechacredito}" />
                             </p:column>
-                            <p:column class="tamanoInput" style="text-align: center;"
+                            <p:column class="tamanoInput" 
+                                      style="text-align: center;"
                                       headerText="Cargo">
                                 <h:outputText value="#{varEstadoDeCuenta.totalFactura}" />
                             </p:column>
-                            <p:column class="tamanoInput" style="text-align: center;"
+                            <p:column class="tamanoInput" 
+                                      style="text-align: center;"
                                       headerText="Abono">
                                 <h:outputText value="#{varEstadoDeCuenta.totalAbonos}" />
                             </p:column>
-                            <p:column class="tamanoInput" style="text-align: center;"
+                            <p:column class="tamanoInput" 
+                                      style="text-align: center;"
                                       headerText="Saldo">
                                 <h:outputText value="#{varEstadoDeCuenta.totalPendientes}" />
                             </p:column>
                         </p:dataTable>
                         <div class="alinearBotones">  
-                            <p:commandButton id="btnExcel" 
+                            <p:commandButton id="btnExcel" ajax="false"
                                              value="EXCEL" icon="pi pi-file-excel"
-                                             style="background: green;"/>
+                                             style="background: green;">
+                                <p:dataExporter type="xls" 
+                                                target="tblEstadoDeCuenta" 
+                                                fileName="EstadodeCuentaPDF"/>
+                            </p:commandButton>
                             &nbsp;
-                            <p:commandButton id="btnPdf" 
+                            <p:commandButton id="btnPdf" ajax="false"
                                              value="PDF" icon="pi pi-file-pdf"
-                                             style="background: red;"/>
+                                             style="background: red;">
+                                <p:dataExporter type="pdf" 
+                                                target="tblEstadoDeCuenta" 
+                                                fileName="EstadodeCuentaPDF"/>
+                            </p:commandButton>
                         </div>
                     </h:form>
                 </p:panel>

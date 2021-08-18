@@ -8,6 +8,8 @@ import models.Persona;
 import models.Retencion;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
@@ -82,32 +84,35 @@ public class RetencionController implements Serializable{
     }
     
     public void registrarRetencion() {
-        System.out.println("SI EJECUTA");
         retencionDAO=new RetencionDAO(retencion);
-        
         if(retencionDAO.insertarRetencion(5,3)>0){
-            System.out.println("Se Ingresó Correctamente la retencion.");
+            mostrarMensajeInformacion("Se Registró Correctamente");
+            listaRetenciones = retencionDAO.obtenerRetenciones(3);
         } else {
-            System.out.println("No se Registró");
+            mostrarMensajeError("No se Registró Correctamente");
         }
     }
     
     public void actualizarRetencion(){
-//        retencion.setIdRetencion(this.idRetencion);
-//        System.out.println(retencion.getIdRetencion());
-//        System.out.println(retencion.getBaseImponible());
-//        System.out.println(retencion.getDescImpuesto());
-//        System.out.println(retencion.getPorcenRetencion());
-//        System.out.println(retencion.getFechaEmision());
-//        System.out.println(retencion.getEjerFiscal());
-//        System.out.println(retencion.getIdVenta());
-//        System.out.println(retencion.getValorRetenido());
-        
+        retencionDAO=new RetencionDAO(retencion);
         if(retencionDAO.actualizarRetencion(retencion,5)>0){
-            System.out.println("Se Editó Correctamente");
+            mostrarMensajeInformacion("Se Editó Correctamente");
             //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
+            listaRetenciones = retencionDAO.obtenerRetenciones(3);
         } else {
-            System.out.println("No se Editó");
+            mostrarMensajeError("No se Editó Correctamente");
         }
+    }
+    
+    //Metodos para mostrar mensajes de Información y Error
+    public void mostrarMensajeInformacion(String mensaje) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+                "Exito", mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    public void mostrarMensajeError(String mensaje) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+                "Error", mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 }

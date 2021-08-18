@@ -19,6 +19,7 @@
                         <p:dataTable id="tblListaDeudas" var="varListaDeuda"
                                      value="#{clientes_Con_Sin_DeudaController.lista_Clientes_con_sin_deudas}"
                                      emptyMessage="No existen Registros." 
+                                     paginator="true"
                                      style="font-size: 14px;">
 
                             <p:column class="tamanoInput" style="text-align: center;"
@@ -52,13 +53,21 @@
                             </p:column>
                         </p:dataTable>
                         <div class="alinearBotones">  
-                            <p:commandButton id="btnExcel" 
+                            <p:commandButton id="btnExcel" ajax="false"
                                              value="EXCEL" icon="pi pi-file-excel"
-                                             style="background: green;"/>
+                                             style="background: green;">
+                                <p:dataExporter type="xls" 
+                                                target="tblListaDeudas"
+                                                fileName="ListaClienteConSinDeuda"/>
+                            </p:commandButton>
                             &nbsp;
                             <p:commandButton id="btnPdf" 
                                              value="PDF" icon="pi pi-file-pdf"
-                                             style="background: red;"/>
+                                             style="background: red;">
+                                <p:dataExporter type="pdf" 
+                                                target="tblListaDeudas"
+                                                fileName="ListaClienteConSinDeuda"/>
+                            </p:commandButton>
                         </div>
                     </h:form>
                 </p:panel>

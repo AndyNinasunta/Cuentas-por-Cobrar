@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -15,64 +16,86 @@
                 </div>
 
                 <p:panel>
-                    <h:form>
-                        <div style="height: 140px;">
-                            <div style="float: right;">
-                                <p:outputLabel value="Total Venta: " for="txttotalventa" 
-                                               style="font-weight:bold;"/>
-                                <p:inputText id="txttotalventa" 
-                                             style="width: 100px; text-align: right;" 
-                                             readonly="true" value="#{facturas_PendientesController.totalVentaCartera[0]}"/> $ 
-                            </div>
-                            <br/><br/><br/>
-                            <div style="float: right;">
-                                <p:outputLabel value="Cartera Pendiente: " for="txtcarterapendiente" 
-                                               style="font-weight:bold;"/>
-                                <p:inputText id="txtcarterapendiente" 
-                                             style="width: 100px; text-align: right;" 
-                                             readonly="true" value="#{facturas_PendientesController.totalVentaCartera[1]}"/> $  
-                            </div>
-                        </div>
-                        <p:dataTable id="tblFacturasPendientes"
-                                     var="facPendientes"
-                                     emptyMessage="No existen Registros."
-                                     scrollable="true" paginator="true" 
-                                     rows="5" rowSelectMode="add"
-                                     paginatorPosition="bottom" 
-                                     value="#{facturas_PendientesController.listaFacturas_Pendientes}"
-                                     style="font-size: 14px;">
-                            <p:column headerText="Fecha Facturación">
-                                <h:outputText value="#{facPendientes.fechaFacturacion}" />
+                    <h:form id="frmFacturas">
+                        <div class="card">
+                            <p:dataTable id="tblFacturasPendientes"
+                                         var="facPendientes"
+                                         emptyMessage="No existen Registros."
+                                         scrollable="true" paginator="true" 
+                                         rows="5" rowSelectMode="add"
+                                         paginatorPosition="bottom" 
+                                         value="#{facturas_PendientesController.listaFacturas_Pendientes}"
+                                         style="font-size: 14px;">
+                                <f:facet name="header">
+                                    <div>
+                                        <span style="float: right;">
+                                            <p:outputLabel value="Total Venta: " for="txttotalventa" 
+                                                           style="font-weight:bold;"/>
+                                            <p:inputText id="txttotalventa" 
+                                                         style="width: 100px; text-align: right;" 
+                                                         readonly="true" value="#{facturas_PendientesController.totalVentaCartera[0]}"/> $ 
+                                        </span>
+                                        <br/><br/><br/>
+                                        <span style="float: right;">
+                                            <p:outputLabel value="Cartera Pendiente: " for="txtcarterapendiente" 
+                                                           style="font-weight:bold;"/>
+                                            <p:inputText id="txtcarterapendiente" 
+                                                         style="width: 100px; text-align: right;" 
+                                                         readonly="true" value="#{facturas_PendientesController.totalVentaCartera[1]}"/> $  
+                                        </span>
+                                        <br/><br/><br/>
+                                    </div>
+                                </f:facet>
+                                <p:column headerText="Fecha Facturación">
+                                    <h:outputText value="#{facPendientes.fechaFacturacion}" />
 
-                            </p:column>
-                            <p:column headerText="Días de Crédito ">
-                                <h:outputText value="#{facPendientes.diasCredito}" />
-                            </p:column>
-                            <p:column headerText="Fecha Vencimiento">
-                                <h:outputText value="#{facPendientes.fechaVencimiento}" />
-                            </p:column>
-                            <p:column headerText="Nombre de Cliente">
-                                <h:outputText value="#{facPendientes.nombreDelCliente}" />
-                            </p:column>
-                            <p:column headerText="Nº Factura">
-                                <h:outputText value="#{facPendientes.idFactura}" />
-                            </p:column>
-                            <p:column headerText="Valor de Factura">
-                                <h:outputText value="#{facPendientes.valorTotalFactura}" />
-                            </p:column>
-                            <p:column headerText="Valor Pendiente">
-                                <h:outputText value="#{facPendientes.valorPendiente}" />
-                            </p:column>
-                            <p:column headerText="Fecha de Pago">
-                                <h:outputText value="#{facPendientes.fechaUltimoPago}" />
-                            </p:column>
-                            <p:column headerText="Estado de Factura">
-                                <h:outputText value="#{facPendientes.estadoFactura}" />
-                            </p:column>
-                            <p:column headerText="Días Mora/Próximo">
-                                <h:outputText value="#{facPendientes.diasMora}" />
-                            </p:column>
-                        </p:dataTable>
+                                </p:column>
+                                <p:column headerText="Días de Crédito ">
+                                    <h:outputText value="#{facPendientes.diasCredito}" />
+                                </p:column>
+                                <p:column headerText="Fecha Vencimiento">
+                                    <h:outputText value="#{facPendientes.fechaVencimiento}" />
+                                </p:column>
+                                <p:column headerText="Nombre de Cliente">
+                                    <h:outputText value="#{facPendientes.nombreDelCliente}" />
+                                </p:column>
+                                <p:column headerText="Nº Factura">
+                                    <h:outputText value="#{facPendientes.idFactura}" />
+                                </p:column>
+                                <p:column headerText="Valor de Factura">
+                                    <h:outputText value="#{facPendientes.valorTotalFactura}" />
+                                </p:column>
+                                <p:column headerText="Valor Pendiente">
+                                    <h:outputText value="#{facPendientes.valorPendiente}" />
+                                </p:column>
+                                <p:column headerText="Fecha de Pago">
+                                    <h:outputText value="#{facPendientes.fechaUltimoPago}" />
+                                </p:column>
+                                <p:column headerText="Estado de Factura">
+                                    <h:outputText value="#{facPendientes.estadoFactura}" />
+                                </p:column>
+                                <p:column headerText="Días Mora/Próximo">
+                                    <h:outputText value="#{facPendientes.diasMora}" />
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                        <div class="alinearBotones">  
+                            <p:commandButton id="btnExcel" 
+                                             value="EXCEL" icon="pi pi-file-excel"
+                                             style="background: green;">
+                                <p:dataExporter type="xls" 
+                                                target="tblFacturasPendientes"
+                                                fileName="FacturaPendiente"/>
+                            </p:commandButton>
+                            &nbsp;
+                            <p:commandButton id="btnPdf" 
+                                             value="PDF" icon="pi pi-file-pdf"
+                                             style="background: red;">
+                                <p:dataExporter type="pdf" 
+                                                target="tblFacturasPendientes"
+                                                fileName="FacturaPendiente"/>
+                            </p:commandButton>
+                        </div>
                     </h:form>
                 </p:panel>
             </ui:define>

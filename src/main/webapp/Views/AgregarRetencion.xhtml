@@ -16,6 +16,7 @@
                     <h2>AGREGAR RETENCIONES</h2>
                 </div>
                 <p:panel>
+                    <p:growl id="growl" widgetVar="growl" showDetail="true" life="1500"/> 
                     <h:form id="frmprincipal">
                         <div class="ui-grid-row" style="height: 135px;">
                             <div>
@@ -64,31 +65,33 @@
                                 </div>
                             </div>
                         </div>
-                    </h:form>
 
-                    <div style="text-align: center;">
-                        <p:toolbarGroup>
-                            <div>
-                                <h:form>
-                                    <p:commandButton icon="pi pi-replay " value="Cargar Retención" 
-                                                     styleClass=" ui-button-secondary" 
-                                                     update="formtblRetenciones"
-                                                     style="margin:.3rem;"/>
-                                    <p:commandButton icon="pi pi-plus " 
-                                                     value="Añadir Nueva Retención" 
-                                                     oncomplete="PF('RetencionNew').show()"
-                                                     styleClass=" ui-button-success" 
-                                                     style="margin:.3rem;"/>
-                                </h:form>
-                            </div>
-                        </p:toolbarGroup>
-                    </div>
-                    <br/>
-                    <h:form id="formtblRetenciones">
+
+                        <div style="text-align: center;">
+                            <p:toolbarGroup>
+                                <div>
+                                    <h:form>
+                                        <p:commandButton icon="pi pi-replay " value="Cargar Retención" 
+                                                         styleClass=" ui-button-secondary" 
+                                                         update=":growl"
+                                                         style="margin:.3rem;"/>
+                                        <p:commandButton icon="pi pi-plus " 
+                                                         value="Añadir Nueva Retención" 
+                                                         oncomplete="PF('RetencionNew').show()"
+                                                         styleClass=" ui-button-success" 
+                                                         style="margin:.3rem;"/>
+                                    </h:form>
+                                </div>
+                            </p:toolbarGroup>
+                        </div>
+                        <br/>
+
                         <p:dataTable id="tblRetenciones" var="varRetenciones" 
                                      value="#{retencionController.listaRetenciones}"
                                      rowKey="#{varRetenciones.idRetencion}"
-                                     editable="true" style="font-size: 14px;">
+                                     style="font-size: 14px;"
+                                     paginator="true" rows="5" rowSelectMode="add"
+                                     paginatorPosition="bottom" > 
                             <p:column headerText="Ejercicio Fiscal" 
                                       style="text-align: center;">
                                 <h:outputText value="#{varRetenciones.ejerFiscal}" />
@@ -129,10 +132,10 @@
 
                     <!-- Ventana Agregar datos de la retencion!-->
                     <p:dialog header="Nueva Retención" minHeight="50" 
-                              height="auto" width="680px" showEffect="fade"
+                              height="auto" width="700px" showEffect="fade"
                               modal="true" widgetVar="RetencionNew"
-                              id="dialogAddRetencion">
-                        <h:form id="formAddRetencion">
+                              id="dialogAddRetencion" responsive="true">
+                        <h:form>
                             <p:panelGrid columns="4" layout="grid">
                                 <p:outputLabel for="baseImponibleAdd" 
                                                style="font-weight: bold;"
@@ -148,11 +151,14 @@
                                                style="font-weight: bold;"
                                                value="Descripción Impuesto:">
                                 </p:outputLabel>
-                                <p:inputText id="descrImpuestoAdd"
-                                             type="text" 
-                                             style="width: 100px;"
-                                             required="true"
-                                             value="#{retencionController.retencion.descImpuesto}"/> 
+                                <p:selectOneMenu id="descrImpuestoAdd" 
+                                                 value="#{retencionController.retencion.descImpuesto}" 
+                                                 class="tamanoInputClienteNJ"
+                                                 required="true">                            
+                                    <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                    <f:selectItem itemLabel="RENTA" itemValue="RENTA"/>
+                                    <f:selectItem itemLabel="IVA" itemValue="IVA"/>
+                                </p:selectOneMenu>
 
                                 <p:outputLabel for="porcRetenidoAdd" 
                                                style="font-weight: bold;"
@@ -175,8 +181,9 @@
                                                  styleClass=" ui-button-danger"/> 
                                 &nbsp; 
                                 <p:commandButton actionListener="#{retencionController.registrarRetencion()}"
-                                                 oncomplete="PF('RetencionNew').hide()"
                                                  icon="pi pi-save" value="Guardar"
+                                                 ajax="false"
+                                                 update=":growl"
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
@@ -203,11 +210,14 @@
                                                style="font-weight: bold;"
                                                value="Descripción Impuesto:">
                                 </p:outputLabel>
-                                <p:inputText id="descrImpuestoEdit"
-                                             type="text" 
-                                             style="width: 100px;"
-                                             required="true"
-                                             value="#{retencionController.retencion.descImpuesto}"/> 
+                                <p:selectOneMenu id="descrImpuestoEdit" 
+                                                 value="#{retencionController.retencion.descImpuesto}" 
+                                                 class="tamanoInputClienteNJ"
+                                                 required="true">                            
+                                    <f:selectItem itemLabel="Seleccione..." itemValue=""/>
+                                    <f:selectItem itemLabel="RENTA" itemValue="RENTA"/>
+                                    <f:selectItem itemLabel="IVA" itemValue="IVA"/>
+                                </p:selectOneMenu>
 
                                 <p:outputLabel for="porcRetenidoEdit" 
                                                style="font-weight: bold;"
@@ -230,15 +240,14 @@
                                                  styleClass=" ui-button-danger"/> 
                                 &nbsp;
                                 <p:commandButton actionListener="#{retencionController.actualizarRetencion()}"
-                                                 icon="pi pi-save" 
+                                                 icon="pi pi-save" ajax="true"
                                                  value="Guardar Cambios"
-                                                 update=":formtblRetenciones:tblRetenciones"
-                                                 oncomplete="PF('RetencionEdit').hide()"
+                                                 update=":growl"
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
                     </p:dialog>
-                    
+
                     <!-- DIALOG  Inactivar Retencion-->
                     <p:dialog modal="true" height="400" 
                               width="400" widgetVar="inactivaRetencion"
@@ -254,6 +263,7 @@
                                 <p:commandButton value="Aceptar" 
                                                  styleClass="ui-confirmdialog-yes"/>
                             </p:confirmDialog>
+
                         </h:form>
                     </p:dialog>
                 </p:panel>

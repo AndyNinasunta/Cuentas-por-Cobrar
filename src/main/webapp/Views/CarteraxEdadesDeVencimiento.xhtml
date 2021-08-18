@@ -16,35 +16,25 @@
                 </div>
                 <p:panel>
                     <h:form id="formCarteraVencida">
-                        <p:panelGrid columns="3" >
-                            <p:outputLabel value="Cliente: "
-                                           style="font-weight:bold;"/>
-                            
-                            <p:selectOneMenu id="optionClientes" 
-                                             style="width: 300px; 
-                                             height: 40px;"> 
-                                <f:selectItem itemLabel="Todos los Clientes..." 
-                                              itemValue="-1"/>
-                                <f:selectItems value="#{cartera_X_EdadesController.listaCliente}"
-                                                       />
-                            </p:selectOneMenu>
-                            
-                            
-                            
-                            <p:commandButton style="height: 40px;" 
-                                             icon="pi pi-search" 
-                                             value="Buscar"/>
-                        </p:panelGrid>
-                        <br/><br/>
                         <p:dataTable id="tblCarteraVencimiento" 
                                      var="varCarteraVencimiento"
+                                     widgetVar="carteraVencimiento"
+                                     value="#{cartera_X_EdadesController.lista_Cartera_X_Edades}"
+                                     reflow="true"
+                                     rowKey="#{varCarteraVencimiento.idCliente}"
                                      scrollable="true" paginator="true" 
                                      rows="5" rowSelectMode="add"
                                      paginatorPosition="bottom"  
                                      emptyMessage="No existen Registros."  
-                                     value="#{cartera_X_EdadesController.lista_Cartera_X_Edades}"
                                      style="font-size: 14px;">
-                            
+                            <f:facet name="header">
+                                <span class="filter-container ui-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" 
+                                                 onkeyup="PF('carteraVencimiento').filter()" 
+                                                 placeholder="Search"/>
+                                </span>
+                            </f:facet>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Fecha Emisión">
                                 <h:outputText value="#{varCarteraVencimiento.fechaEmision}" />
@@ -127,11 +117,19 @@
                         <div class="alinearBotones">  
                             <p:commandButton id="btnExcel" 
                                              value="EXCEL" icon="pi pi-file-excel"
-                                             style="background: green;"/>
+                                             style="background: green;">
+                                <p:dataExporter type="xls" 
+                                                target="tblCarteraVencimientoTotal"
+                                                fileName="CarteraDeVencimiento"/>
+                            </p:commandButton>
                             &nbsp;
                             <p:commandButton id="btnPdf" 
                                              value="PDF" icon="pi pi-file-pdf"
-                                             style="background: red;"/>
+                                             style="background: red;">
+                                <p:dataExporter type="pdf" 
+                                                target="tblCarteraVencimientoTotal"
+                                                fileName="CarteraDeVencimiento"/>
+                            </p:commandButton>
                         </div>
                     </h:form>
                 </p:panel>

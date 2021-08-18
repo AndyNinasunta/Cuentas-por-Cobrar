@@ -1,6 +1,8 @@
 package models;
 
 import java.io.Serializable;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 public class Persona implements Serializable {
 
@@ -11,6 +13,8 @@ public class Persona implements Serializable {
     private boolean estado;
     private String tlf1;
     private String tlf2;
+    
+    @Email
     private String correo;
     //Declaracion de las variables para mostrar clientes
     private int idCliente;

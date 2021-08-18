@@ -15,6 +15,7 @@
                     <h2>MANTENIMIENTO A CLIENTES</h2>
                 </div>
                 <p:panel>
+                    <p:growl id="growl" widgetVar="growl" showDetail="true" life="2000"/> 
                     <!-- Botones para agregar cliente natural y juridico  !-->
                     <div style="text-align: center;">
                         <p:toolbarGroup>
@@ -103,25 +104,24 @@
 
                             <p:column class="tamanoColumnActions" style="text-align: center;" 
                                       headerText="Acciones">
-                                <p:commandButton 
-                                                 actionListener="#{personaController.cargarClientes(varClientes)}" 
+                                <p:commandButton actionListener="#{personaController.cargarClientes(varClientes)}" 
                                                  class="tamanoButtonActions"
                                                  icon="pi pi-pencil"
                                                  update=":dialogEditarClienteJ dialogEditarClienteN"/> 
-                                <p:commandButton action="#{personaController.inactivarCliente(varClientes.idCliente)}" 
+                                <p:commandButton actionListener="#{personaController.inactivarCliente(varClientes.idCliente)}" 
                                                  class="tamanoButtonActions" 
                                                  styleClass="ui-button-danger" 
                                                  icon="pi pi-times-circle"
-                                                 update="tblClientes">
+                                                 update=":growl tblClientes">
                                     <p:confirm header="Advertencia" 
                                                message="¿Seguro que desea inactivar este cliente?" 
                                                icon="pi pi-info-circle"/>
                                 </p:commandButton>
-                                <p:commandButton action="#{personaController.activarCliente(varClientes.idCliente)}"
+                                <p:commandButton actionListener="#{personaController.activarCliente(varClientes.idCliente)}"
                                                  class="tamanoButtonActions" 
                                                  styleClass="ui-button-success" 
                                                  icon="pi pi-check-circle"
-                                                 update="tblClientes">
+                                                 update=":growl tblClientes">
                                     <p:confirm header="Advertencia" 
                                                message="¿Seguro que desea activar este cliente?" 
                                                icon="pi pi-info-circle"/>
@@ -307,6 +307,8 @@
                                 &nbsp; 
                                 <p:commandButton value="Guardar"
                                                  icon="pi pi-save"
+                                                 ajax="false"
+                                                 update=":growl"
                                                  oncomplete="PF('clienteNaturalNew').hide()"
                                                  actionListener="#{personaController.registrarClienteNatural()}"
                                                  styleClass=" ui-button-success"/>
@@ -425,6 +427,7 @@
                                 &nbsp;
                                 <p:commandButton value="Guardar" ajax="false"
                                                  icon="pi pi-save"
+                                                 update=":growl"
                                                  oncomplete="PF('clienteJuridicoNew').hide()"
                                                  action="#{personaController.registrarClienteJuridico()}"
                                                  styleClass=" ui-button-success"/>
@@ -608,6 +611,8 @@
                                 &nbsp;
                                 <p:commandButton value="Guardar Cambios" 
                                                  icon="pi pi-save"
+                                                 ajax="false"
+                                                 update=":growl"
                                                  oncomplete="PF('ClienteNaturalEdit').hide()"
                                                  actionListener="#{personaController.actualizarClienteNatural()}"
                                                  styleClass=" ui-button-success"/>
@@ -726,7 +731,8 @@
                                                  styleClass=" ui-button-danger"/>
                                 &nbsp;
                                 <p:commandButton value="Guardar Cambios"
-                                                 ajax="False"
+                                                 ajax="false"
+                                                 update=":growl"
                                                  icon="pi pi-save"
                                                  oncomplete="PF('ClienteJuridicoEdit').hide()"
                                                  actionListener="#{personaController.actualizarClienteJuridico()}"

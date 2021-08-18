@@ -51,13 +51,13 @@ public class Cartera_X_EdadesController implements Serializable{
     
     public List<SelectItem> getListaCliente() {
         listaCliente = new ArrayList<>();
-        PersonaDAO personaDAO = new PersonaDAO();
+        personaDAO = new PersonaDAO();
         List<Persona> p = personaDAO.obtenerNombresClientes();
         listaCliente.clear();
-        for (Persona nombres : p) {
-            SelectItem nombresItem = new SelectItem(nombres.getIdCliente(),nombres.getRazonNombre());
-            this.listaCliente.add(nombresItem); 
-        }
+//        for (Persona nombres : p) {
+//            SelectItem nombresItem = new SelectItem(nombres.getIdCliente(),nombres.getRazonNombre());
+//            this.listaCliente.add(nombresItem); 
+//        }
         return listaCliente;
     }
     
