@@ -149,36 +149,36 @@ public class AbonoController implements Serializable {
 
     //Fin
     public void cargarFacturas() {
-        try{
-        personaDAO = new PersonaDAO();
-        persona = new Persona();
-        //Cargamos el nombre del cliente en el input
-        persona = personaDAO.obtenerNombreClienteXIdentificacion(identificacion);
+        try {
+            personaDAO = new PersonaDAO();
+            persona = new Persona();
+            //Cargamos el nombre del cliente en el input
+            persona = personaDAO.obtenerNombreClienteXIdentificacion(identificacion);
 
-        //Este if nos permite verificar si existe o no un cliente.
-        if (persona.getIdCliente() == 0) {
-            mostrarMensajeInformacion("El Cliente No Existe o esta Inactivo");
+            //Este if nos permite verificar si existe o no un cliente.
+            if (persona.getIdCliente() == 0) {
+                mostrarMensajeInformacion("El Cliente No Existe o esta Inactivo");
 
-        } else {
-            // En caso de que exista cargamos sus ventas
-            listaVenta = new ArrayList<>();
-            this.retencionDAO = new RetencionDAO();
-            idCliente = persona.getIdCliente();
-            //Cargamos las ventas en el select one
-            List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
-            for (Retencion lret : r) {
-                SelectItem ventasItem = new SelectItem(lret.getIdVenta());
-                this.listaVenta.add(ventasItem);
-                System.out.println(lret.getIdVenta());
-            }
-            //Este if valida si el cliente tiene o no cobros.
-            if (listaVenta.isEmpty()) {
-                mostrarMensajeInformacion("Ese cliente no tiene facturas");
             } else {
-                mostrarMensajeInformacion("Se Cargaron las Facturas de " + persona.getRazonNombre());
+                // En caso de que exista cargamos sus ventas
+                listaVenta = new ArrayList<>();
+                this.retencionDAO = new RetencionDAO();
+                idCliente = persona.getIdCliente();
+                //Cargamos las ventas en el select one
+                List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
+                for (Retencion lret : r) {
+                    SelectItem ventasItem = new SelectItem(lret.getIdVenta());
+                    this.listaVenta.add(ventasItem);
+                    System.out.println(lret.getIdVenta());
+                }
+                //Este if valida si el cliente tiene o no cobros.
+                if (listaVenta.isEmpty()) {
+                    mostrarMensajeInformacion("Ese cliente no tiene facturas");
+                } else {
+                    mostrarMensajeInformacion("Se Cargaron las Facturas de " + persona.getRazonNombre());
 
+                }
             }
-        }
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }

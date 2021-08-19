@@ -85,14 +85,13 @@
                                         <p:inputText id="fechaVencida" 
                                                      disabled="true" 
                                                      type="text"
-                                                     value="#{abonoController.fechasPlan[1]}"
-                                                     /> 
+                                                     value="#{abonoController.fechasPlan[1]}"/> 
                                     </div>
                                     <div style="float: left; padding-top: 40px; padding-left: 35px;">
                                         <p:commandButton value="Cargar Deuda"
                                                          icon="pi pi-replay" 
                                                          actionListener="#{abonoController.cargarDeuda()}"
-                                                         update="growl tblRegistroCobro"
+                                                         update="growl fechaVencida fechaEmision tblRegistroCobro"
                                                          styleClass="ui-button-secondary"/>
                                     </div>
                                 </div>
