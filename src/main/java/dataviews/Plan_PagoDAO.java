@@ -79,37 +79,6 @@ public class Plan_PagoDAO implements Serializable {
         return -1;
     }
 
-    /*Funcion para devolver el valor pendiente de cobro de un determinado plan*/
-    public double obtenerValorPendiente() {
-        double valorPendiente = 0;
-
-        try {
-            /*El valor pendiente de un plan se lo obtiene sumando todos los 
-            los montos de los abonos menos el total de la factura.
-             */
-            String sentencia = "Select * from "
-                    + "Obtener_Valor_Pendiente_de_un_plan"
-                    + "(" + plan_pago.getIdFactura() + ")";
-            result = conex.ejecutarConsulta(sentencia);
-
-            result.next();
-
-            //Almacenamos el valor obtenido en la variable
-            valorPendiente = result.getDouble(1);
-
-        } catch (SQLException ex) {
-            //Si hay algun error o el valor es nulo, se retorna -1.
-            return -1;
-
-        } finally {
-
-            conex.cerrarConexion();
-
-        }
-
-        return valorPendiente;
-    }
-
     //Funcion que devuelve una lista con los cobros de un cliente
     public List<Plan_Pago> obtenerCobrosCliente(int idCliente){
         lista_cobros=new ArrayList<>();

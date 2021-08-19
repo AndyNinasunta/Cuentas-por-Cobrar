@@ -22,13 +22,13 @@ public class RetencionController implements Serializable {
     int idRetencion = 0;
     int idFactura = 0;
     int idCliente = 0;
-    
+
     //Declaramos las clases para tener acceso a los metodos y los atributos.
     Retencion retencion;
     RetencionDAO retencionDAO;
     Persona persona;
     PersonaDAO personaDAO;
-    
+
     //Declaramos dos lista que tendra las retenciones y las ventas.
     List<Retencion> listaRetenciones;
     List<SelectItem> listaVenta;
@@ -76,7 +76,7 @@ public class RetencionController implements Serializable {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-    
+
     public void setListaRetenciones(List<Retencion> listaRetenciones) {
         this.listaRetenciones = listaRetenciones;
     }
@@ -86,58 +86,63 @@ public class RetencionController implements Serializable {
     }
 
     //Fin
-    
     //Metodo que nos carga las facturas de un determinado cliente.
     public void cargarFacturas() {
+        try {
+            personaDAO = new PersonaDAO();
+            persona = new Persona();
+            //Cargamos el nombre del cliente en el input
+            persona = personaDAO.obtenerNombreClienteXIdentificacion(identificacion);
 
-        personaDAO = new PersonaDAO();
-        persona = new Persona();
-        //Cargamos el nombre del cliente en el input
-        persona = personaDAO.obtenerNombreClienteXIdentificacion(identificacion);
+            //Este if nos permite verificar si existe o no un cliente.
+            if (persona.getIdCliente() == 0) {
 
-        //Este if nos permite verificar si existe o no un cliente.
-        if (persona.getIdCliente() == 0) {
+                mostrarMensajeInformacion("El Cliente No Existe o esta Inactivo");
 
-            System.out.println("El Cliente NO EXISTE O ESTA INACTIVO ");
-            mostrarMensajeInformacion("El Cliente No Existe o esta Inactivo");
-
-        } else {
-            // En caso de que exista cargamos sus ventas
-            listaVenta = new ArrayList<>();
-            this.retencionDAO = new RetencionDAO();
-            idCliente=persona.getIdCliente();
-            //Cargamos las ventas en el select one
-            List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
-            for (Retencion lret : r) {
-                SelectItem ventasItem = new SelectItem(lret.getIdVenta());
-                this.listaVenta.add(ventasItem);
-                System.out.println(lret.getIdVenta());
-            }
-            //Este if valida si el cliente tiene o no cobros.
-            if (listaVenta.isEmpty()) {
-                mostrarMensajeInformacion("Ese cliente no tiene facturas");
             } else {
-                mostrarMensajeInformacion("Se Cargaron las Facturas de " + persona.getRazonNombre());
+                // En caso de que exista cargamos sus ventas
+                listaVenta = new ArrayList<>();
+                this.retencionDAO = new RetencionDAO();
+                idCliente = persona.getIdCliente();
+                //Cargamos las ventas en el select one
+                List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
+                for (Retencion lret : r) {
+                    SelectItem ventasItem = new SelectItem(lret.getIdVenta());
+                    this.listaVenta.add(ventasItem);
+                    System.out.println(lret.getIdVenta());
+                }
+                //Este if valida si el cliente tiene o no cobros.
+                if (listaVenta.isEmpty()) {
+                    mostrarMensajeInformacion("Ese cliente no tiene facturas");
+                } else {
+                    mostrarMensajeInformacion("Se Cargaron las Facturas de " + persona.getRazonNombre());
 
+                }
             }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
-    
+
     //Metodo que carga los datos que seran editables en el dialog
-    public void CargarDatos(Retencion ret){
+    public void CargarDatos(Retencion ret) {
         this.retencion = ret;
     }
 
     //Metodo que se encarga de cargar las retenciones de una determinada factura
     public void cargarRetenciones() {
-        retencionDAO = new RetencionDAO();
-        listaRetenciones = new ArrayList<>();
-        System.out.println(this.idFactura);
-        listaRetenciones = retencionDAO.obtenerRetenciones(this.idFactura);
-        if (this.idFactura > 0 && !listaRetenciones.isEmpty()) {
-            mostrarMensajeInformacion("Se Cargaron las Retenciones");
-        } else {
-            mostrarMensajeError("No existen Retenciones");
+        try {
+            retencionDAO = new RetencionDAO();
+            listaRetenciones = new ArrayList<>();
+            System.out.println(this.idFactura);
+            listaRetenciones = retencionDAO.obtenerRetenciones(this.idFactura);
+            if (this.idFactura > 0 && !listaRetenciones.isEmpty()) {
+                mostrarMensajeInformacion("Se Cargaron las Retenciones");
+            } else {
+                mostrarMensajeError("No existen Retenciones");
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
@@ -145,7 +150,7 @@ public class RetencionController implements Serializable {
     //factura.
     public void registrarRetencion() {
         retencionDAO = new RetencionDAO(retencion);
-         System.out.println(idCliente+" : "+idFactura); 
+
         if (retencionDAO.insertarRetencion(this.idCliente, this.idFactura) > 0) {
             mostrarMensajeInformacion("Se Registró Correctamente");
             listaRetenciones = retencionDAO.obtenerRetenciones(this.idFactura);
@@ -155,20 +160,28 @@ public class RetencionController implements Serializable {
     }
 
     //Metodo que me carga el dialog para agregar una retencion
-    public void cargarIngresarRetencion(){
-        PrimeFaces current = PrimeFaces.current();
-        current.executeScript("PF('RetencionNew').show();");
+    public void cargarIngresarRetencion() {
+        try {
+            PrimeFaces current = PrimeFaces.current();
+            current.executeScript("PF('RetencionNew').show();");
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
     }
-    
+
     //Metodo que actualiza/modifica una retencion
     public void actualizarRetencion() {
-        retencionDAO = new RetencionDAO(retencion);
-        if (retencionDAO.actualizarRetencion(retencion, this.idCliente) > 0) {
-            mostrarMensajeInformacion("Se Editó Correctamente");
-            //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
-            listaRetenciones = retencionDAO.obtenerRetenciones(3);
-        } else {
-            mostrarMensajeError("No se Editó Correctamente");
+        try {
+            retencionDAO = new RetencionDAO(retencion);
+            if (retencionDAO.actualizarRetencion(retencion, this.idCliente) > 0) {
+                mostrarMensajeInformacion("Se Editó Correctamente");
+                //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
+                listaRetenciones = retencionDAO.obtenerRetenciones(3);
+            } else {
+                mostrarMensajeError("No se Editó Correctamente");
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 

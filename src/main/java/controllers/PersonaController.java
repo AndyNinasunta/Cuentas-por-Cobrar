@@ -19,7 +19,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.PrimeFaces;
-import org.primefaces.event.RowEditEvent;
 
 @Named(value = "personaController")
 @ViewScoped
@@ -52,20 +51,6 @@ public class PersonaController implements Serializable {
         listaCliente = new ArrayList<>();
         listaCliente = personaDAO.obtenerTodosLosClientes();
 
-//        persona_Juridica.setRazon_Social("TIA 2");
-//        persona_Juridica.setId_tipoCliente(1);
-//        persona_Juridica.setIdentificacion("3242342");
-//        persona_Juridica.setDireccion("mas alla");
-//        persona_Juridica.setId_Tipo_Idenficacion(2);
-//        persona_Juridica.setCorreo("HOLA@GMAIL.COM");
-//        persona_Juridica.setTlf1("0938472");
-//        persona_Juridica.setTlf2("0938472");
-//        
-//        
-//        registrarClienteJuridico();
-        //actualizar_Cliente_Juridico();
-        //obtener_Un_Cliente_Natural();
-//          editarCliente();
     }
 
     public void mostrar() {
@@ -105,63 +90,79 @@ public class PersonaController implements Serializable {
     }
 
     public void cargarClientes(Persona per) {
-        PrimeFaces current = PrimeFaces.current();
-        this.persona = per;
-        idCliente = per.getIdCliente();
-        if (personaDAO.identificar_cliente(idCliente).equals("N")) {
-            
-            System.out.println("Entra al if Natural");
-            //CARGAR EN EL OBJETO PERSONA NATURAL LOS DATOS.
-            obtenerUnClienteNatural(idCliente);
-            current.executeScript("PF('ClienteNaturalEdit').show();");
+        try {
+            PrimeFaces current = PrimeFaces.current();
+            this.persona = per;
+            idCliente = per.getIdCliente();
+            if (personaDAO.identificar_cliente(idCliente).equals("N")) {
 
-        } else{
-            
-            System.out.println("Entra al if Juridico");
-            //CARGAR EN EL OBJETO PERSONA JURIDICA LOS DATOS.
-            obtenerUnClienteJuridico(idCliente);
-            current.executeScript("PF('ClienteJuridicoEdit').show();");
-            
+                System.out.println("Entra al if Natural");
+                //CARGAR EN EL OBJETO PERSONA NATURAL LOS DATOS.
+                obtenerUnClienteNatural(idCliente);
+                current.executeScript("PF('ClienteNaturalEdit').show();");
+
+            } else {
+
+                System.out.println("Entra al if Juridico");
+                //CARGAR EN EL OBJETO PERSONA JURIDICA LOS DATOS.
+                obtenerUnClienteJuridico(idCliente);
+                current.executeScript("PF('ClienteJuridicoEdit').show();");
+
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
     //Método que retorna los clientes Juridicos
     public void inactivarCliente(int id) {
-        System.out.println(id);
-        if (personaDAO.deshabilitarCliente(id) > 0) {
-            System.out.print("Cliente inactivo");
-            listaCliente = personaDAO.obtenerTodosLosClientes();
-            mostrarMensajeInformacion("Cliente Inactivado Correctamente");
-        } else {
-            System.out.print("Error al inactivar cliente");
-            mostrarMensajeError("No se pudo Inactivar al Cliente");
+        try {
+            System.out.println(id);
+            if (personaDAO.deshabilitarCliente(id) > 0) {
+                System.out.print("Cliente inactivo");
+                listaCliente = personaDAO.obtenerTodosLosClientes();
+                mostrarMensajeInformacion("Cliente Inactivado Correctamente");
+            } else {
+                System.out.print("Error al inactivar cliente");
+                mostrarMensajeError("No se pudo Inactivar al Cliente");
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
     public void activarCliente(int id) {
-        System.out.println(id);
-        if (personaDAO.habilitarCliente(id) > 0) {
-            System.out.print("Cliente Activado");
-            mostrarMensajeInformacion("Cliente Activado Correctamente");
-            this.listaCliente = personaDAO.obtenerTodosLosClientes();
-        } else {
-            System.out.print("Error al activar cliente");
-            mostrarMensajeError("No se pudo Activar al Cliente");
+        try {
+            if (personaDAO.habilitarCliente(id) > 0) {
+                System.out.print("Cliente Activado");
+                mostrarMensajeInformacion("Cliente Activado Correctamente");
+                this.listaCliente = personaDAO.obtenerTodosLosClientes();
+            } else {
+                System.out.print("Error al activar cliente");
+                mostrarMensajeError("No se pudo Activar al Cliente");
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
     public void registrarClienteJuridico() {
-        persona_JuridicaDAO = new Persona_JuridicaDAO(persona_Juridica);
-        if (persona_JuridicaDAO.insertarClienteJuridico() > 0) {
-            mostrarMensajeInformacion("Se Registró Correctamente");
-            this.listaCliente = personaDAO.obtenerTodosLosClientes();
-        } else {
-            System.out.println("No se Ingresó el Cliente Juridico.");
-            mostrarMensajeError("No se Registró Correctamente");
+        try {
+            persona_JuridicaDAO = new Persona_JuridicaDAO(persona_Juridica);
+            if (persona_JuridicaDAO.insertarClienteJuridico() > 0) {
+                mostrarMensajeInformacion("Se Registró Correctamente");
+                this.listaCliente = personaDAO.obtenerTodosLosClientes();
+            } else {
+                System.out.println("No se Ingresó el Cliente Juridico.");
+                mostrarMensajeError("No se Registró Correctamente");
+            }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
     public void registrarClienteNatural() {
+        try{
         persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
         if (persona_NaturalDAO.insertarClienteNatural() > 0) {
             mostrarMensajeInformacion("Se Registró Correctamente");
@@ -169,6 +170,9 @@ public class PersonaController implements Serializable {
         } else {
             System.out.println("No se Ingresó el Cliente Natural.");
             mostrarMensajeError("No se Registró Correctamente");
+        }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
@@ -195,8 +199,8 @@ public class PersonaController implements Serializable {
         persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
 
         //Se obtiene ese cliente por el id
-        Persona_Natural per_Natural = persona_NaturalDAO.obtenerClienteNatural(idClienteN);   
-        
+        Persona_Natural per_Natural = persona_NaturalDAO.obtenerClienteNatural(idClienteN);
+
         //Se remplazan los objetos
         persona_Natural = per_Natural;
 
@@ -208,8 +212,9 @@ public class PersonaController implements Serializable {
         persona_NaturalDAO = new Persona_NaturalDAO(persona_Natural);
 
     }
-    
+
     public void actualizarClienteJuridico() {
+        try{
         if (persona_JuridicaDAO.actualizarClienteJuridico() > 0) {
             System.out.println("Se Editó Correctamente");
             mostrarMensajeInformacion("Se Editó Correctamente");
@@ -218,9 +223,13 @@ public class PersonaController implements Serializable {
             System.out.println("No se Editó");
             mostrarMensajeError("No se Editó Correctamente");
         }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
     }
 
     public void actualizarClienteNatural() {
+        try{
         if (persona_NaturalDAO.actualizarClienteNatural() > 0) {
             System.out.println("Se Editó Correctamente");
             mostrarMensajeInformacion("Se Editó Correctamente");
@@ -229,17 +238,21 @@ public class PersonaController implements Serializable {
             System.out.println("No se Editó");
             mostrarMensajeError("No se Editó Correctamente");
         }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
 
     }
 
     //Metodos para mostrar mensajes de Información y Error
     public void mostrarMensajeInformacion(String mensaje) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Exito", mensaje);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+
     public void mostrarMensajeError(String mensaje) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                 "Error", mensaje);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }

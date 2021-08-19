@@ -7,11 +7,13 @@ import java.time.LocalDate;
 public class Abono implements Serializable{
     //Declaracion de las variables que necesita un abono.
     private int idAbono;
+    private int idVenta;
+    private double valorAbonado;
     private int idPlanDePago;
+    private LocalDate fechaAbono=LocalDate.now();
     private int idFormaDePago;
     private String descrFormaPago;
-    private double valorAbonado;
-    private LocalDate fechaAbono=LocalDate.now();
+   
     
     //Constructor vacio
 
@@ -19,21 +21,28 @@ public class Abono implements Serializable{
     }
     
     //Constructor con todas las variables del modelo.
-    public Abono(int idAbono, int idPlanDePago, int idFormaDePago, String descrFormaPago, double valorAbonado) {
+
+    public Abono(int idAbono, int idVenta, double valorAbonado, int idPlanDePago, LocalDate fechaAbono, int idFormaDePago, String descrFormaPago) {
         this.idAbono = idAbono;
+        this.idVenta = idVenta;
+        this.valorAbonado = valorAbonado;
         this.idPlanDePago = idPlanDePago;
+        this.fechaAbono = fechaAbono;
         this.idFormaDePago = idFormaDePago;
         this.descrFormaPago = descrFormaPago;
-        this.valorAbonado = valorAbonado;
     }
+    
 
     //Constructor para llenar una lista de abonos, solo con datos informativos.
-    public Abono(int idAbono, String descrFormaPago, double valorAbonado,LocalDate fechaAbono) {
+
+    public Abono(int idAbono, int idVenta, double valorAbonado, LocalDate fechaAbono, String descrFormaPago) {
         this.idAbono = idAbono;
-        this.descrFormaPago = descrFormaPago;
+        this.idVenta = idVenta;
         this.valorAbonado = valorAbonado;
-        this.fechaAbono=fechaAbono;
+        this.fechaAbono = fechaAbono;
+        this.descrFormaPago = descrFormaPago;
     }
+   
     
 
     //Declaracion de  Getters y Setters
@@ -83,6 +92,14 @@ public class Abono implements Serializable{
 
     public void setDescrFormaPago(String descrFormaPago) {
         this.descrFormaPago = descrFormaPago;
+    }
+
+    public int getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
     
     

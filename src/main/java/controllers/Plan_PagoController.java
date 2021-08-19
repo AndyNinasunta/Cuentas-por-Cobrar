@@ -35,7 +35,7 @@ public class Plan_PagoController implements Serializable {
     }
 
     public void buscarCliente() {
-
+        try{
         personaDAO = new PersonaDAO();
         persona = new Persona();
         //Cargamos el nombre del cliente en el input
@@ -59,6 +59,9 @@ public class Plan_PagoController implements Serializable {
                 mostrarMensajeInformacion("Se Cargaron los Cobros de " + persona.getRazonNombre());
                 
             }
+        }
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
