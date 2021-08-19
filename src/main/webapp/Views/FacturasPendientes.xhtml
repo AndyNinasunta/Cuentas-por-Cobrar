@@ -49,12 +49,12 @@
                                     </div>
                                 </f:facet>
                                 <p:column class="tamanoInput" style="text-align: center;"
-                                          headerText="Fecha Facturación">
+                                          headerText="Fecha Factura">
                                     <h:outputText value="#{facPendientes.fechaFacturacion}" />
 
                                 </p:column>
                                 <p:column class="tamanoInput" style="text-align: center;"
-                                          headerText="Días de Crédito ">
+                                          headerText="Dias de Credito ">
                                     <h:outputText value="#{facPendientes.diasCredito}">
                                         <f:convertNumber type="currency" 
                                                          currencySymbol="$"/>
@@ -96,7 +96,7 @@
                                                   styleClass="#{facPendientes.identificaEstado()}"/>
                                 </p:column>
                                 <p:column class="tamanoInput" style="text-align: center;"
-                                          headerText="Días Mora/Próximo">
+                                          headerText="Dias Mora/Proximos">
                                     <h:outputText value="#{facPendientes.diasMora}" />
                                 </p:column>
                             </p:dataTable>
@@ -107,7 +107,8 @@
                                              style="background: green;">
                                 <p:dataExporter type="xls" 
                                                 target="tblFacturasPendientes"
-                                                fileName="FacturaPendiente"/>
+                                                fileName="FacturaPendiente"
+                                                options="#{facturas_PendientesController.excelOpt}"/>
                             </p:commandButton>
                             &nbsp;
                             <p:commandButton id="btnPdf" 
@@ -115,7 +116,8 @@
                                              style="background: red;">
                                 <p:dataExporter type="pdf" 
                                                 target="tblFacturasPendientes"
-                                                fileName="FacturaPendiente"/>
+                                                fileName="FacturaPendiente"
+                                                options="#{facturas_PendientesController.pdfOpt}"/>
                             </p:commandButton>
                         </div>
                     </h:form>

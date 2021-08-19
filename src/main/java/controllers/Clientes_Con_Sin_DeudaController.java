@@ -7,11 +7,17 @@ import models.Clientes_Con_Sin_Deuda;
 import dataviews.Clientes_Con_Sin_DeudaDAO;
 import java.util.ArrayList;
 import java.util.List;
+import org.primefaces.component.export.ExcelOptions;
+import org.primefaces.component.export.PDFOptions;
 
 @Named(value = "clientes_Con_Sin_DeudaController")
 @ViewScoped
 public class Clientes_Con_Sin_DeudaController implements Serializable {
 
+    //Componentes para tener estilos en las exportaciones
+    ExcelOptions excelOpt;
+    PDFOptions pdfOpt;
+    
     //Se Declaran las clases Clientes_Con_Sin_Deuda y Clientes_Con_Sin_DeudaDAO
     Clientes_Con_Sin_Deuda clientes_Con_Sin_Deuda;
     Clientes_Con_Sin_DeudaDAO clientes_Con_Sin_DeudaDAO;
@@ -38,8 +44,27 @@ public class Clientes_Con_Sin_DeudaController implements Serializable {
         //Lista con los todos los cliente SIN deudas
         lista_Clientes_Sin_Deudas=new ArrayList<>();
         lista_Clientes_Sin_Deudas=clientes_Con_Sin_DeudaDAO.obtenerClientesSinDeudas();
-        
+        Design();
 
+    }
+    
+    public void Design() {
+        excelOpt = new ExcelOptions();
+        excelOpt.setFacetBgColor("#2E8BE4");
+        excelOpt.setFacetFontSize("12");
+        excelOpt.setFacetFontColor("#FFFFFF");
+        excelOpt.setFacetFontStyle("BOLD");
+        excelOpt.setCellFontSize("11");
+        excelOpt.setAutoSizeColumn(true);
+        excelOpt.setFontName("Roboto");
+
+        pdfOpt = new PDFOptions();
+        pdfOpt.setFacetBgColor("#2E8BE4");
+        pdfOpt.setFacetFontSize("14");
+        pdfOpt.setFacetFontColor("#FFFFFF");
+        pdfOpt.setFacetFontStyle("BOLD");
+        pdfOpt.setCellFontSize("12");
+        pdfOpt.setFontName("Roboto");
     }
 
     //Getters y Setters de las Listas
@@ -66,6 +91,22 @@ public class Clientes_Con_Sin_DeudaController implements Serializable {
 
     public void setLista_Clientes_Sin_Deudas(List<Clientes_Con_Sin_Deuda> lista_Clientes_Sin_Deudas) {
         this.lista_Clientes_Sin_Deudas = lista_Clientes_Sin_Deudas;
+    }
+
+    public ExcelOptions getExcelOpt() {
+        return excelOpt;
+    }
+
+    public void setExcelOpt(ExcelOptions excelOpt) {
+        this.excelOpt = excelOpt;
+    }
+
+    public PDFOptions getPdfOpt() {
+        return pdfOpt;
+    }
+
+    public void setPdfOpt(PDFOptions pdfOpt) {
+        this.pdfOpt = pdfOpt;
     }
     //Fin 
 }

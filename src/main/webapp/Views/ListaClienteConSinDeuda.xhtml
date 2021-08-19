@@ -25,7 +25,7 @@
                                      style="font-size: 14px;">
 
                             <p:column class="tamanoInput" style="text-align: center;"
-                                      headerText="Identificación">
+                                      headerText="Identificacion">
                                 <h:outputText value="#{varListaDeuda.descrIdentificacion}" />
 
                             </p:column>
@@ -34,15 +34,15 @@
                                 <h:outputText value="#{varListaDeuda.razonNombre}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
-                                      headerText="Dirección">
+                                      headerText="Direccion">
                                 <h:outputText value="#{varListaDeuda.direccion}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
-                                      headerText="Teléfono 1">
+                                      headerText="Telefono 1">
                                 <h:outputText value="#{varListaDeuda.tlf1}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
-                                      headerText="Teléfono 2">
+                                      headerText="Telefono 2">
                                 <h:outputText value="#{varListaDeuda.tlf2}" />
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
@@ -63,7 +63,8 @@
                                              style="background: green;">
                                 <p:dataExporter type="xls" 
                                                 target="tblListaDeudas"
-                                                fileName="ListaClienteConSinDeuda"/>
+                                                fileName="ListaClienteConSinDeuda"
+                                                options="#{clientes_Con_Sin_DeudaController.excelOpt}"/>
                             </p:commandButton>
                             &nbsp;
                             <p:commandButton id="btnPdf" 
@@ -71,7 +72,8 @@
                                              style="background: red;">
                                 <p:dataExporter type="pdf" 
                                                 target="tblListaDeudas"
-                                                fileName="ListaClienteConSinDeuda"/>
+                                                fileName="ListaClienteConSinDeuda"
+                                                options="#{clientes_Con_Sin_DeudaController.pdfOpt}"/>
                             </p:commandButton>
                         </div>
                     </h:form>

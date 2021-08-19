@@ -73,14 +73,14 @@
                                                          ajax="false"
                                                          actionListener="#{retencionController.cargarRetenciones()}"
                                                          styleClass=" ui-button-secondary" 
-                                                         update=":growl tblRetenciones"
+                                                         update=":growl dialogAddRetencion"
                                                          style="margin:.3rem;"/>
                                         &nbsp;&nbsp;
                                         <p:commandButton icon="pi pi-plus " 
                                                          ajax="false"
                                                          value="Añadir Nueva Retención" 
                                                          actionListener="#{retencionController.cargarIngresarRetencion()}"
-                                                         update="growl dialogAddRetencion"
+                                                         update=":growl tblRetenciones:dialogAddRetencion "
                                                          styleClass=" ui-button-success" 
                                                          style="margin:.3rem;"/>
                                     </h:form>
@@ -173,7 +173,7 @@
                                 <p:commandButton actionListener="#{retencionController.registrarRetencion()}"
                                                  icon="pi pi-save" value="Guardar"
                                                  ajax="false"
-                                                 update=":growl frmprincipal:tblRetenciones"
+                                                 update=":growl dialogAddRetencion frmprincipal:tblRetenciones"
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
@@ -210,7 +210,7 @@
                                     <f:selectItem itemLabel="SERVICIOS" 
                                                   itemValue="SERVICIOS"/>
                                     <f:selectItem itemLabel="CONTR.CONS" 
-                                                  itemValue="CONTRATOS DE CONSTRUCCIÓN"/>
+                                                  itemValue="CONTRATOS DE CONSTRUCCION"/>
                                 </p:selectOneMenu>
 
                             </p:panelGrid>

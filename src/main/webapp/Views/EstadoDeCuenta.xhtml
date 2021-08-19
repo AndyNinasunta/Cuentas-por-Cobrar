@@ -64,7 +64,8 @@
                                              style="background: green;">
                                 <p:dataExporter type="xls" 
                                                 target="tblEstadoDeCuenta" 
-                                                fileName="EstadodeCuentaPDF"/>
+                                                fileName="EstadodeCuenta"
+                                                options="#{estado_De_CuentaController.excelOpt}"/>
                             </p:commandButton>
                             &nbsp;
                             <p:commandButton id="btnPdf" ajax="false"
@@ -72,7 +73,8 @@
                                              style="background: red;">
                                 <p:dataExporter type="pdf" 
                                                 target="tblEstadoDeCuenta" 
-                                                fileName="EstadodeCuentaPDF"/>
+                                                fileName="EstadodeCuenta"
+                                                options="#{estado_De_CuentaController.pdfOpt}"/>
                             </p:commandButton>
                         </div>
                     </h:form>
