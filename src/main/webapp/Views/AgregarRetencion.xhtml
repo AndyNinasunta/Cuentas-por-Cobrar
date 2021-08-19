@@ -68,7 +68,8 @@
                             <p:toolbarGroup>
                                 <div>
                                     <h:form>
-                                        <p:commandButton icon="pi pi-replay " 
+                                        <p:commandButton id="btnCargarR"
+                                                         icon="pi pi-replay " 
                                                          value="Cargar Retención" 
                                                          ajax="false"
                                                          actionListener="#{retencionController.cargarRetenciones()}"
@@ -225,7 +226,7 @@
                                 <p:commandButton actionListener="#{retencionController.actualizarRetencion()}"
                                                  icon="pi pi-save" ajax="false"
                                                  value="Guardar Cambios"
-                                                 update=":growl frmprincipal:tblRetenciones"
+                                                 update=":growl tblRetenciones"
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
