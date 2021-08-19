@@ -55,7 +55,10 @@
                                 </p:column>
                                 <p:column class="tamanoInput" style="text-align: center;"
                                           headerText="Días de Crédito ">
-                                    <h:outputText value="#{facPendientes.diasCredito}" />
+                                    <h:outputText value="#{facPendientes.diasCredito}">
+                                        <f:convertNumber type="currency" 
+                                                         currencySymbol="$"/>
+                                    </h:outputText>
                                 </p:column>
                                 <p:column class="tamanoInput" style="text-align: center;"
                                           headerText="Fecha Vencimiento">
@@ -71,11 +74,17 @@
                                 </p:column>
                                 <p:column class="tamanoInput" style="text-align: center;"
                                           headerText="Valor de Factura">
-                                    <h:outputText value="#{facPendientes.valorTotalFactura}" />
+                                    <h:outputText value="#{facPendientes.valorTotalFactura}">
+                                        <f:convertNumber type="currency" 
+                                                         currencySymbol="$"/>
+                                    </h:outputText>
                                 </p:column>
                                 <p:column class="tamanoInput" style="text-align: center;"
                                           headerText="Valor Pendiente">
-                                    <h:outputText value="#{facPendientes.valorPendiente}" />
+                                    <h:outputText value="#{facPendientes.valorPendiente}">
+                                        <f:convertNumber type="currency" 
+                                                         currencySymbol="$"/>
+                                    </h:outputText>
                                 </p:column>
                                 <p:column class="tamanoInput" style="text-align: center;"
                                           headerText="Fecha de Pago">

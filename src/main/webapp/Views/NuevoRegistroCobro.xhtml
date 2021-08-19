@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -14,190 +15,210 @@
                     <h2>REGISTRO NUEVO COBRO</h2>
                 </div>
                 <p:panel>
-                    <div class="ui-datatable ui-widget">
-                        <div style="height: 260px; font-size: 14px;">
-                            <div style="text-align: center; width: 250px; 
-                                 font-weight: bold; float: left;">
-                                <p>Tipo Fecha</p>
-                                <br/>
-                                <p>#Venta # Vencimiento *Todas</p>
-                                <br/>
-                                <p>Fecha Inicio: <label>[06/07/2021]</label>V</p>
-                                <br/>
-                                <p>Fecha Fin: <label>[06/07/2021]</label>V</p>
-                            </div>
-                            <div style=" text-align: center; width: 250px; height: 100px; 
-                                 font-weight: bold; float: left; padding-left: 20px;">
-                                <p>Identificación: <label>[##########]</label></p>
-                                <br/>
-                                <p>Factura N°: <label>[##########]</label></p>
-                                <br/>
-                                <p>Cliente: <label>[]</label></p>
-                                <br/>
-                                <p>Proveedor: <label>[]</label></p>
-                            </div>
-
-                            <div style="text-align: center; width: 200px; height: 100px; font-weight: bold; float: left;">
-                                <p>Crédito:</p> 
-                                <p><label>[0.00]</label></p> <br/>
-
-                                <p>Cheques Pendientes:</p> 
-                                <p><label>[0.00]</label></p>
-                            </div>
-
-                            <div style="text-align: center; width: 200px; height: 100px; font-weight: bold; float: left;">
-                                <p>Total de Deudas:</p> 
-                                <p><label>[0.00]</label></p> 
-                                <br/>
-                                <p>Saldos a Favor:</p> 
-                                <p><label>[0.00]</label></p> 
-                            </div>
-
-                            <div style="text-align: center; height: 100px; font-weight: bold; ">
-                                <br/>
-                                <p>Total OP Convertida:</p> 
-                                <p><label>[0.00]</label></p>
-                            </div>
-                            <br/><br/><br/>
-                            <div class="ui-grid-row">
-                                <div style="text-align: center; height: 100px; 
-                                     font-weight: bold; float: left; padding-left: 70px;">
-                                    <p>Vendedor: <label>[===================]</label>V</p> 
+                    <div class="card">
+                        <p:growl id="growl" widgetVar="growl" showDetail="true" life="2000"/> 
+                        <h:form id="form">
+                            <div class="ui-grid-row" style="height: 135px;">
+                                <div>
+                                    <div style="float: left; padding-left: 50px;">
+                                        <p:outputLabel for="identificacionCliente"
+                                                       value="Identificación: "
+                                                       style="font-weight:bold;"/>
+                                        <br/> <br/>
+                                        <p:inputText id="identificacionCliente" 
+                                                     type="text"
+                                                     maxlength="13"
+                                                     style="width: 150px;" />
+                                        &nbsp;&nbsp;&nbsp;
+                                        <div style="float: right;">
+                                            <p:commandButton id="btnconsulta" icon="pi pi-replay" 
+                                                             styleClass="ui-button-secondary"
+                                                             update=":growl optionFactura"/>
+                                        </div>
+                                    </div>
+                                    <div style="float: left; padding-left: 50px;">
+                                        <p:outputLabel value="N° Factura: " 
+                                                       for="optionFactura"
+                                                       style="font-weight:bold;" />
+                                        <br/> <br/>
+                                        <p:selectOneMenu id="optionFactura" 
+                                                         value="#{retencionController.idFactura}"
+                                                         style="height: 40px; width: 130px;">                            
+                                            <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
+                                            <f:selectItems value="#{retencionController.listaVentas}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="float: left; padding-top: 30px; padding-left: 100px;">
+                                        <p:outputLabel value="Nombre Cliente: " 
+                                                       for="nombreCliente" 
+                                                       style="font-weight:bold;"/>
+                                        <br/><br/>
+                                        <p:inputText id="nombreCliente" 
+                                                     disabled="true" 
+                                                     type="text"
+                                                     class="inputListaCobros"/> 
+                                    </div>
                                 </div>
 
-                                <div style="text-align: center; height: 100px; 
-                                     font-weight: bold; float: left; padding-left: 100px;">
-                                    <p>Cobrador: <label>[===================]</label>V</p> 
-                                </div>
-
-                                <div style="text-align: center; height: 100px; 
-                                     font-weight: bold; float: left; padding-left: 100px;">
-
-                                    <p>Fecha: <label>[===================]</label>V</p> 
+                                <div>
+                                    <div style="float: left; padding-left: 50px;">
+                                        <p:outputLabel value="Fecha Crédito: " 
+                                                       for="fechaEmision" 
+                                                       style="font-weight:bold;"/>
+                                        <br/> <br/> 
+                                        <p:datePicker monthNavigator="true" 
+                                                      yearNavigator="true"
+                                                      yearRange="1800:2050"
+                                                      id="fechaEmision"
+                                                      placeholder="aaaa-mm-dd"/>
+                                    </div>
+                                    <div style="float: left; padding-left: 73px;">
+                                        <p:outputLabel value="Fecha Vencida: " 
+                                                       for="fechaVencida" 
+                                                       style="font-weight:bold;"/>
+                                        <br/> <br/> 
+                                        <p:datePicker monthNavigator="true" yearNavigator="true"
+                                                      id="fechaVencida"
+                                                      yearRange="1800:2050"
+                                                      placeholder="aaaa-mm-dd"/>
+                                    </div>
+                                    <div style="float: left; padding-top: 40px; padding-left: 35px;">
+                                        <p:commandButton value="Cargar Deudas"
+                                                         icon="pi pi-replay" 
+                                                         styleClass="ui-button-secondary"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <h:form id="form">
-                                <p:dataTable id="tblRegistroCobro" var="varRegistroCobro"
-                                             emptyMessage="No existen Registros." 
-                                             scrollable="true" paginator="true" 
-                                             rows="5" rowSelectMode="add"
-                                             paginatorPosition="bottom" 
-                                             style="font-size: 14px;">
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Documento">
-                                        <h:outputText value="1" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="N° Fact">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Fecha">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="$ Monto">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="$ Saldo">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Elegir">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="$ Valor">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Tipo Pago">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Descripción del pago">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Fecha">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Vendedor">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Observación">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                </p:dataTable>
+                            <br/><br/><br/><br/>
+                            <p:dataTable id="tblRegistroCobro" var="varRegistroCobro"
+                                         emptyMessage="No existen Registros." 
+                                         scrollable="true" paginator="true" 
+                                         rows="5" rowSelectMode="add"
+                                         paginatorPosition="bottom" 
+                                         style="font-size: 14px;">
+                                <f:facet name="header">
+                                    <div>
+                                        <span style="float: right;">
+                                            <p:outputLabel value="Total Abono: " 
+                                                           for="totalAbono" 
+                                                           style="font-weight:bold;"/>
+                                            &nbsp;&nbsp;
+                                            <p:inputText id="totalAbono" 
+                                                         disabled="true" 
+                                                         type="text"
+                                                         style="width: 100px; text-align: right;">
+                                                $
+                                            </p:inputText> 
+                                        </span>
+                                        <span style="float: right; padding-right: 20px;">
+                                            <p:outputLabel value="Valor Pendiente: " 
+                                                           for="valorPendiente" 
+                                                           style="font-weight:bold;"/>
+                                            &nbsp;&nbsp;
+                                            <p:inputText id="valorPendiente" 
+                                                         disabled="true" 
+                                                         type="text"
+                                                         style="width: 100px; text-align: right;">
+                                                $
+                                            </p:inputText> 
+                                        </span>
+                                        <br/><br/>
+                                    </div>
+                                </f:facet>
+                                <p:column class="tamanoInput" 
+                                          style="text-align: center;"
+                                          headerText="Documento">
+                                    <h:outputText value="1" />
+                                </p:column>
+                                <p:column class="tamanoInput" 
+                                          style="text-align: center;"
+                                          headerText="N° Fact">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column class="tamanoInput" 
+                                          style="text-align: center;"
+                                          headerText="Fecha de Abono">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column class="tamanoInput" 
+                                          style="text-align: center;"
+                                          headerText="Forma de Pago">
+                                    <h:outputText value="" />
+                                </p:column>
+                                <p:column class="tamanoInput" 
+                                          style="text-align: center;"
+                                          headerText="Monto">
+                                    <h:outputText value="" >
+                                        <f:convertNumber type="currency" 
+                                                         currencySymbol="$"/>
+                                    </h:outputText>
+                                </p:column>
+                            </p:dataTable>
+                            <br/>
+                            <div style="text-align: center;"> 
+                                <p:commandButton value="Nuevo Cobro"
+                                                 oncomplete="PF('nuevoCobro').show()"
+                                                 icon="pi pi-save" 
+                                                 styleClass="ui-button-success"/>
+                            </div>
+                        </h:form>
+
+                        <!-- Ventana Agregar un Nuevo Cobro!-->
+                        <p:dialog header="Registrar Nuevo Cobro" minHeight="50"
+                                  height="auto" width="750px" showEffect="fade"
+                                  modal="true" widgetVar="nuevoCobro"
+                                  id="dialogAddCobro" responsive="true">
+                            <h:form>
+                                <p:panelGrid columns="4" layout="grid">
+                                    <p:outputLabel for="formaPago" 
+                                                   style="font-weight: bold;"
+                                                   value="Forma de Pago:">
+                                    </p:outputLabel>
+                                    <p:selectOneMenu id="formaPago" 
+                                                     class="tamanoInputClienteNJ"
+                                                     required="true">                            
+                                        <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel for="abono" 
+                                                   style="font-weight: bold;"
+                                                   value="Saldo Abonar:">
+                                    </p:outputLabel>
+                                    <p:inputText id="abono"  
+                                                 required="true"
+                                                 style="width: 100px; text-align: right;">
+                                        <f:convertNumber />
+                                    </p:inputText>
+
+                                    <p:outputLabel for="fechaAbono" 
+                                                   style="font-weight: bold;"
+                                                   value="Fecha Abono:">
+                                    </p:outputLabel>
+                                    <p:datePicker monthNavigator="true" yearNavigator="true"
+                                                  id="fechaAbono"
+                                                  yearRange="1800:2050"
+                                                  required="true"
+                                                  placeholder="aaaa-mm-dd"/>
+                                </p:panelGrid>
+                                <br/>
+                                <div style="float: right;">
+                                    <p:commandButton icon="pi pi-times" value="Cancelar"
+                                                     immediate="true"
+                                                     oncomplete="PF('nuevoCobro').hide()"
+                                                     class="ui-button-secondary"
+                                                     styleClass=" ui-button-danger"/> 
+                                    &nbsp;
+                                    <p:commandButton 
+                                        icon="pi pi-save" ajax="false"
+                                        value="Guardar Cambios"
+                                        update=":growl form:tblRegistroCobro"
+                                        styleClass="ui-button-success"/> 
+                                </div>
                             </h:form>
-                        </div>
-                        <br/>
-                        <div class="card">
-                            <h:form id="form2">
-                                <p:dataTable id="tblr" var="varRegistro"
-                                             emptyMessage="No existen Registros." 
-                                             scrollable="true" paginator="true" 
-                                             rows="5" rowSelectMode="add"
-                                             paginatorPosition="bottom" 
-                                             style="font-size: 14px;">
-
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Formas de Pago">
-                                        <h:outputText value="1" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="$ Pago">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Fecha">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Banco">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Cuenta">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Cheque / N° Comprobante">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Secuencia">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="Autorización">
-                                        <h:outputText value="" />
-                                    </p:column>
-                                    <p:column class="tamanoInput" style="text-align: center;"
-                                              headerText="#Cheques">
-                                        <h:outputText value="" />
-                                    </p:column>
-
-                                </p:dataTable>
-                            </h:form>
-                        </div>
-
-                        <div style="margin-top:15px;text-align: center;" class="father">
-
-                            <p:button icon="pi pi-pencil" value="NUEVO" styleClass=" ui-button-primary " style="margin:.3rem"/>
-                            <p:button icon="pi pi-save " value="GUARDAR" styleClass=" ui-button-success " style="margin:.3rem"/>
-                            <p:button icon="pi pi-sign-out " value="Salir" styleClass=" ui-button-warning " style="margin:.3rem"/>
-                            <p:button icon="pi pi-times btnMargin" value="Anular" styleClass="ui-button-danger " style="margin:.3rem" />
-                            <p:button icon="pi pi-exclamation-triangle " value="Reversar Pago" styleClass=" ui-button-danger" style="margin:.3rem" />
-                            <p:button icon="pi pi-money-bill btnMargin" value="Cuentas Incobrables" styleClass=" ui-button-secondary " style="margin:.3rem" />
-                            <p:button icon="pi pi-print " value="Cuotas" styleClass=" ui-button-help ui-button" style="margin:.3rem"/>
-                        </div>
-                    </div> 
+                        </p:dialog>
+                    </div>
                 </p:panel>
             </ui:define>
 

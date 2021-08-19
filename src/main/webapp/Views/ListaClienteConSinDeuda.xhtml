@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -50,7 +51,10 @@
                             </p:column>
                             <p:column class="tamanoInput" style="text-align: center;"
                                       headerText="Total Pendiente">
-                                <h:outputText value="#{varListaDeuda.valorPendiente}" />
+                                <h:outputText value="#{varListaDeuda.valorPendiente}">
+                                    <f:convertNumber type="currency" 
+                                                     currencySymbol="$"/>
+                                </h:outputText>
                             </p:column>
                         </p:dataTable>
                         <div class="alinearBotones">  

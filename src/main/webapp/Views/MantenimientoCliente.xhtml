@@ -18,7 +18,7 @@
                     <p:growl id="growl" widgetVar="growl" showDetail="true" life="2000"/> 
                     <!-- Botones para agregar cliente natural y juridico  !-->
                     <div style="text-align: center;">
-                        <p:toolbarGroup>
+                        <p:toolbarGroup id="pp">
                             <div>
                                 <h:form>
                                     <p:commandButton oncomplete="PF('clienteNaturalNew').show()"
@@ -232,7 +232,8 @@
                                                value="Género:"
                                                style="font-weight: bold;"> 
                                 </p:outputLabel>
-                                <p:selectOneMenu id="generoNaturalOption" value="#{personaController.persona_Natural.genero}" 
+                                <p:selectOneMenu id="generoNaturalOption" 
+                                                 value="#{personaController.persona_Natural.genero}" 
                                                  class="tamanoInputClienteNJ"
                                                  required="true">                            
                                     <f:selectItem itemLabel="Seleccione..." itemValue=""/>
@@ -267,7 +268,8 @@
                                                value="Tipo de Cliente:"
                                                style="font-weight: bold;">
                                 </p:outputLabel>
-                                <p:selectOneMenu id="tipoClienteNaturalOption" value="#{personaController.persona_Natural.idTipoCliente}" 
+                                <p:selectOneMenu id="tipoClienteNaturalOption" 
+                                                 value="#{personaController.persona_Natural.idTipoCliente}" 
                                                  class="tamanoInputClienteNJ"
                                                  required="true">                            
                                     <f:selectItem itemLabel="Seleccione..." itemValue=""/>
@@ -292,6 +294,7 @@
                                 <p:datePicker monthNavigator="true" yearNavigator="true"
                                               id="fechaNacimientoNatural"
                                               style="width: 100px;"
+                                              yearRange="1800:2050"
                                               readonly="true"
                                               required="true"
                                               placeholder="aaaa-mm-dd"
@@ -309,7 +312,7 @@
                                 <p:commandButton value="Guardar"
                                                  icon="pi pi-save"
                                                  ajax="false"
-                                                 update=":growl"
+                                                 update=":growl pp"
                                                  oncomplete="PF('clienteNaturalNew').hide()"
                                                  actionListener="#{personaController.registrarClienteNatural()}"
                                                  styleClass=" ui-button-success"/>
@@ -429,7 +432,7 @@
                                 &nbsp;
                                 <p:commandButton value="Guardar" ajax="false"
                                                  icon="pi pi-save"
-                                                 update=":growl"
+                                                 update=":growl pp"
                                                  oncomplete="PF('clienteJuridicoNew').hide()"
                                                  action="#{personaController.registrarClienteJuridico()}"
                                                  styleClass=" ui-button-success"/>
@@ -598,6 +601,7 @@
                                 </p:outputLabel>
                                 <p:datePicker monthNavigator="true" yearNavigator="true"
                                               id="fechaNacimientoNatural"
+                                              yearRange="1800:2050"
                                               required="true"
                                               placeholder="aaaa-mm-dd"
                                               value="#{personaController.persona_Natural.fechaNacimiento}"/>
@@ -733,9 +737,9 @@
                                                  styleClass=" ui-button-danger"/>
                                 &nbsp;
                                 <p:commandButton value="Guardar Cambios"
+                                                 icon="pi pi-save"
                                                  ajax="false"
                                                  update=":growl"
-                                                 icon="pi pi-save"
                                                  oncomplete="PF('ClienteJuridicoEdit').hide()"
                                                  actionListener="#{personaController.actualizarClienteJuridico()}"
                                                  styleClass=" ui-button-success"/>

@@ -18,7 +18,7 @@
                 <p:panel>
                     <p:growl id="growl" widgetVar="growl" showDetail="true" life="1500"/> 
                     <h:form id="frmprincipal">
-                        <div class="ui-grid-row" style="height: 135px;">
+                        <div class="ui-grid-row" style="height: 135px; padding-left: 100px;">
                             <div>
                                 <div style="float: left;">
                                     <p:outputLabel for="identificacionCliente"
@@ -29,7 +29,7 @@
                                                  type="text"
                                                  maxlength="13"
                                                  value="#{retencionController.identificacion}"
-                                                 style="width: 150px;" />
+                                                 style="width: 150px; text-align: center;"/>
                                     &nbsp;&nbsp;
                                     <div style="float: right;">
                                         <p:commandButton id="btnconsulta" icon="pi pi-replay" 
@@ -45,26 +45,24 @@
                                     <br/> <br/>
                                     <p:selectOneMenu id="optionFactura" 
                                                      value="#{retencionController.idFactura}"
-                                                     required="true"
-                                                     style="height: 40px; width: 130px;">                            
+                                                     style="height: 40px; width: 130px; text-align: center;">                            
                                         <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
                                         <f:selectItems value="#{retencionController.listaVentas}"/>
                                     </p:selectOneMenu>
                                 </div>
                             </div>
                             <div>
-                                <div id="divFechaEmision">
+                                <div id="divFactura">
                                     <p:outputLabel value="Fecha Emisión: " for="fechaEmision" 
                                                    style="font-weight:bold;"/>
                                     <br/> <br/> 
                                     <p:inputText id="fechaEmision" 
                                                  readonly="true"
                                                  value="#{retencionController.retencion.fechaEmision}"
-                                                 style="height: 40px; width: 130px;"/>
+                                                 style="height: 40px; width: 130px; text-align: center;"/>
                                 </div>
                             </div>
                         </div>
-
 
                         <div style="text-align: center;">
                             <p:toolbarGroup>
@@ -77,6 +75,7 @@
                                                          styleClass=" ui-button-secondary" 
                                                          update=":growl tblRetenciones"
                                                          style="margin:.3rem;"/>
+                                        &nbsp;&nbsp;
                                         <p:commandButton icon="pi pi-plus " 
                                                          ajax="false"
                                                          value="Añadir Nueva Retención" 
@@ -174,7 +173,7 @@
                                 <p:commandButton actionListener="#{retencionController.registrarRetencion()}"
                                                  icon="pi pi-save" value="Guardar"
                                                  ajax="false"
-                                                 update=":growl "
+                                                 update=":growl frmprincipal:tblRetenciones"
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
