@@ -26,16 +26,16 @@
                                                    style="font-weight:bold;"/>
                                     <br/> <br/>
                                     <p:inputText id="identificacionCliente" 
-                                                 type="text"
+                                                 placeholder="CI/PA/RUC"
                                                  maxlength="13"
                                                  value="#{retencionController.identificacion}"
-                                                 style="width: 150px; text-align: center;"/>
+                                                 style="width: 150px;"/>
                                     &nbsp;&nbsp;
                                     <div style="float: right;">
                                         <p:commandButton id="btnconsulta" icon="pi pi-replay" 
-                                             styleClass="ui-button-secondary"
-                                             update=":growl optionFactura"
-                                             actionListener="#{retencionController.cargarFacturas()}"/>
+                                                         styleClass="ui-button-secondary"
+                                                         update=":growl optionFactura"
+                                                         actionListener="#{retencionController.cargarFacturas()}"/>
                                     </div>
                                 </div>
                                 <div id="divFactura">
@@ -59,7 +59,7 @@
                                     <p:inputText id="fechaEmision" 
                                                  readonly="true"
                                                  value="#{retencionController.retencion.fechaEmision}"
-                                                 style="height: 40px; width: 130px; text-align: center;"/>
+                                                 style="height: 40px; width: 130px;"/>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,9 @@
                             </p:column>
                             <p:column headerText="Base Imponible" 
                                       style="text-align: center;">
-                                <h:outputText value="#{varRetenciones.baseImponible}" />
+                                <h:outputText value="#{varRetenciones.baseImponible}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </h:outputText>
                             </p:column>
                             <p:column headerText="Descripción Impuesto" 
                                       style="text-align: center;">
@@ -110,11 +112,15 @@
                             </p:column>
                             <p:column headerText="% Retención" 
                                       style="text-align: center;">
-                                <h:outputText value="#{varRetenciones.porcenRetencion}" />
+                                <h:outputText value="#{varRetenciones.porcenRetencion}">
+                                    <f:convertNumber pattern="##,00%"/>
+                                </h:outputText>
                             </p:column>
                             <p:column headerText="Valor Retenido" 
                                       style="text-align: center;">
-                                <h:outputText value="#{varRetenciones.valorRetenido}" />
+                                <h:outputText value="#{varRetenciones.valorRetenido}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </h:outputText>
                             </p:column>
                             <p:column class="tamanoColumnActions"
                                       style="text-align: center;" 
