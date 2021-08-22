@@ -260,7 +260,7 @@ public class AbonoController implements Serializable {
                 if (abonoDAO.insertarNuevoAbono(idFactura, idPlanDePago) > 0) {
 
                     mostrarMensajeInformacion("Se Registró Correctamente");
-                    list_Abonos = abonoDAO.obtenerAbonos(idCliente);
+                    this.list_Abonos = abonoDAO.obtenerAbonos(idCliente);
 
                 } else {
                     mostrarMensajeError("No se Registró Correctamente");

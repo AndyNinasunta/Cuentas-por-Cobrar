@@ -16,6 +16,15 @@
                 </div>
                 <br/>
                 <p:panel>
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:commandButton value="Clientes Con Deuda" icon="fa fa-group"
+                                             styleClass="ui-button-secondary"/>
+                            <p:commandButton value="Clientes Sin Deuda" icon="fa fa-group"
+                                             styleClass="ui-button-secondary"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                    <br/>
                     <h:form id="formListaClienteDeudas">
                         <p:dataTable id="tblListaDeudas" var="varListaDeuda"
                                      value="#{clientes_Con_Sin_DeudaController.lista_Clientes_con_sin_deudas}"
@@ -77,6 +86,7 @@
                             </p:commandButton>
                         </div>
                     </h:form>
+                    
                 </p:panel>
             </ui:define>
 

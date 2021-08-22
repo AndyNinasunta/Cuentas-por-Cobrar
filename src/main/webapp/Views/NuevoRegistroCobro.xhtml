@@ -26,7 +26,7 @@
                                                        style="font-weight:bold;"/>
                                         <br/> <br/>
                                         <p:inputText id="identificacionCliente" 
-                                                     type="text"
+                                                     placeholder="CI/PA/RUC"
                                                      value="#{abonoController.identificacion}"
                                                      maxlength="13"
                                                      style="width: 150px;" />
@@ -60,7 +60,7 @@
                                         <br/><br/>
                                         <p:inputText id="nombreCliente" 
                                                      disabled="true" 
-                                                     type="text"
+                                                     placeholder="Razón Social/Nombres y Apellidos"
                                                      value="#{abonoController.persona.razonNombre}"
                                                      class="inputListaCobros"/> 
                                     </div>
@@ -74,9 +74,8 @@
                                         <br/> <br/> 
                                         <p:inputText id="fechaEmision" 
                                                      disabled="true" 
-                                                     type="text"
-                                                     value="#{abonoController.fechasPlan[0]}"
-                                                     /> 
+                                                     placeholder="aaaa/mm/dd"
+                                                     value="#{abonoController.fechasPlan[0]}"/> 
                                     </div>
                                     <div style="float: left; padding-left: 73px;">
                                         <p:outputLabel value="Fecha Vencida: " 
@@ -85,11 +84,12 @@
                                         <br/> <br/> 
                                         <p:inputText id="fechaVencida" 
                                                      disabled="true" 
-                                                     type="text"
+                                                     placeholder="aaaa/mm/dd"
                                                      value="#{abonoController.fechasPlan[1]}"/> 
                                     </div>
                                     <div style="float: left; padding-top: 40px; padding-left: 35px;">
                                         <p:commandButton value="Cargar Deuda"
+                                                         id="btnDeuda"
                                                          icon="pi pi-replay" 
                                                          actionListener="#{abonoController.cargarDeuda()}"
                                                          update="growl fechaVencida fechaEmision tblRegistroCobro"
@@ -114,11 +114,9 @@
                                             &nbsp;&nbsp;
                                             <p:inputText id="totalAbono" 
                                                          disabled="true" 
-                                                         type="text"
                                                          value="#{abonoController.totalAbonos}"
-                                                         style="width: 100px; text-align: right;">
-                                                $
-                                            </p:inputText> 
+                                                         style="width: 100px; text-align: right;"/>
+                                                         $
                                         </span>
                                         <span style="float: right; padding-right: 20px;">
                                             <p:outputLabel value="Valor Pendiente: " 
@@ -129,9 +127,8 @@
                                                          disabled="true" 
                                                          type="text"
                                                          value="#{abonoController.totalPendiente}"
-                                                         style="width: 100px; text-align: right;">
-                                                $
-                                            </p:inputText> 
+                                                         style="width: 100px; text-align: right;"/>
+                                                         $
                                         </span>
                                         <br/><br/>
                                     </div>
@@ -193,8 +190,8 @@
                                         <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
                                         <f:selectItem itemLabel="Efectivo" itemValue="2"/>
                                         <f:selectItem itemLabel="Cheque" itemValue="3"/>
-                                        <f:selectItem itemLabel="Tarjeta de Debito" itemValue="4"/>
-                                        <f:selectItem itemLabel="Tarjeta de crédito" itemValue="5"/>
+                                        <f:selectItem itemLabel="Tarjeta de Débito" itemValue="4"/>
+                                        <f:selectItem itemLabel="Tarjeta de Crédito" itemValue="5"/>
                                     </p:selectOneMenu>
 
                                     <p:outputLabel for="abono" 
@@ -205,7 +202,7 @@
                                                  required="true"
                                                  value="#{abonoController.abono.valorAbonado}"
                                                  style="width: 100px; text-align: right;">
-                                        <f:convertNumber />
+                                        <p:keyFilter mask="num" />
                                     </p:inputText>
 
                                     <p:outputLabel for="fechaAbono" 
@@ -223,16 +220,16 @@
                                 <div style="float: right;">
                                     <p:commandButton icon="pi pi-times" value="Cancelar"
                                                      immediate="true"
-                                                     oncomplete="PF('nuevoCobro').hide()"
-                                                     class="ui-button-secondary"
+                                                     onclick="PF('nuevoCobro').hide()"
                                                      styleClass=" ui-button-danger"/> 
                                     &nbsp;
                                     <p:commandButton 
                                         icon="pi pi-save" ajax="false"
-                                        value="Guardar Cambios"
+                                        value="Guardar Cobro"
                                         actionListener="#{abonoController.guardarAbono()}"
-                                        update=":growl form:tblRegistroCobro"
-                                        styleClass="ui-button-success"/> 
+                                        update=":growl"
+                                        styleClass="ui-button-success"
+                                        onsuccess="location.reload()"/> 
                                 </div>
                             </h:form>
                         </p:dialog>

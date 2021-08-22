@@ -21,7 +21,8 @@
                         <div style="text-align: center;">
                             <p:outputLabel value="Identificación: " for="txtidentificacion" 
                                            style="font-weight: bold; padding: 10px;"/>
-                            <p:inputText id="txtidentificacion" type="text" 
+                            <p:inputText id="txtidentificacion" 
+                                         placeholder="CI/PA/RUC"
                                          value="#{plan_PagoController.identificacion}"
                                          style="width: 150px;"/> 
                             &nbsp;
@@ -33,7 +34,8 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <p:outputLabel value="Nombre: " for="txtnombrecliente" 
                                            class="outputListaCobros"/>
-                            <p:inputText id="txtnombrecliente" disabled="true" type="text" 
+                            <p:inputText id="txtnombrecliente" disabled="true"
+                                         placeholder="Razón Social/Nombres y Apellidos"
                                          value="#{plan_PagoController.persona.razonNombre}"
                                          class="inputListaCobros"/> 
                         </div>
