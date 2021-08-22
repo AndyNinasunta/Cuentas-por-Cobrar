@@ -45,7 +45,7 @@
                                         <br/> <br/>
                                         <p:selectOneMenu id="optionFactura" 
                                                          value="#{abonoController.idFactura}"
-                                                         style="height: 40px; width: 130px;">                            
+                                                         style="height: 40px; width: 185px !important;">                            
                                             <f:selectItem itemLabel="Seleccione..." itemValue="0"/>
                                             <f:selectItems value="#{abonoController.listaVenta}"
                                                            itemLabel="#{abonoController.listaVenta}"/>
@@ -115,8 +115,9 @@
                                             <p:inputText id="totalAbono" 
                                                          disabled="true" 
                                                          value="#{abonoController.totalAbonos}"
-                                                         style="width: 100px; text-align: right;"/>
-                                                         $
+                                                         style="width: 100px; text-align: right;">
+                                                <f:convertNumber currencySymbol="$" type="currency"/>
+                                            </p:inputText>
                                         </span>
                                         <span style="float: right; padding-right: 20px;">
                                             <p:outputLabel value="Valor Pendiente: " 
@@ -127,8 +128,9 @@
                                                          disabled="true" 
                                                          type="text"
                                                          value="#{abonoController.totalPendiente}"
-                                                         style="width: 100px; text-align: right;"/>
-                                                         $
+                                                         style="width: 100px; text-align: right;">
+                                                <f:convertNumber currencySymbol="$" type="currency"/>
+                                            </p:inputText>
                                         </span>
                                         <br/><br/>
                                     </div>
@@ -179,12 +181,23 @@
                                   id="dialogAddCobro" responsive="true">
                             <h:form>
                                 <p:panelGrid columns="4" layout="grid">
+                                    <p:outputLabel for="abono" 
+                                                   style="font-weight: bold;"
+                                                   value="Saldo Abonar:">
+                                    </p:outputLabel>
+                                    <p:inputText id="abono"  
+                                                 required="true"
+                                                 value="#{abonoController.abono.valorAbonado}"
+                                                 style="width: 100px !important;">
+                                        <p:keyFilter mask="num" />
+                                    </p:inputText>
+                                    
                                     <p:outputLabel for="formaPago" 
                                                    style="font-weight: bold;"
                                                    value="Forma de Pago:">
                                     </p:outputLabel>
                                     <p:selectOneMenu id="formaPago" 
-                                                     class="tamanoInputClienteNJ"
+                                                     style="width: 170px !important;"
                                                      value="#{abonoController.abono.idFormaDePago}"
                                                      required="true">                            
                                         <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
@@ -194,23 +207,13 @@
                                         <f:selectItem itemLabel="Tarjeta de Crédito" itemValue="5"/>
                                     </p:selectOneMenu>
 
-                                    <p:outputLabel for="abono" 
-                                                   style="font-weight: bold;"
-                                                   value="Saldo Abonar:">
-                                    </p:outputLabel>
-                                    <p:inputText id="abono"  
-                                                 required="true"
-                                                 value="#{abonoController.abono.valorAbonado}"
-                                                 style="width: 100px; text-align: right;">
-                                        <p:keyFilter mask="num" />
-                                    </p:inputText>
-
                                     <p:outputLabel for="fechaAbono" 
                                                    style="font-weight: bold;"
                                                    value="Fecha Abono:">
                                     </p:outputLabel>
                                     <p:datePicker monthNavigator="true" yearNavigator="true"
                                                   id="fechaAbono"
+
                                                   yearRange="1800:2050"
                                                   required="true"
                                                   value="#{abonoController.abono.fechaAbono}"
@@ -224,12 +227,11 @@
                                                      styleClass=" ui-button-danger"/> 
                                     &nbsp;
                                     <p:commandButton 
-                                        icon="pi pi-save" ajax="false"
+                                        icon="pi pi-save" ajax="true"
                                         value="Guardar Cobro"
                                         actionListener="#{abonoController.guardarAbono()}"
                                         update=":growl"
-                                        styleClass="ui-button-success"
-                                        onsuccess="location.reload()"/> 
+                                        styleClass="ui-button-success"/> 
                                 </div>
                             </h:form>
                         </p:dialog>

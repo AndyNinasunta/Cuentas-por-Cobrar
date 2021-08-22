@@ -164,18 +164,17 @@ public class AbonoController implements Serializable {
                 listaVenta = new ArrayList<>();
                 this.retencionDAO = new RetencionDAO();
                 idCliente = persona.getIdCliente();
-                
-                
+
                 //Cargamos las ventas en el select one
                 List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
                 for (Retencion lret : r) {
-                    
-                   String numFactura= abonoDAO.obtenerConcatenacionFactura(
+
+                    String numFactura = abonoDAO.obtenerConcatenacionFactura(
                             lret.getIdSucursal(), lret.getPuntoEmision(),
                             lret.getSecuencia());
-               
+
                     //Funcion que devuelve un string con la concatenacion de la factura.
-                    SelectItem ventasItem = new SelectItem(lret.getIdVenta(),numFactura);
+                    SelectItem ventasItem = new SelectItem(lret.getIdVenta(), numFactura);
                     this.listaVenta.add(ventasItem);
 
                 }
@@ -231,7 +230,7 @@ public class AbonoController implements Serializable {
 
     //Este procedimiento valida e inicia la interfaz para guardar un nuevo abono
     public void nuevoAbono() {
-
+        this.abono = new Abono();
         try {
             PrimeFaces current = PrimeFaces.current();
             if (idFactura == 0) {
@@ -256,19 +255,18 @@ public class AbonoController implements Serializable {
                 mostrarMensajeError("Porfavor. Elija una forma de Pago");
             } else if (abono.getValorAbonado() <= 0) {
                 mostrarMensajeError("El abono no puede ser menor o igual a 0.");
+            } else if (abonoDAO.insertarNuevoAbono(idFactura, idPlanDePago) > 0) {
+                mostrarMensajeInformacion("Se Registró Correctamente");
+                PrimeFaces.current().executeScript("PF('nuevoCobro').hide()");
+                this.list_Abonos = abonoDAO.obtenerAbonos(idCliente);
             } else {
-                if (abonoDAO.insertarNuevoAbono(idFactura, idPlanDePago) > 0) {
-
-                    mostrarMensajeInformacion("Se Registró Correctamente");
-                    this.list_Abonos = abonoDAO.obtenerAbonos(idCliente);
-
-                } else {
-                    mostrarMensajeError("No se Registró Correctamente");
-                }
+                mostrarMensajeError("No se Registró Correctamente");
             }
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
+//        PrimeFaces.current().executeScript("PF('nuevoCobro').hide()");
+//        PrimeFaces.current().executeScript("location.reload()");
     }
 
     //Metodos para mostrar mensajes de Información y Error

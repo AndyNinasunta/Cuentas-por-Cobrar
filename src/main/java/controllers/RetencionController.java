@@ -105,23 +105,22 @@ public class RetencionController implements Serializable {
                 listaVenta = new ArrayList<>();
                 this.retencionDAO = new RetencionDAO();
                 idCliente = persona.getIdCliente();
-                
+
                 //Instanciamos la clase AbonoDAO para usar un metodo
-                AbonoDAO abonoDAO=new AbonoDAO();
-                
+                AbonoDAO abonoDAO = new AbonoDAO();
+
                 //Cargamos las ventas en el select one
                 List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
                 for (Retencion lret : r) {
-                    
+
                     //Usamos la funcion de Abono Dao para concatenar la factura
-                    String numFactura= abonoDAO.obtenerConcatenacionFactura(
+                    String numFactura = abonoDAO.obtenerConcatenacionFactura(
                             lret.getIdSucursal(), lret.getPuntoEmision(),
                             lret.getSecuencia());
-                    
-                    SelectItem ventasItem = new SelectItem(lret.getIdVenta(),numFactura);
+
+                    SelectItem ventasItem = new SelectItem(lret.getIdVenta(), numFactura);
                     this.listaVenta.add(ventasItem);
 
-                    
                 }
                 //Este if valida si el cliente tiene o no cobros.
                 if (listaVenta.isEmpty()) {
@@ -161,24 +160,25 @@ public class RetencionController implements Serializable {
     //Metodo para registrar la retencion de un cliente para una determinada 
     //factura.
     public void registrarRetencion() {
-        retencionDAO = new RetencionDAO(retencion);
-
-        if (retencionDAO.insertarRetencion(this.idCliente, this.idFactura) > 0) {
-            mostrarMensajeInformacion("Se Registró Correctamente");
-            listaRetenciones = retencionDAO.obtenerRetenciones(this.idFactura);
-        } else {
-            mostrarMensajeError("No se Registró Correctamente");
-        }
-    }
-
-    //Metodo que me carga el dialog para agregar una retencion
-    public void cargarIngresarRetencion() {
         try {
-            PrimeFaces current = PrimeFaces.current();
-            current.executeScript("PF('RetencionNew').show();");
+            retencionDAO = new RetencionDAO(retencion);
+
+            if (retencionDAO.insertarRetencion(this.idCliente, this.idFactura) > 0) {
+                mostrarMensajeInformacion("Se Registró Correctamente");
+                listaRetenciones = retencionDAO.obtenerRetenciones(this.idFactura);
+            } else {
+                mostrarMensajeError("No se Registró Correctamente");
+            }
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
+        PrimeFaces.current().executeScript("PF('RetencionNew').hide()");
+        PrimeFaces.current().executeScript("location.reload()");
+    }
+
+    //Metodo que me carga el dialog para agregar una retencion
+    public void nuevaRetencion() {
+        this.retencion = new Retencion();
     }
 
     //Metodo que actualiza/modifica una retencion
@@ -188,7 +188,7 @@ public class RetencionController implements Serializable {
             if (retencionDAO.actualizarRetencion(retencion, this.idCliente) > 0) {
                 mostrarMensajeInformacion("Se Editó Correctamente");
                 //Aqui se ubica codigo para cargar nuevamente la tabla de retenciones
-                listaRetenciones = retencionDAO.obtenerRetenciones(3);
+                listaRetenciones = retencionDAO.obtenerRetenciones(this.idFactura);
             } else {
                 mostrarMensajeError("No se Editó Correctamente");
             }

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -75,17 +76,26 @@
 
                             <p:column class="tamanoInput" style="text-align: center;"  
                                       headerText="Valor Total Factura">
-                                <h:outputText value="#{varFacturasVencidas.valorTotalFactura}"/>
+                                <h:outputText value="#{varFacturasVencidas.valorTotalFactura}">
+                                    <f:convertNumber type="currency" 
+                                                         currencySymbol="$"/>
+                                </h:outputText>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;"  
                                       headerText="Total Abonos">
-                                <h:outputText value="#{varFacturasVencidas.totalAbonos}"/>
+                                <h:outputText value="#{varFacturasVencidas.totalAbonos}">
+                                    <f:convertNumber type="currency" 
+                                                         currencySymbol="$"/>
+                                </h:outputText>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;" 
                                       headerText="Saldo Pendiente">
-                                <h:outputText value="#{varFacturasVencidas.valorPendiente}"/>
+                                <h:outputText value="#{varFacturasVencidas.valorPendiente}">
+                                    <f:convertNumber type="currency" 
+                                                         currencySymbol="$"/>
+                                </h:outputText>
                             </p:column>
 
                             <p:column class="tamanoInput" style="text-align: center;" 

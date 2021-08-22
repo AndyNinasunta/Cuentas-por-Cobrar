@@ -15,7 +15,7 @@
                     <h2>MANTENIMIENTO A CLIENTES</h2>
                 </div>
                 <p:panel>
-                    <p:growl id="growl" showDetail="true"/> 
+                    <p:growl id="growl" showDetail="true" life="1500"/> 
                     <!--Tabla que muestra el listado de clientes-->
                     <h:form id="frmtblClientes">
                         <!-- Botones para agregar cliente natural y juridico  !-->
@@ -23,10 +23,12 @@
                             <p:toolbarGroup style="margin: auto;">
                                 <div>
                                     <p:commandButton oncomplete="PF('clienteNaturalNew').show()"
+                                                     actionListener="#{personaController.nuevoClienteN()}"
                                                      icon="fa fa-fw fa-user" 
                                                      value="Agregar Cliente Natural" 
                                                      styleClass="ui-button-success"/>
                                     <p:commandButton oncomplete="PF('clienteJuridicoNew').show()"
+                                                     actionListener="#{personaController.nuevoClienteJ()}"
                                                      value="Agregar Cliente Jurídico" 
                                                      icon="fa fa-fw fa-building" 
                                                      styleClass="ui-button-success"/>
@@ -303,12 +305,11 @@
                                                  immediate="true"
                                                  styleClass=" ui-button-danger"/>
                                 &nbsp; 
-                                <p:commandButton value="Guardar" ajax="false"
+                                <p:commandButton value="Guardar" ajax="true"
                                                  icon="pi pi-save"
-                                                 update=":growl dialogNN"
+                                                 update=":growl"
                                                  actionListener="#{personaController.registrarClienteNatural()}"
-                                                 styleClass=" ui-button-success"
-                                                 onsuccess="location.reload()"/>
+                                                 styleClass=" ui-button-success"/>
                             </div>
                         </h:form>
                     </p:dialog>
@@ -317,7 +318,7 @@
                     <p:dialog header="Nuevo Cliente Jurídico" minHeight="50" 
                               height="auto" width="900px" showEffect="fade"
                               modal="true" widgetVar="clienteJuridicoNew"
-                              responsive="true">
+                              responsive="true" id="dialogClienteJN">
                         <h:form>
                             <p:panelGrid columns="4" layout="grid" id="dialogJN">
                                 <p:outputLabel for="identificaJuridico" 
@@ -420,12 +421,11 @@
                                                  immediate="true"
                                                  styleClass=" ui-button-danger"/>
                                 &nbsp;
-                                <p:commandButton value="Guardar" ajax="false"
+                                <p:commandButton value="Guardar" ajax="true"
                                                  icon="pi pi-save"
-                                                 update=":growl dialogJN"
+                                                 update=":growl"
                                                  actionListener="#{personaController.registrarClienteJuridico()}"
-                                                 styleClass=" ui-button-success"
-                                                 onsuccess="location.reload()"/>
+                                                 styleClass=" ui-button-success"/>
                             </div>
                         </h:form>
                     </p:dialog>
@@ -608,8 +608,8 @@
                                 &nbsp;
                                 <p:commandButton value="Guardar Cambios" 
                                                  icon="pi pi-save"
+                                                 ajax="false"
                                                  update=":growl"
-                                                 onsuccess="location.reload()"
                                                  actionListener="#{personaController.actualizarClienteNatural()}"
                                                  styleClass=" ui-button-success"/>
                             </div>
@@ -726,8 +726,7 @@
                                                  ajax="false"
                                                  update=":growl"
                                                  actionListener="#{personaController.actualizarClienteJuridico()}"
-                                                 styleClass=" ui-button-success"
-                                                 onsuccess="location.reload()"/>
+                                                 styleClass=" ui-button-success"/>
                             </div>
                         </h:form>
                     </p:dialog>

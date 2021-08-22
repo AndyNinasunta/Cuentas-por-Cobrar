@@ -12,16 +12,13 @@ import models.Persona;
 import models.Persona_Juridica;
 import models.Persona_Natural;
 import java.io.Serializable;
-import static java.lang.Integer.getInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.PrimeFaces;
-import org.primefaces.util.LangUtils;
 
 @Named(value = "personaController")
 @ViewScoped
@@ -29,7 +26,7 @@ public class PersonaController implements Serializable {
 
     //Objeto para traer funciones de primefaces
     PrimeFaces current = PrimeFaces.current();
-    
+
     //Declaro mis clases Persona y PersonaDAO
     Persona persona;
     PersonaDAO personaDAO;
@@ -44,7 +41,7 @@ public class PersonaController implements Serializable {
 
     //Declaro mi listaCliente que van hacer cargadas en el datatable
     List<Persona> listaCliente;
-    
+
     int idCliente = 0;
 
     //Constructor que instancia mis clases declaradas
@@ -167,6 +164,13 @@ public class PersonaController implements Serializable {
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
+        PrimeFaces.current().executeScript("PF('clienteJuridicoNew').hide()");
+        PrimeFaces.current().executeScript("location.reload()");
+    }
+
+    //Actualizar Objeto de Nuevo Cliente Juridico
+    public void nuevoClienteJ() {
+        this.persona_Juridica = new Persona_Juridica();
     }
 
     public void registrarClienteNatural() {
@@ -182,6 +186,13 @@ public class PersonaController implements Serializable {
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
         }
+        PrimeFaces.current().executeScript("PF('clienteNaturalNew').hide()");
+        PrimeFaces.current().executeScript("location.reload()");
+    }
+    
+    //Actualizar Objeto de Nuevo Cliente Natural
+    public void nuevoClienteN() {
+        this.persona_Natural = new Persona_Natural();
     }
 
     //Al momento de darle click al icono de editar, se ejecuta este procedi.

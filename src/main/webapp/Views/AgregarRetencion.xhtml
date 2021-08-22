@@ -45,10 +45,9 @@
                                     <br/> <br/>
                                     <p:selectOneMenu id="optionFactura" 
                                                      value="#{retencionController.idFactura}"
-                                                     style="height: 40px; width: 130px; text-align: center;">                            
+                                                     style="height: 40px; width: 185px !important;">                            
                                         <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
-                                        <f:selectItems value="#{retencionController.listaVentas}" 
-                                                       itemLabel="#{retencionController.listaVenta}"/>
+                                        <f:selectItems value="#{retencionController.listaVentas}"/>
                                     </p:selectOneMenu>
                                 </div>
                             </div>
@@ -69,8 +68,7 @@
                             <p:toolbarGroup>
                                 <div>
                                     <h:form>
-                                        <p:commandButton id="btnCargarR"
-                                                         icon="pi pi-replay " 
+                                        <p:commandButton icon="pi pi-replay " 
                                                          value="Cargar Retención" 
                                                          ajax="false"
                                                          actionListener="#{retencionController.cargarRetenciones()}"
@@ -79,10 +77,9 @@
                                                          style="margin:.3rem;"/>
                                         &nbsp;&nbsp;
                                         <p:commandButton icon="pi pi-plus " 
-                                                         ajax="false"
                                                          value="Añadir Nueva Retención" 
-                                                         actionListener="#{retencionController.cargarIngresarRetencion()}"
-                                                         update=":growl tblRetenciones:dialogAddRetencion "
+                                                         oncomplete="PF('RetencionNew').show();"
+                                                         actionListener="#{retencionController.nuevaRetencion()}"
                                                          styleClass=" ui-button-success" 
                                                          style="margin:.3rem;"/>
                                     </h:form>
@@ -113,9 +110,7 @@
                             </p:column>
                             <p:column headerText="% Retención" 
                                       style="text-align: center;">
-                                <h:outputText value="#{varRetenciones.porcenRetencion}">
-                                    <f:convertNumber pattern="##,00%"/>
-                                </h:outputText>
+                                <p>#{varRetenciones.porcenRetencion}%</p>
                             </p:column>
                             <p:column headerText="Valor Retenido" 
                                       style="text-align: center;">
@@ -137,7 +132,7 @@
 
                     <!-- Ventana Agregar datos de la retencion!-->
                     <p:dialog header="Nueva Retención" minHeight="50" 
-                              height="auto" width="750px" showEffect="fade"
+                              height="auto" width="800px" showEffect="fade"
                               modal="true" widgetVar="RetencionNew"
                               id="dialogAddRetencion" responsive="true">
                         <h:form>
@@ -150,7 +145,9 @@
                                              type="text" 
                                              style="width: 80px;"
                                              required="true"
-                                             value="#{retencionController.retencion.baseImponible}"/>
+                                             value="#{retencionController.retencion.baseImponible}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </p:inputText>
 
                                 <p:outputLabel for="descrImpuestoAdd" 
                                                style="font-weight: bold;"
@@ -158,7 +155,7 @@
                                 </p:outputLabel>
                                 <p:selectOneMenu id="descrImpuestoAdd" 
                                                  value="#{retencionController.retencion.descImpuesto}" 
-                                                 class="tamanoInputClienteNJ"
+                                                 style="width: 150px !important;"
                                                  required="true">                            
                                     <f:selectItem itemLabel="Seleccione..." itemValue=""/>
                                     <f:selectItem itemLabel="BIENES" 
@@ -180,15 +177,15 @@
                                 &nbsp; 
                                 <p:commandButton actionListener="#{retencionController.registrarRetencion()}"
                                                  icon="pi pi-save" value="Guardar"
-                                                 ajax="false"
-                                                 update=":growl dialogAddRetencion frmprincipal:tblRetenciones"
+                                                 ajax="true"
+                                                 update=":growl :frmprincipal:tblRetenciones"
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
                     </p:dialog>
 
                     <!-- Ventana Editar datos de la retencion!-->
-                    <p:dialog header="Editar Cliente" minHeight="50"
+                    <p:dialog header="Editar Retención" minHeight="50"
                               height="auto" width="750px" showEffect="fade"
                               modal="true" widgetVar="RetencionEdit"
                               id="dialogEditarRetencion">
@@ -202,7 +199,9 @@
                                              type="text" 
                                              style="width: 80px;"
                                              required="true"
-                                             value="#{retencionController.retencion.baseImponible}"/>
+                                             value="#{retencionController.retencion.baseImponible}">
+                                    <f:convertNumber type="currency" currencySymbol="$"/>
+                                </p:inputText>
 
                                 <p:outputLabel for="descrImpuestoEdit" 
                                                style="font-weight: bold;"
@@ -210,7 +209,7 @@
                                 </p:outputLabel>
                                 <p:selectOneMenu id="descrImpuestoEdit" 
                                                  value="#{retencionController.retencion.descImpuesto}" 
-                                                 class="tamanoInputClienteNJ"
+                                                 style="width: 150px !important;"
                                                  required="true">                            
                                     <f:selectItem itemLabel="Seleccione..." itemValue=""/>
                                     <f:selectItem itemLabel="BIENES" 
@@ -231,9 +230,10 @@
                                                  styleClass=" ui-button-danger"/> 
                                 &nbsp;
                                 <p:commandButton actionListener="#{retencionController.actualizarRetencion()}"
-                                                 icon="pi pi-save" ajax="false"
+                                                 icon="pi pi-save"
+                                                 ajax="false"
                                                  value="Guardar Cambios"
-                                                 update=":growl tblRetenciones"
+                                                 update=":growl :frmprincipal:tblRetenciones"
                                                  styleClass=" ui-button-success"/> 
                             </div>
                         </h:form>
