@@ -69,14 +69,16 @@ public class RetencionDAO implements Serializable {
                 
                 while (result.next()) {
                     
-                    lista_Retencion.add(new Retencion(result.getInt("idventa_r")));
+                    lista_Retencion.add(new Retencion(result.getInt("idventa_r"),
+                    result.getInt("id_sucursal_r"),
+                    result.getInt("puntoemision_r"),
+                    result.getInt("secuencia_r")));
                     
                 }
                 
             }catch (SQLException ex) {
-                
-                lista_Retencion.add(new Retencion(-1));
-                
+                lista_Retencion.add(new Retencion(-1,-1,-1,-1));
+                conex.cerrarConexion();
             } finally {
                 
                 conex.cerrarConexion();

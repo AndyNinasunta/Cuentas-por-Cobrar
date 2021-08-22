@@ -1,5 +1,6 @@
 package controllers;
 
+import dataviews.AbonoDAO;
 import dataviews.PersonaDAO;
 import dataviews.RetencionDAO;
 import java.io.Serializable;
@@ -104,12 +105,23 @@ public class RetencionController implements Serializable {
                 listaVenta = new ArrayList<>();
                 this.retencionDAO = new RetencionDAO();
                 idCliente = persona.getIdCliente();
+                
+                //Instanciamos la clase AbonoDAO para usar un metodo
+                AbonoDAO abonoDAO=new AbonoDAO();
+                
                 //Cargamos las ventas en el select one
                 List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
                 for (Retencion lret : r) {
-                    SelectItem ventasItem = new SelectItem(lret.getIdVenta());
+                    
+                    //Usamos la funcion de Abono Dao para concatenar la factura
+                    String numFactura= abonoDAO.obtenerConcatenacionFactura(
+                            lret.getIdSucursal(), lret.getPuntoEmision(),
+                            lret.getSecuencia());
+                    
+                    SelectItem ventasItem = new SelectItem(lret.getIdVenta(),numFactura);
                     this.listaVenta.add(ventasItem);
-                    System.out.println(lret.getIdVenta());
+
+                    
                 }
                 //Este if valida si el cliente tiene o no cobros.
                 if (listaVenta.isEmpty()) {

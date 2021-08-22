@@ -11,17 +11,19 @@ public class Estado_De_Cuenta implements Serializable{
     private double totalFactura;
     private double totalAbonos;
     private double totalPendientes;
+    private String numFactura;
 
     public Estado_De_Cuenta() {
     }
 
     public Estado_De_Cuenta(int idVenta, LocalDate fechacredito, 
-            double totalFactura,double totalAbonos,double totalPendientes) {
+            double totalFactura,double totalAbonos,double totalPendientes,String numFactura) {
         this.idVenta = idVenta;
         this.fechacredito = fechacredito;
         this.totalFactura = totalFactura;
         this.totalAbonos = totalAbonos;
         this.totalPendientes=totalPendientes;
+        this.numFactura=numFactura;
     }
 
     //Declaracion de  Getters y Setters
@@ -64,5 +66,14 @@ public class Estado_De_Cuenta implements Serializable{
     public void setTotalPendientes(double totalPendientes) {
         this.totalPendientes = totalPendientes;
     }
+
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
+    }
+    
     
 }

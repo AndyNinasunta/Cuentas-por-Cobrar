@@ -44,9 +44,16 @@ public class Facturas_PendientesDAO implements Serializable{
                 String sentencia = "Select*from Obtener_Facturas_Pendientes()";
                 result = conex.ejecutarConsulta(sentencia);
 
+                //Instanciamos la clase AbonoDAO.        
+                AbonoDAO abonoDAO= new AbonoDAO();
+
                 //Recorremos la TABLA retornada y la almacenamos en la lista.
                 while (result.next()) {
 
+                    //Concatenamos la sucursal, el punto de emision y el numero de la factura
+                    String numFact =abonoDAO.obtenerConcatenacionFactura(result.getInt("id_sucursal_r"),
+                            result.getInt("puntoemision_r"), result.getInt("secuencia_r"));
+                    
                     lista_facturas_Pendientes.add(
                             new Facturas_Pendientes(result.getObject("fechacredito_r", LocalDate.class),
                                     result.getInt("diasdecredito_r"),
@@ -57,7 +64,7 @@ public class Facturas_PendientesDAO implements Serializable{
                                     result.getDouble("valorpendiente_r"),
                                     result.getObject("fechapagofinal_r", LocalDate.class),
                                     result.getString("descripcionestado_r"),
-                                    result.getInt("diasmora_r")));
+                                    result.getInt("diasmora_r"),numFact));
 
                 }
             } catch (SQLException ex) {
@@ -65,7 +72,17 @@ public class Facturas_PendientesDAO implements Serializable{
                     con valores incorrectos.*/
                 System.out.println(ex.getMessage());
                 lista_facturas_Pendientes.add(
-                        new Facturas_Pendientes(null, -1, null, null, -1, -1, -1, null, "", -1));
+                        new Facturas_Pendientes(null,
+                                -1,
+                                null,
+                                null,
+                                -1,
+                                -1,
+                                -1, 
+                                null,
+                                "",
+                                -1,
+                        ""));
             } finally {
 
                 conex.cerrarConexion();

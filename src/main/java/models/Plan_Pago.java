@@ -21,6 +21,7 @@ public class Plan_Pago implements Serializable {
     private String estadoFactura;
     private int diasMora;
     private double intereses;
+    private String numFactura;
     
 
     public Plan_Pago() {
@@ -44,7 +45,10 @@ public class Plan_Pago implements Serializable {
     }
 
     //Constructor para cargar los cobros 
-    public Plan_Pago(LocalDate fechaFacturacion, int diasCredito, LocalDate fechaVencimiento, int idFactura, double valorTotalFactura, double valorPendiente, double totalAbonos, String estadoFactura, int diasMora) {
+    public Plan_Pago(LocalDate fechaFacturacion, int diasCredito, 
+            LocalDate fechaVencimiento, int idFactura, double valorTotalFactura,
+            double valorPendiente, double totalAbonos, String estadoFactura, 
+            int diasMora, String numFactura) {
         this.fechaFacturacion = fechaFacturacion;
         this.diasCredito = diasCredito;
         this.fechaVencimiento = fechaVencimiento;
@@ -54,6 +58,7 @@ public class Plan_Pago implements Serializable {
         this.totalAbonos = totalAbonos;
         this.estadoFactura = estadoFactura;
         this.diasMora = diasMora;
+        this.numFactura=numFactura;
     }
     
     public String estadoFac(){
@@ -186,4 +191,14 @@ public class Plan_Pago implements Serializable {
     public void setTotalAbonos(double totalAbonos) {
         this.totalAbonos = totalAbonos;
     }
+
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
+    }
+    
+    
 }

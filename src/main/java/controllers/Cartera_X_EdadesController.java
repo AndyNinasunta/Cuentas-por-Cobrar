@@ -47,6 +47,7 @@ public class Cartera_X_EdadesController implements Serializable {
 
         //Carga la sumatoria de todas las ventas .
         listaSum_Cartera_X_Edades = new ArrayList<>();
+        
         //Recibe un parámetros que será el id del cliente, en caso de ser -1 (Predeterminado)
         //Se carga la suma de todos los clientes.
         listaSum_Cartera_X_Edades = cartera_X_EdadesDAO.obtenerSumCarteraxEdades(-1);
@@ -60,10 +61,6 @@ public class Cartera_X_EdadesController implements Serializable {
         personaDAO = new PersonaDAO();
         List<Persona> p = personaDAO.obtenerNombresClientes();
         listaCliente.clear();
-//        for (Persona nombres : p) {
-//            SelectItem nombresItem = new SelectItem(nombres.getIdCliente(),nombres.getRazonNombre());
-//            this.listaCliente.add(nombresItem); 
-//        }
         return listaCliente;
     }
 

@@ -47,7 +47,8 @@
                                                          value="#{abonoController.idFactura}"
                                                          style="height: 40px; width: 130px;">                            
                                             <f:selectItem itemLabel="Seleccione..." itemValue="0"/>
-                                            <f:selectItems value="#{abonoController.listaVenta}"/>
+                                            <f:selectItems value="#{abonoController.listaVenta}"
+                                                           itemLabel="#{abonoController.listaVenta}"/>
                                         </p:selectOneMenu>
                                     </div>
                                 </div>
@@ -143,7 +144,7 @@
                                 <p:column class="tamanoInput" 
                                           style="text-align: center;"
                                           headerText="N° Fact">
-                                    <h:outputText value="#{varRegistroCobro.idVenta}" />
+                                    <h:outputText value="#{varRegistroCobro.numFactura}" />
                                 </p:column>
                                 <p:column class="tamanoInput" 
                                           style="text-align: center;"

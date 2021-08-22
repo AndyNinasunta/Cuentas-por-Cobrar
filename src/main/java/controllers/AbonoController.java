@@ -164,12 +164,20 @@ public class AbonoController implements Serializable {
                 listaVenta = new ArrayList<>();
                 this.retencionDAO = new RetencionDAO();
                 idCliente = persona.getIdCliente();
+                
+                
                 //Cargamos las ventas en el select one
                 List<Retencion> r = retencionDAO.obtenerVentas(persona.getIdCliente());
                 for (Retencion lret : r) {
-                    SelectItem ventasItem = new SelectItem(lret.getIdVenta());
+                    
+                   String numFactura= abonoDAO.obtenerConcatenacionFactura(
+                            lret.getIdSucursal(), lret.getPuntoEmision(),
+                            lret.getSecuencia());
+               
+                    //Funcion que devuelve un string con la concatenacion de la factura.
+                    SelectItem ventasItem = new SelectItem(lret.getIdVenta(),numFactura);
                     this.listaVenta.add(ventasItem);
-                    System.out.println(lret.getIdVenta());
+
                 }
                 //Este if valida si el cliente tiene o no cobros.
                 if (listaVenta.isEmpty()) {

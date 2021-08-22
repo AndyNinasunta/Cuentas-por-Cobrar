@@ -16,13 +16,17 @@ public class Facturas_Pendientes implements Serializable {
     private LocalDate fechaUltimoPago = LocalDate.now();
     private String estadoFactura;
     private int diasMora;
+    private String numFactura;
 
     //Constructor Vacío
     public Facturas_Pendientes() {
     }
 
     //Constructor para almacenar las facturas pendientes
-    public Facturas_Pendientes(LocalDate fechaFacturacion, int diasCredito, LocalDate fechaVencimiento, String nombreDelCliente, int idFactura, double valorTotalFactura, double valorPendiente, LocalDate fechaUltimoPago, String estadoFactura, int diasMora) {
+    public Facturas_Pendientes(LocalDate fechaFacturacion, int diasCredito,
+            LocalDate fechaVencimiento, String nombreDelCliente, int idFactura, 
+            double valorTotalFactura, double valorPendiente, LocalDate fechaUltimoPago,
+            String estadoFactura, int diasMora, String numFactura) {
         this.fechaFacturacion = fechaFacturacion;
         this.diasCredito = diasCredito;
         this.fechaVencimiento = fechaVencimiento;
@@ -33,6 +37,7 @@ public class Facturas_Pendientes implements Serializable {
         this.fechaUltimoPago = fechaUltimoPago;
         this.estadoFactura = estadoFactura;
         this.diasMora = diasMora;
+        this.numFactura=numFactura;
     }
 
     public String identificaEstado() {
@@ -132,5 +137,13 @@ public class Facturas_Pendientes implements Serializable {
 
     public void setDiasMora(int diasMora) {
         this.diasMora = diasMora;
+    }
+
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
     }
 }

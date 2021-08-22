@@ -46,13 +46,22 @@ public class Estado_De_CuentaDAO implements Serializable {
                 String sentencia = "select*from obtener_estado_cuenta_general()";
                 result = conex.ejecutarConsulta(sentencia);
                 
+                //Instanciamos la clase AbonoDAO.        
+                AbonoDAO abonoDAO= new AbonoDAO();
+                
                 while (result.next()) {
+                    
+                     //Concatenamos la sucursal, el punto de emision y el numero de la factura
+                    String numFact =abonoDAO.obtenerConcatenacionFactura(result.getInt("id_sucursal_r"),
+                            result.getInt("puntoemision_r"), result.getInt("secuencia_r"));
+                    
+                    
                     lista_Estado_de_Cuenta.add(new Estado_De_Cuenta(
                             result.getInt("idventa_r"),
                             result.getObject("fechacredito_r", LocalDate.class),
                             result.getDouble("totalfactura_r"),
                             result.getDouble("totalabonos_r"),
-                            result.getDouble("valorpendiente_r")));
+                            result.getDouble("valorpendiente_r"),numFact));
                 }
                 
             } catch (SQLException ex) {
@@ -64,7 +73,8 @@ public class Estado_De_CuentaDAO implements Serializable {
                             null,
                             -1,
                             -1,
-                            -1));
+                            -1,
+                ""));
                 
             }finally {
 
@@ -90,13 +100,23 @@ public class Estado_De_CuentaDAO implements Serializable {
                 String sentencia = "select*from obtener_estado_cuenta_cliente("+idCliente+")";
                 result = conex.ejecutarConsulta(sentencia);
                 
+                 //Instanciamos la clase AbonoDAO.        
+                AbonoDAO abonoDAO= new AbonoDAO();
+                
                 while (result.next()) {
+                    
+                    
+                     //Concatenamos la sucursal, el punto de emision y el numero de la factura
+                    String numFact =abonoDAO.obtenerConcatenacionFactura(result.getInt("id_sucursal_r"),
+                            result.getInt("puntoemision_r"), result.getInt("secuencia_r"));
+                    
                     lista_Estado_de_Cuenta.add(new Estado_De_Cuenta(
                             result.getInt("idventa_r"),
                             result.getObject("fechacredito_r", LocalDate.class),
                             result.getDouble("totalfactura_r"),
                             result.getDouble("totalabonos_r"),
-                            result.getDouble("valorpendiente_r")));
+                            result.getDouble("valorpendiente_r"),
+                            numFact));
                 }
                 
             } catch (SQLException ex) {
@@ -108,7 +128,8 @@ public class Estado_De_CuentaDAO implements Serializable {
                             null,
                             -1,
                             -1,
-                            -1));
+                            -1,
+                            ""));
                 
             }finally {
 

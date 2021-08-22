@@ -13,6 +13,11 @@ public class Retencion {
     private String descImpuesto;
     private String EjerFiscal;
     private Double valorRetenido;
+    
+    //identificacion de la factura
+    private int idSucursal;
+    private int puntoEmision;
+    private int secuencia;
 
     public Retencion() {
     }
@@ -37,9 +42,16 @@ public class Retencion {
         this.valorRetenido = valorRetenido;
     }
     
-    public Retencion(int idVenta) {
+    //Constructor para obtener el id de la venta, asi como la identificacion
+    //de la factura
+
+    public Retencion(int idVenta, int idSucursal, int puntoEmision, int secuencia) {
         this.idVenta = idVenta;
+        this.idSucursal = idSucursal;
+        this.puntoEmision = puntoEmision;
+        this.secuencia = secuencia;
     }
+  
 
     public int getIdRetencion() {
         return idRetencion;
@@ -112,6 +124,30 @@ public class Retencion {
 
     public void setFechaEmision(LocalDate fechaEmision) {
         this.fechaEmision = fechaEmision;
+    }
+
+    public int getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+
+    public int getPuntoEmision() {
+        return puntoEmision;
+    }
+
+    public void setPuntoEmision(int puntoEmision) {
+        this.puntoEmision = puntoEmision;
+    }
+
+    public int getSecuencia() {
+        return secuencia;
+    }
+
+    public void setSecuencia(int secuencia) {
+        this.secuencia = secuencia;
     }
 
    

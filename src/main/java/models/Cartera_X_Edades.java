@@ -1,31 +1,34 @@
-
 package models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
+public class Cartera_X_Edades implements Serializable {
 
-public class Cartera_X_Edades implements Serializable{
-    
     //Declaracion de las variables que necesita una Cartera x Edades
-    private LocalDate fechaEmision=LocalDate.now();
+    private LocalDate fechaEmision = LocalDate.now();
     private int idDocumento;
     private int idCliente;
     private String nombreClientes;
     private int diasDeCredito;
-    private LocalDate fechaVencimiento=LocalDate.now();
+    private LocalDate fechaVencimiento = LocalDate.now();
     private double valorTotalDoc;
     private double valorACobrar;
     private int diasMora;
     private double vencido30Dias;
     private double vencido60Dias;
     private double vencidoMas60Dias;
+    private String numFactura;
 
     public Cartera_X_Edades() {
     }
 
     //Constructor para llenar una lista de las carteras por edades.
-    public Cartera_X_Edades(LocalDate fechaEmision, int idDocumento, int idCliente, String nombreClientes, int diasDeCredito, LocalDate fechaVencimiento, double valorTotalDoc, double valorACobrar, int diasMora, double vencido30Dias, double vencido60Dias, double vencidoMas60Dias) {
+    public Cartera_X_Edades(LocalDate fechaEmision, int idDocumento,
+            int idCliente, String nombreClientes, int diasDeCredito,
+            LocalDate fechaVencimiento, double valorTotalDoc, double valorACobrar,
+            int diasMora, double vencido30Dias, double vencido60Dias,
+            double vencidoMas60Dias, String numFactura) {
         this.fechaEmision = fechaEmision;
         this.idDocumento = idDocumento;
         this.idCliente = idCliente;
@@ -38,9 +41,9 @@ public class Cartera_X_Edades implements Serializable{
         this.vencido30Dias = vencido30Dias;
         this.vencido60Dias = vencido60Dias;
         this.vencidoMas60Dias = vencidoMas60Dias;
+        this.numFactura=numFactura;
     }
-    
-    
+
     //Constructor para llenar una lista con las sumas de las carteras por edades
     public Cartera_X_Edades(double valorTotalDoc, double valorACobrar, double vencido30Dias, double vencido60Dias, double vencidoMas60Dias) {
         this.valorTotalDoc = valorTotalDoc;
@@ -49,7 +52,6 @@ public class Cartera_X_Edades implements Serializable{
         this.vencido60Dias = vencido60Dias;
         this.vencidoMas60Dias = vencidoMas60Dias;
     }
-
 
     //Declaracion de  Getters y Setters
     public LocalDate getFechaEmision() {
@@ -130,7 +132,7 @@ public class Cartera_X_Edades implements Serializable{
 
     public void setVencidoMas60Dias(double vencidoMas60Dias) {
         this.vencidoMas60Dias = vencidoMas60Dias;
-    }  
+    }
 
     public int getIdCliente() {
         return idCliente;
@@ -147,5 +149,13 @@ public class Cartera_X_Edades implements Serializable{
     public void setNombreClientes(String nombreClientes) {
         this.nombreClientes = nombreClientes;
     }
-    
+
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
+    }
+
 }

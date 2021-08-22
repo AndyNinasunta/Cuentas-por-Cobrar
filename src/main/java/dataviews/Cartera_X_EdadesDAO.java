@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dataviews;
 
 import java.io.Serializable;
@@ -13,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Cartera_X_Edades;
 
-/**
- *
- * @author andy2
- */
 public class Cartera_X_EdadesDAO implements Serializable {
 
     List<Cartera_X_Edades> lista_CarteraxEdades;
@@ -51,9 +43,16 @@ public class Cartera_X_EdadesDAO implements Serializable {
                 String sentencia = "select*from obtener_cartera_vencidaxedades()";
                 result = conex.ejecutarConsulta(sentencia);
 
+                 //Instanciamos la clase AbonoDAO.        
+                AbonoDAO abonoDAO= new AbonoDAO();
+                
                 //Recorremos la TABLA retornada y la almacenamos en la lista.
                 while (result.next()) {
 
+                    //Concatenamos la sucursal, el punto de emision y el numero de la factura
+                    String numFact =abonoDAO.obtenerConcatenacionFactura(result.getInt("id_sucursal_r"),
+                            result.getInt("puntoemision_r"), result.getInt("secuencia_r"));
+                    
                     lista_CarteraxEdades.add(new Cartera_X_Edades(
                             result.getObject("fechaemision_r", LocalDate.class),
                             result.getInt("documento_r"),
@@ -66,7 +65,8 @@ public class Cartera_X_EdadesDAO implements Serializable {
                             result.getInt("diasmora_r"),
                             result.getDouble("vencido30dias_r"),
                             result.getDouble("vencido60dias_r"),
-                            result.getDouble("vencidomas60dias_r")));
+                            result.getDouble("vencidomas60dias_r"),
+                    numFact));
 
                 }
 
@@ -86,7 +86,8 @@ public class Cartera_X_EdadesDAO implements Serializable {
                             -1,
                             -1,
                             -1,
-                            -1));
+                            -1,
+                ""));
                 
             } finally {
 

@@ -13,6 +13,7 @@ public class Abono implements Serializable{
     private LocalDate fechaAbono=LocalDate.now();
     private int idFormaDePago;
     private String descrFormaPago;
+    private String numFactura;
    
     
     //Constructor vacio
@@ -35,12 +36,13 @@ public class Abono implements Serializable{
 
     //Constructor para llenar una lista de abonos, solo con datos informativos.
 
-    public Abono(int idAbono, int idVenta, double valorAbonado, LocalDate fechaAbono, String descrFormaPago) {
+    public Abono(int idAbono, int idVenta, double valorAbonado, LocalDate fechaAbono, String descrFormaPago, String numFactura) {
         this.idAbono = idAbono;
         this.idVenta = idVenta;
         this.valorAbonado = valorAbonado;
         this.fechaAbono = fechaAbono;
         this.descrFormaPago = descrFormaPago;
+        this.numFactura=numFactura;
     }
    
     
@@ -100,6 +102,14 @@ public class Abono implements Serializable{
 
     public void setIdVenta(int idVenta) {
         this.idVenta = idVenta;
+    }
+
+    public String getNumFactura() {
+        return numFactura;
+    }
+
+    public void setNumFactura(String numFactura) {
+        this.numFactura = numFactura;
     }
     
     

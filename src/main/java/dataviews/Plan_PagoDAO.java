@@ -1,8 +1,8 @@
-
 package dataviews;
 
 import models.Plan_Pago;
 import java.io.Serializable;
+import java.lang.annotation.Retention;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -32,7 +32,7 @@ public class Plan_PagoDAO implements Serializable {
         this.plan_pago = planPago;
         this.result = result;
     }
-    
+
     //Procedimiento para insertar un nuevo Plan de Pago.
     public int insertarPlanDePago() {
         /*--Se ubica en el siguiente orden 
@@ -80,20 +80,28 @@ public class Plan_PagoDAO implements Serializable {
     }
 
     //Funcion que devuelve una lista con los cobros de un cliente
-    public List<Plan_Pago> obtenerCobrosCliente(int idCliente){
-        lista_cobros=new ArrayList<>();
-        
+    public List<Plan_Pago> obtenerCobrosCliente(int idCliente) {
+        lista_cobros = new ArrayList<>();
+
         //verificamos la conexion
         if (conex.isEstado()) {
             try {
                 /* Se obtiene una TABLA con todas las facturas que se pagaron a
                 credito, con sus respectivo datos calculados como la 
                 fecha de vencimiento =fecha actual+diascredito */
-                String sentencia = "select*from obtener_cobros_x_cliente("+idCliente+")";
+                String sentencia = "select*from obtener_cobros_x_cliente(" + idCliente + ")";
                 result = conex.ejecutarConsulta(sentencia);
 
+                //Instanciamos la clase AbonoDAO.        
+                AbonoDAO abonoDAO= new AbonoDAO();
+                
                 //Recorremos la TABLA retornada y la almacenamos en la lista.
                 while (result.next()) {
+
+                    //Concatenamos la sucursal, el punto de emision y el numero de la factura
+                    String numFact =abonoDAO.obtenerConcatenacionFactura(result.getInt("id_sucursal_r"),
+                            result.getInt("puntoemision_r"), result.getInt("secuencia_r"));
+                    
 
                     lista_cobros.add(
                             new Plan_Pago(result.getObject("fechacredito_i", LocalDate.class),
@@ -101,17 +109,18 @@ public class Plan_PagoDAO implements Serializable {
                                     result.getObject("fechavencimiento_i", LocalDate.class),
                                     result.getInt("idventa_i"),
                                     result.getDouble("valortotalfactura_i"),
-                                    result.getDouble("saldopendiente_i"), 
-                                    result.getDouble("totalabonos_i"), 
+                                    result.getDouble("saldopendiente_i"),
+                                    result.getDouble("totalabonos_i"),
                                     result.getString("descripcionestado_i"),
-                                    result.getInt("diasmora_i")));
+                                    result.getInt("diasmora_i"),
+                                    numFact));
                 }
             } catch (SQLException ex) {
                 /*Enviamos su respectivo mensaje de error a su ves una lista 
                     con valores incorrectos.*/
                 System.out.println(ex.getMessage());
                 lista_cobros.add(
-                        new Plan_Pago(null,-1,null, -1, -1, -1,-1,"", -1));
+                        new Plan_Pago(null, -1, null, -1, -1, -1, -1, "", -1,""));
             } finally {
 
                 conex.cerrarConexion();
@@ -121,5 +130,4 @@ public class Plan_PagoDAO implements Serializable {
         return lista_cobros;
     }
 
-    
 }

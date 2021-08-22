@@ -47,7 +47,8 @@
                                                      value="#{retencionController.idFactura}"
                                                      style="height: 40px; width: 130px; text-align: center;">                            
                                         <f:selectItem itemLabel="Seleccione..." itemValue="-1"/>
-                                        <f:selectItems value="#{retencionController.listaVentas}"/>
+                                        <f:selectItems value="#{retencionController.listaVentas}" 
+                                                       itemLabel="#{retencionController.listaVenta}"/>
                                     </p:selectOneMenu>
                                 </div>
                             </div>
